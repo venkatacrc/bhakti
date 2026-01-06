@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhakti Repository Index</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fcfcfc;
+        }
+        h1 {
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        #file-list {
+            list-style: none;
+            padding: 0;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            background-color: #fff;
+        }
+        #file-list li {
+            border-bottom: 1px solid #e1e4e8;
+        }
+        #file-list li:last-child {
+            border-bottom: none;
+        }
+        #file-list a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #0366d6;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        #file-list a:hover {
+            background-color: #f6f8fa;
+        }
+        .icon {
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+        .loading {
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+        }
+        .error {
+            color: #d73a49;
+            background-color: #ffdce0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .empty-message {
+            padding: 20px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🕉️ Bhakti - Rendered Pages</h1>
+    
+    <ul id="file-list">
+        <li class="loading">Loading pages...</li>
+    </ul>
+
+    <script>
+        // --- CONFIGURATION ---
+        const USER = 'venkatacrc';
+        const REPO = 'bhakti';
+        // Leave empty for root, or set to a folder name like 'songs'
+        const DIR_PATH = ''; 
+        
+        // --- API & URL SETUP ---
+        const API_URL = `https://api.github.com/repos/${USER}/${REPO}/contents/${DIR_PATH}`;
+        
+        // Ensure trailing slash for the directory path if it exists
+        const PATH_SEGMENT = DIR_PATH ? DIR_PATH + '/' : '';
+        const PAGES_BASE_URL = `https://${USER}.github.io/${REPO}/${PATH_SEGMENT}`;
+
+        const listContainer = document.getElementById('file-list');
+
+        async function fetchFiles() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`GitHub API Error: ${response.status}`);
+                
+                const data = await response.json();
+                listContainer.innerHTML = '';
+
+                // Filter: Show only .html files, exclude index.html
+                const htmlFiles = data.filter(item => 
+                    item.name.endsWith('.html') && 
+                    item.name.toLowerCase() !== 'index.html'
+                );
+
+                if (htmlFiles.length === 0) {
+                    listContainer.innerHTML = '<li class="empty-message">No HTML files found in this directory.</li>';
+                    return;
+                }
+
+                // Sort files alphabetically
+                htmlFiles.sort((a, b) => a.name.localeCompare(b.name));
+
+                htmlFiles.forEach(item => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    
+                    // Point to the rendered GitHub Pages URL
+                    a.href = PAGES_BASE_URL + item.name;
+                    
+                    a.innerHTML = `<span class="icon">📄</span>${item.name}`;
+                    li.appendChild(a);
+                    listContainer.appendChild(li);
+                });
+
+            } catch (error) {
+                console.error(error);
+                listContainer.innerHTML = `<div class="error">
+                    <strong>Error loading files:</strong> ${error.message}<br>
+                    <small>Check your repository name and ensuring GitHub Pages is enabled.</small>
+                </div>`;
+            }
+        }
+
+        fetchFiles();
+    </script>
+
+</body>
+</html>
