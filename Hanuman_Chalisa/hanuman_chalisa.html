@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanuman Chalisa - Multilingual with Meaning</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #d35400;
+            border-bottom: 2px solid #d35400;
+            padding-bottom: 10px;
+        }
+        h2 {
+            background-color: #fcece4;
+            padding: 10px;
+            border-left: 5px solid #d35400;
+            margin-top: 30px;
+        }
+        .verse-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            /* Ensures verses don't get cut in half when printing */
+            page-break-inside: avoid;
+        }
+        .scripts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+        }
+        .hindi { font-size: 1.1em; color: #8e44ad; font-weight: bold; }
+        .telugu { font-size: 1.1em; color: #2980b9; font-weight: bold; }
+        .english { font-style: italic; font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
+        .word-meaning { font-size: 0.9em; color: #555; margin-bottom: 5px; }
+        .full-meaning { background-color: #f9f9f9; padding: 5px; border-left: 3px solid #27ae60; }
+
+        /* Print optimizations */
+        @media print {
+            body { max-width: 100%; padding: 0; }
+            .verse-box { border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hanuman Chalisa</h1>
+    <p style="text-align: center;">Complete Lyrics in Hindi, Telugu, English with Word-to-Word Meanings.</p>
+
+    <h2>Initial Dohas (Invocation)</h2>
+
+    <div class="verse-box">
+        <strong>Doha 1</strong>
+        <div class="scripts">
+            <div class="hindi">श्रीगुरु चरन सरोज रज, निज मनु मुकुरु सुधारि ।<br>बरनउँ रघुबर बिमल जसु, जो दायकु फल चारि ॥</div>
+            <div class="telugu">శ్రీ గురు చరణ సరోజ రజ నిజ మన ముకుర సుధారి |<br>వరణౌ రఘువర విమల యశ జో దాయక ఫల చారి ||</div>
+        </div>
+        <div class="english">Shri Guru Charan Saroj Raj, Nij Manu Mukur Sudhari | Barnau Raghuvar Bimal Jasu, Jo Dayaku Phal Chari ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Charan (Feet), Saroj (Lotus), Raj (Dust), Manu (Mind), Mukur (Mirror), Bimal (Pure), Jasu (Glory), Phal Chari (4 Fruits).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> With the dust of the Guru's lotus feet, I cleanse the mirror of my mind. I narrate the pure glory of Lord Rama, which bestows the four fruits of life.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>Doha 2</strong>
+        <div class="scripts">
+            <div class="hindi">बुद्धिहीन तनु जानिके, सुमिरौं पवन-कुमार ।<br>बल बुद्धि बिद्या देहु मोहिं, हरहु कलेस बिकार ॥</div>
+            <div class="telugu">బుద్ధిహీన తను జానికే సుమిరౌ పవన కుమార |<br>బల బుద్ధి విద్యా దేహు మోహి హరహు కలేశ వికార ||</div>
+        </div>
+        <div class="english">Buddhiheen Tanu Jannike, Sumiro Pavan Kumar | Bal Buddhi Vidya Dehu Mohi, Harahu Kalesh Vikar ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Buddhiheen (Ignorant), Tanu (Body), Sumiro (Remember), Harahu (Remove), Kalesh (Suffering), Vikar (Impurities).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Knowing myself to be ignorant, I meditate on you, O Son of the Wind. Grant me strength, intelligence, and wisdom, and remove my miseries.</div>
+    </div>
+
+    <h2>Chaupais (The 40 Verses)</h2>
+
+    <div class="verse-box">
+        <strong>1</strong>
+        <div class="scripts">
+            <div class="hindi">जय हनुमान ज्ञान गुन सागर ।<br>जय कपीस तिहुँ लोक उजागर ॥</div>
+            <div class="telugu">జయ హనుమాన జ్ఞాన గుణ సాగర |<br>జయ కపీశ తిహు లోక ఉజాగర ||</div>
+        </div>
+        <div class="english">Jai Hanuman Gyan Gun Sagar | Jai Kapis Tihun Lok Ujagar ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Gyan (Knowledge), Gun (Virtues), Sagar (Ocean), Kapis (Lord of Monkeys), Tihun Lok (3 Worlds), Ujagar (Illuminated).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Victory to Hanuman, the ocean of knowledge and virtues. Victory to the Lord of Monkeys, who illuminates the three worlds.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>2</strong>
+        <div class="scripts">
+            <div class="hindi">राम दूत अतुलित बल धामा ।<br>अंजनि-पुत्र पवनसुत नामा ॥</div>
+            <div class="telugu">రామ దూత అతులిత బల ధామా |<br>అంజని పుత్ర పవన సుత నామా ||</div>
+        </div>
+        <div class="english">Ram Doot Atulit Bal Dhama | Anjani Putra Pavan Sut Nama ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Doot (Messenger), Atulit (Incomparable), Bal (Strength), Dhama (Abode), Sut (Son).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You are the messenger of Rama, the abode of incomparable strength. You are known as the son of Anjani and the son of the Wind.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>3</strong>
+        <div class="scripts">
+            <div class="hindi">महाबीर बिक्रम बजरंगी ।<br>कुमति निवार सुमति के संगी ॥</div>
+            <div class="telugu">మహావీర విక్రమ బజరంగీ |<br>కుమతి నివార సుమతి కే సంగీ ||</div>
+        </div>
+        <div class="english">Mahavir Vikram Bajrangi | Kumati Nivar Sumati Ke Sangi ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Mahavir (Great Hero), Bajrangi (Thunderbolt body), Kumati (Bad thoughts), Nivar (Remover), Sumati (Wisdom).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> O Great Hero, you are mighty and have a body as strong as a thunderbolt. You dispel evil thoughts and are the companion of good wisdom.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>4</strong>
+        <div class="scripts">
+            <div class="hindi">कंचन बरन बिराज सुबेसा ।<br>कानन कुंडल कुंचित केसा ॥</div>
+            <div class="telugu">కంచన వరణ విరాజ సువేశా |<br>కానన కుండల కుంచిత కేశా ||</div>
+        </div>
+        <div class="english">Kanchan Baran Biraj Subesha | Kanan Kundal Kunchit Kesha ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Kanchan (Gold), Baran (Color), Subesha (Good dress), Kanan (Ears), Kundal (Earrings), Kunchit (Curly), Kesha (Hair).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Your skin is golden in color, and you are beautifully adorned. You wear earrings, and your hair is curly.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>5</strong>
+        <div class="scripts">
+            <div class="hindi">हाथ बज्र औ ध्वजा बिराजै ।<br>काँधे मूँज जनेऊ साजै ॥</div>
+            <div class="telugu">హాథ వజ్ర ఔ ధ్వజా విరాజై |<br>కాంధే మూంజ జనేవూ సాజై ||</div>
+        </div>
+        <div class="english">Hath Vajra Aur Dhvaja Biraje | Kandhe Moonj Janeu Saje ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Hath (Hand), Vajra (Thunderbolt), Dhvaja (Flag), Kandhe (Shoulder), Janeu (Sacred Thread).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You hold the thunderbolt and the flag in your hands. The sacred thread made of Moonj grass adorns your shoulder.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>6</strong>
+        <div class="scripts">
+            <div class="hindi">संकर सुवन केसरीनंदन ।<br>तेज प्रताप महा जग बंदन ॥</div>
+            <div class="telugu">శంకర సువన కేసరీ నందన |<br>తేజ ప్రతాప మహా జగ వందన ||</div>
+        </div>
+        <div class="english">Shankar Suvan Kesari Nandan | Tej Pratap Maha Jag Vandan ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Suvan (Son), Tej (Radiance), Jag (World), Vandan (Worship).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> O incarnation of Shiva, son of Kesari, your glory and radiance are worshipped by the whole world.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>7</strong>
+        <div class="scripts">
+            <div class="hindi">बिद्यावान गुनी अति चातुर ।<br>राम काज करिबे को आतुर ॥</div>
+            <div class="telugu">విద్యావాన గుణీ అతి చాతుర |<br>రామ కాజ కరిబే కో ఆతుర ||</div>
+        </div>
+        <div class="english">Vidyavan Guni Ati Chatur | Ram Kaj Karibe Ko Aatur ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Vidyavan (Learned), Chatur (Clever), Ram Kaj (Rama's work), Aatur (Eager).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You are learned, virtuous, and extremely wise. You are always eager to perform Lord Rama's work.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>8</strong>
+        <div class="scripts">
+            <div class="hindi">प्रभु चरित्र सुनिबे को रसिया ।<br>राम लखन सीता मन बसिया ॥</div>
+            <div class="telugu">ప్రభు చరిత్ర సునిబే కో రసియా |<br>రామ లఖన సీతా మన బసియా ||</div>
+        </div>
+        <div class="english">Prabhu Charitra Sunibe Ko Rasiya | Ram Lakhan Sita Man Basiya ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Charitra (Story), Sunibe (Listen), Rasiya (Enjoyer), Man (Mind/Heart), Basiya (Reside).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You delight in listening to the acts of the Lord. Rama, Lakshmana, and Sita reside in your heart.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>9</strong>
+        <div class="scripts">
+            <div class="hindi">सूक्ष्म रूप धरि सियहिं दिखावा ।<br>बिकट रूप धरि लंक जरावा ॥</div>
+            <div class="telugu">సూక్ష్మ రూప ధరి సియహిం దిఖావా |<br>వికట రూప ధరి లంక జరావా ||</div>
+        </div>
+        <div class="english">Sukshma Roop Dhari Siyahi Dikhava | Vikat Roop Dhari Lanka Jarava ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Sukshma (Tiny), Siyahi (To Sita), Vikat (Terrifying), Jarava (Burned).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You assumed a tiny form to appear before Sita, and a terrifying form to burn Lanka.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>10</strong>
+        <div class="scripts">
+            <div class="hindi">भीम रूप धरि असुर सँहारे ।<br>रामचंद्र के काज सँवारे ॥</div>
+            <div class="telugu">భీమ రూప ధరి అసుర సంహారే |<br>రామచంద్ర కే కాజ సంవారే ||</div>
+        </div>
+        <div class="english">Bhim Roop Dhari Asur Sanhare | Ramachandra Ke Kaj Sanvare ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Bhim (Massive), Asur (Demons), Sanhare (Destroyed), Sanvare (Accomplished).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Taking a massive form, you destroyed the demons and completed the tasks of Lord Rama.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>11</strong>
+        <div class="scripts">
+            <div class="hindi">लाय सजीवन लखन जियाये ।<br>श्रीरघुबीर हरषि उर लाये ॥</div>
+            <div class="telugu">లాయ సజీవన లఖన జియాయే |<br>శ్రీ రఘువీర హరషి ఉర లాయే ||</div>
+        </div>
+        <div class="english">Laye Sanjivan Lakhan Jiyaye | Shri Raghubir Harashi Ur Laye ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Laye (Brought), Jiyaye (Revived), Harashi (Happy), Ur (Heart).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You brought the Sanjivani herb and revived Lakshmana. Lord Rama embraced you with joy.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>12</strong>
+        <div class="scripts">
+            <div class="hindi">रघुपति कीन्ही बहुत बड़ाई ।<br>तुम मम प्रिय भरतहि सम भाई ॥</div>
+            <div class="telugu">రఘుపతి కీన్హీ బహుత బడాయీ |<br>తుమ మమ ప్రియ భరతహి సమ భాయీ ||</div>
+        </div>
+        <div class="english">Raghupati Kinhi Bahut Badai | Tum Mam Priya Bharatahi Sam Bhai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Badai (Praise), Mam (My), Sam (Equal to), Bhai (Brother).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Lord Rama praised you greatly, saying, "You are as dear to me as my brother Bharata."</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>13</strong>
+        <div class="scripts">
+            <div class="hindi">सहस बदन तुम्हरो जस गावैं ।<br>अस कहि श्रीपति कंठ लगावैं ॥</div>
+            <div class="telugu">సహస వదన తుమ్హరో యశ గావై |<br>అస కహి శ్రీపతి కంఠ లగావై ||</div>
+        </div>
+        <div class="english">Sahas Badan Tumharo Yash Gaave | As Kahi Shripati Kanth Lagave ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Sahas Badan (1000 headed snake/Shesha), Yash (Glory), Shripati (Rama), Kanth (Neck/Embrace).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> "The thousand-headed serpent sings your glory," saying this, the Lord of Lakshmi embraced you.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>14</strong>
+        <div class="scripts">
+            <div class="hindi">सनकादिक ब्रह्मादि मुनीसा ।<br>नारद सारद सहित अहीसा ॥</div>
+            <div class="telugu">సనకాదిక బ్రహ్మాది మునీశా |<br>నారద శారద సహిత అహీశా ||</div>
+        </div>
+        <div class="english">Sanakadik Brahmadi Munisa | Narad Sarad Sahit Ahisa ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Munisa (Sages), Sarad (Saraswati), Ahisa (King of Snakes).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Sanaka, Brahma, the sages, Narada, Saraswati, and the King of Serpents all sing your praise.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>15</strong>
+        <div class="scripts">
+            <div class="hindi">जम कुबेर दिगपाल जहाँ ते ।<br>कबि कोबिद कहि सके कहाँ ते ॥</div>
+            <div class="telugu">యమ కుబేర దిగపాల జహాం తే |<br>కవి కోవిద కహి సకే కహాం తే ||</div>
+        </div>
+        <div class="english">Yam Kuber Digpal Jahan Te | Kavi Kovid Kahi Sake Kahan Te ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Digpal (Guardians of directions), Kavi (Poet), Kovid (Scholar).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Even Yama, Kubera, and the guardians of directions cannot describe you fully; how then can mere poets and scholars do so?</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>16</strong>
+        <div class="scripts">
+            <div class="hindi">तुम उपकार सुग्रीवहिं कीन्हा ।<br>राम मिलाय राज पद दीन्हा ॥</div>
+            <div class="telugu">తుమ ఉపకార సుగ్రీవహిం కీన్హా |<br>రామ మిలాయ రాజ పద దీన్హా ||</div>
+        </div>
+        <div class="english">Tum Upkar Sugrivahi Kinha | Ram Milaye Rajpad Dinha ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Upkar (Favor), Milaye (Introduced), Rajpad (Kingdom).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You did a great service to Sugriva by introducing him to Rama and helping him regain his kingdom.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>17</strong>
+        <div class="scripts">
+            <div class="hindi">तुम्हरो मंत्र बिभीषन माना ।<br>लंकेस्वर भए सब जग जाना ॥</div>
+            <div class="telugu">తుమ్హరో మంత్ర విభీషణ మానా |<br>లంకేశ్వర భయే సబ జగ జానా ||</div>
+        </div>
+        <div class="english">Tumharo Mantra Vibhishan Mana | Lankeshwar Bhaye Sab Jag Jana ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Mantra (Advice), Lankeshwar (King of Lanka), Jag (World).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Vibhishana heeded your counsel and became the Lord of Lanka; the whole world knows this.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>18</strong>
+        <div class="scripts">
+            <div class="hindi">जुग सहस्र जोजन पर भानू ।<br>लील्यो ताहि मधुर फल जानू ॥</div>
+            <div class="telugu">యుగ సహస్ర యోజన పర భానూ |<br>లీల్యో తాహి మధుర ఫల జానూ ||</div>
+        </div>
+        <div class="english">Yug Sahasra Yojan Par Bhanu | Leelyo Tahi Madhur Phal Janu ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Bhanu (Sun), Leelyo (Swallowed), Madhur (Sweet), Phal (Fruit).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You swallowed the sun, located thousands of miles away, thinking it to be a sweet fruit.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>19</strong>
+        <div class="scripts">
+            <div class="hindi">प्रभु मुद्रिका मेलि मुख माहीं ।<br>जलधि लाँघि गये अचरज नाहीं ॥</div>
+            <div class="telugu">ప్రభు ముద్రికా మేలి ముఖ మాహీ |<br>జలధి లాంఘి గయే అచరజ నాహీ ||</div>
+        </div>
+        <div class="english">Prabhu Mudrika Meli Mukh Mahee | Jaladhi Langhi Gaye Acharaj Nahee ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Mudrika (Ring), Mukh (Mouth), Jaladhi (Ocean), Acharaj (Wonder).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Keeping the Lord's ring in your mouth, you leaped across the ocean; there is no wonder in this.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>20</strong>
+        <div class="scripts">
+            <div class="hindi">दुर्गम काज जगत के जेते ।<br>सुगम अनुग्रह तुम्हरे तेते ॥</div>
+            <div class="telugu">దుర్గమ కాజ జగత కే జేతే |<br>సుగమ అనుగ్రహ తుమ్హరే తేతే ||</div>
+        </div>
+        <div class="english">Durgam Kaj Jagat Ke Jete | Sugam Anugraha Tumhare Tete ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Durgam (Difficult), Sugam (Easy), Anugraha (Grace).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> All the difficult tasks in the world become easy with your grace.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>21</strong>
+        <div class="scripts">
+            <div class="hindi">राम दुआरे तुम रखवारे ।<br>होत न आज्ञा बिनु पैसारे ॥</div>
+            <div class="telugu">రామ దువారే తుమ రఖవారే |<br>హోత న ఆజ్ఞా బిను పైసారే ||</div>
+        </div>
+        <div class="english">Ram Duware Tum Rakhavare | Hot Na Agya Binu Paisare ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Duware (Door), Rakhavare (Guard), Agya (Permission), Paisare (Entry).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You are the gatekeeper of Rama's court. No one can enter without your permission.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>22</strong>
+        <div class="scripts">
+            <div class="hindi">सब सुख लहै तुम्हारी सरना ।<br>तुम रक्षक काहू को डर ना ॥</div>
+            <div class="telugu">సబ సుఖ లహై తుమ్హారీ శరణా |<br>తుమ రక్షక కాహూ కో డర నా ||</div>
+        </div>
+        <div class="english">Sab Sukh Lahai Tumhari Sharna | Tum Rakshak Kahu Ko Dar Na ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Sharna (Refuge), Rakshak (Protector), Dar (Fear).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> All happiness is found in your shelter. When you are the protector, who is there to fear?</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>23</strong>
+        <div class="scripts">
+            <div class="hindi">आपन तेज सम्हारो आपै ।<br>तीनों लोक हाँक तें काँपै ॥</div>
+            <div class="telugu">ఆపన తేజ సంహారో ఆపై |<br>తీనోం లోక హాంక తే కాంపై ||</div>
+        </div>
+        <div class="english">Aapan Tej Samharo Aapai | Teenon Lok Hank Te Kanpai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Tej (Power), Samharo (Control), Hank (Roar), Kanpai (Tremble).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Only you can control your own power. When you roar, the three worlds tremble.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>24</strong>
+        <div class="scripts">
+            <div class="hindi">भूत पिसाच निकट नहिं आवै ।<br>महाबीर जब नाम सुनावै ॥</div>
+            <div class="telugu">భూత పిశాచ నికట నహిం ఆవై |<br>మహావీర జబ నామ సునావై ||</div>
+        </div>
+        <div class="english">Bhoot Pisach Nikat Nahi Aavai | Mahavir Jab Naam Sunavai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Bhoot Pisach (Ghosts/Spirits), Nikat (Near), Sunavai (Heard).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Ghosts and evil spirits do not come near when one chants your name, O Great Hero.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>25</strong>
+        <div class="scripts">
+            <div class="hindi">नासै रोग हरै सब पीरा ।<br>जपत निरंतर हनुमत बीरा ॥</div>
+            <div class="telugu">నాసై రోగ హరై సబ పీరా |<br>జపత నిరంతర హనుమత వీరా ||</div>
+        </div>
+        <div class="english">Nase Rog Harai Sab Peera | Japat Nirantar Hanumat Beera ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Nase (Destroy), Rog (Disease), Peera (Pain), Nirantar (Constantly).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> All diseases are destroyed and all pains vanish when one constantly chants the name of the brave Hanuman.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>26</strong>
+        <div class="scripts">
+            <div class="hindi">संकट तें हनुमान छुड़ावै ।<br>मन क्रम बचन ध्यान जो लावै ॥</div>
+            <div class="telugu">సంకట సే హనుమాన ఛుడావై |<br>మన క్రమ వచన ధ్యాన జో లావై ||</div>
+        </div>
+        <div class="english">Sankat Te Hanuman Chhudavai | Man Kram Bachan Dhyan Jo Lavai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Sankat (Trouble), Chhudavai (Frees), Man (Mind), Kram (Deed), Bachan (Word).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Hanuman frees those from distress who meditate on him in thought, word, and deed.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>27</strong>
+        <div class="scripts">
+            <div class="hindi">सब पर राम तपस्वी राजा ।<br>तिन के काज सकल तुम साजा ॥</div>
+            <div class="telugu">సబ పర రామ తపస్వీ రాజా |<br>తిన కే కాజ సకల తుమ సాజా ||</div>
+        </div>
+        <div class="english">Sab Par Ram Tapasvi Raja | Tin Ke Kaj Sakal Tum Saja ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Tapasvi (Ascetic), Sakal (All), Saja (Accomplished).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Rama is the Supreme King of Ascetics. You executed all his tasks efficiently.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>28</strong>
+        <div class="scripts">
+            <div class="hindi">और मनोरथ जो कोई लावै ।<br>सोइ अमित जीवन फल पावै ॥</div>
+            <div class="telugu">ఔర మనోరథ జో కోయీ లావై |<br>సోయి అమిత జీవన ఫల పావై ||</div>
+        </div>
+        <div class="english">Aur Manorath Jo Koi Lavai | Soi Amit Jivan Phal Pavai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Manorath (Desire), Amit (Eternal), Jivan Phal (Fruit of life).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Whoever brings any desire to you receives the imperishable fruit of life.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>29</strong>
+        <div class="scripts">
+            <div class="hindi">चारों जुग परताप तुम्हारा ।<br>है परसिद्ध जगत उजियारा ॥</div>
+            <div class="telugu">చారోం యుగ పరతాప తుమ్హారా |<br>హై పరసిద్ధ జగత ఉజియారా ||</div>
+        </div>
+        <div class="english">Charon Yug Partap Tumhara | Hai Parsiddh Jagat Ujiyara ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Charon Yug (4 Ages), Partap (Glory), Parsiddh (Famous), Ujiyara (Light).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Your glory spans all four ages. Your fame is radiantly known throughout the world.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>30</strong>
+        <div class="scripts">
+            <div class="hindi">साधु संत के तुम रखवारे ।<br>असुर निकंदन राम दुलारे ॥</div>
+            <div class="telugu">సాధు సంత కే తుమ రఖవారే |<br>అసుర నికందన రామ దులారే ||</div>
+        </div>
+        <div class="english">Sadhu Sant Ke Tum Rakhavare | Asur Nikandan Ram Dulare ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Sadhu Sant (Saints), Rakhavare (Protector), Nikandan (Destroyer).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You are the protector of sages and saints, the destroyer of demons, and the beloved of Rama.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>31</strong>
+        <div class="scripts">
+            <div class="hindi">अष्ट सिद्धि नौ निधि के दाता ।<br>अस बर दीन जानकी माता ॥</div>
+            <div class="telugu">అష్ట సిద్ధి నవ నిధి కే దాతా |<br>అస వర దీన జానకీ మాతా ||</div>
+        </div>
+        <div class="english">Ashta Siddhi Nav Nidhi Ke Data | As Var Deen Janaki Mata ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Siddhi (Powers), Nidhi (Treasures), Data (Giver), Var (Boon).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You are the bestower of the eight supernatural powers and the nine treasures. Mother Sita granted you this boon.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>32</strong>
+        <div class="scripts">
+            <div class="hindi">राम रसायन तुम्हरे पासा ।<br>सदा रहो रघुपति के दासा ॥</div>
+            <div class="telugu">రామ రసాయన తుమ్హరే పాసా |<br>సదా రహో రఘుపతి కే దాసా ||</div>
+        </div>
+        <div class="english">Ram Rasayan Tumhare Pasa | Sada Raho Raghupati Ke Dasa ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Rasayan (Elixir), Pasa (With you), Dasa (Servant).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> You hold the elixir of Rama's devotion. May you always remain the servant of Lord Raghupati.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>33</strong>
+        <div class="scripts">
+            <div class="hindi">तुम्हरे भजन राम को पावै ।<br>जनम जनम के दुख बिसरावै ॥</div>
+            <div class="telugu">తుమ్హరే భజన రామ కో పావై |<br>జన్మ జన్మ కే దుఖ బిసరావై ||</div>
+        </div>
+        <div class="english">Tumhare Bhajan Ram Ko Pavai | Janam Janam Ke Dukh Bisravai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Bhajan (Hymns), Pavai (Attains), Bisravai (Forgets).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Through hymns sung to you, one attains Rama and forgets the sorrows of many past lives.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>34</strong>
+        <div class="scripts">
+            <div class="hindi">अंतकाल रघुबर पुर जाई ।<br>जहाँ जन्म हरि-भक्त कहाई ॥</div>
+            <div class="telugu">అంత కాల రఘువర పుర జాయీ |<br>జహాం జన్మ హరిభక్త కహాయీ ||</div>
+        </div>
+        <div class="english">Anta Kaal Raghuvar Pur Jayi | Jahan Janma Hari Bhakta Kahayi ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Anta Kaal (End time), Pur (City), Hari Bhakta (Devotee).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> At the end of life, one goes to the abode of Rama, and if reborn, one is known as a devotee of God.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>35</strong>
+        <div class="scripts">
+            <div class="hindi">और देवता चित्त न धरई ।<br>हनुमत सेइ सर्ब सुख करई ॥</div>
+            <div class="telugu">ఔర దేవతా చిత్త న ధరయీ |<br>హనుమత సేయి సర్వ సుఖ కరయీ ||</div>
+        </div>
+        <div class="english">Aur Devata Chitt Na Dharayi | Hanumat Sei Sarv Sukh Karayi ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Chitt (Mind), Sei (Serving), Sarv Sukh (All happiness).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Even without worshipping other deities, one attains all happiness by serving Hanuman alone.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>36</strong>
+        <div class="scripts">
+            <div class="hindi">संकट कटै मिटै सब पीरा ।<br>जो सुमिरै हनुमत बलबीरा ॥</div>
+            <div class="telugu">సంకట కటై మిటై సబ పీరా |<br>జో సుమిరై హనుమత బలవీరా ||</div>
+        </div>
+        <div class="english">Sankat Katai Mitai Sab Peera | Jo Sumirai Hanumat Balbeera ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Katai (Cut), Mitai (Erased), Balbeera (Mighty one).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> All difficulties vanish and all pain ends for the one who remembers the mighty Hanuman.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>37</strong>
+        <div class="scripts">
+            <div class="hindi">जय जय जय हनुमान गोसाईं ।<br>कृपा करहु गुरुदेव की नाईं ॥</div>
+            <div class="telugu">జయ జయ జయ హనుమాన గోసాయీ |<br>కృపా కరహు గురుదేవ కీ నాయీ ||</div>
+        </div>
+        <div class="english">Jai Jai Jai Hanuman Gosai | Kripa Karahu Gurudev Ki Nai ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Gosai (Lord), Kripa (Grace), Ki Nai (Like a).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Victory, Victory, Victory to you, Lord Hanuman! Please show compassion to me like a supreme Guru.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>38</strong>
+        <div class="scripts">
+            <div class="hindi">जो सत बार पाठ कर कोई ।<br>छूटहि बंदि महा सुख होई ॥</div>
+            <div class="telugu">జో శత వార పాఠ కర కోయీ |<br>ఛూటహి బంది మహా సుఖ హోయీ ||</div>
+        </div>
+        <div class="english">Jo Sat Bar Path Kar Koi | Chhutahi Bandi Maha Sukh Hoi ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Sat Bar (100 times), Bandi (Prison/Bondage), Sukh (Happiness).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Whoever recites this a hundred times is freed from bondage and enjoys great happiness.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>39</strong>
+        <div class="scripts">
+            <div class="hindi">जो यह पढ़ै हनुमान चालीसा ।<br>होय सिद्धि साखी गौरीसा ॥</div>
+            <div class="telugu">జో యహ పడై హనుమాన చాలీసా |<br>హోయ సిద్ధి సాఖీ గౌరీసా ||</div>
+        </div>
+        <div class="english">Jo Yeh Padhe Hanuman Chalisa | Hoye Siddhi Sakhi Gaurisa ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Siddhi (Success), Sakhi (Witness), Gaurisa (Shiva).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Whoever reads this Hanuman Chalisa attains perfection/success; Lord Shiva is the witness to this.</div>
+    </div>
+
+    <div class="verse-box">
+        <strong>40</strong>
+        <div class="scripts">
+            <div class="hindi">तुलसीदास सदा हरि चेरा ।<br>कीजै नाथ हृदय मँह डेरा ॥</div>
+            <div class="telugu">తులసీదాస సదా హరి చేరా |<br>కీజై నాథ హృదయ మహ డేరా ||</div>
+        </div>
+        <div class="english">Tulsidas Sada Hari Chera | Kijai Nath Hridaya Mah Dera ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Chera (Servant), Hridaya (Heart), Dera (Home).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> Tulsidas is always the servant of Hari. O Lord, please make your home in my heart.</div>
+    </div>
+
+    <h2>Concluding Doha</h2>
+
+    <div class="verse-box">
+        <div class="scripts">
+            <div class="hindi">पवनतनय संकट हरन, मंगल मूरति रूप ।<br>राम लखन सीता सहित, हृदय बसहु सुर भूप ॥</div>
+            <div class="telugu">పవన తనయ సంకట హరణ మంగళ మూర్తి రూప |<br>రామ లఖన సీతా సహిత హృదయ బసహు సుర భూప ||</div>
+        </div>
+        <div class="english">Pavan Tanay Sankat Haran Mangal Murti Roop |<br>Ram Lakhan Sita Sahit Hridaya Basahu Sur Bhup ||</div>
+        <div class="word-meaning"><strong>Words:</strong> Pavan Tanay (Wind Son), Mangal Murti (Auspicious form), Basahu (Reside).</div>
+        <div class="full-meaning"><strong>Meaning:</strong> O Son of the Wind, remover of obstacles, embodiment of auspiciousness. O King of Gods, please reside in my heart along with Rama, Lakshmana, and Sita.</div>
+    </div>
+
+</body>
+</html>
