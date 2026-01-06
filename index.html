@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
             line-height: 1.6;
@@ -17,6 +17,11 @@
         h1 {
             border-bottom: 2px solid #eaecef;
             padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .stats {
+            font-size: 0.9em;
+            color: #666;
             margin-bottom: 20px;
         }
         #file-list {
@@ -33,106 +38,129 @@
             border-bottom: none;
         }
         #file-list a {
-            display: flex;
-            align-items: center;
+            display: block;
             padding: 12px 15px;
             text-decoration: none;
             color: #0366d6;
-            font-weight: 500;
             transition: background 0.2s;
         }
         #file-list a:hover {
             background-color: #f6f8fa;
         }
-        .icon {
-            margin-right: 12px;
-            font-size: 1.2em;
+        .path {
+            color: #586069;
+            font-size: 0.85em;
+        }
+        .filename {
+            font-weight: 600;
+            font-size: 1.1em;
+            display: block;
         }
         .loading {
             padding: 20px;
-            color: #666;
-            font-style: italic;
             text-align: center;
+            color: #666;
         }
         .error {
             color: #d73a49;
             background-color: #ffdce0;
             padding: 15px;
             border-radius: 6px;
-            margin-top: 20px;
-        }
-        .empty-message {
-            padding: 20px;
-            color: #666;
-            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <h1>🕉️ Bhakti - Rendered Pages</h1>
+    <h1>🕉️ Bhakti - All Pages</h1>
+    <div id="stats" class="stats"></div>
     
     <ul id="file-list">
-        <li class="loading">Loading pages...</li>
+        <li class="loading">Scanning repository recursively...</li>
     </ul>
 
     <script>
-        // --- CONFIGURATION ---
         const USER = 'venkatacrc';
         const REPO = 'bhakti';
-        // Leave empty for root, or set to a folder name like 'songs'
-        const DIR_PATH = ''; 
-        
-        // --- API & URL SETUP ---
-        const API_URL = `https://api.github.com/repos/${USER}/${REPO}/contents/${DIR_PATH}`;
-        
-        // Ensure trailing slash for the directory path if it exists
-        const PATH_SEGMENT = DIR_PATH ? DIR_PATH + '/' : '';
-        const PAGES_BASE_URL = `https://${USER}.github.io/${REPO}/${PATH_SEGMENT}`;
+        const BRANCH = 'main'; // Usually 'main' or 'master'
+
+        // API to get the whole tree recursively
+        const API_URL = `https://api.github.com/repos/${USER}/${REPO}/git/trees/${BRANCH}?recursive=1`;
+        const BASE_URL = `https://${USER}.github.io/${REPO}/`;
 
         const listContainer = document.getElementById('file-list');
+        const statsContainer = document.getElementById('stats');
 
         async function fetchFiles() {
             try {
                 const response = await fetch(API_URL);
-                if (!response.ok) throw new Error(`GitHub API Error: ${response.status}`);
+                if (!response.ok) {
+                    // Fallback: If 'main' fails, try 'master' (common issue for older repos)
+                    if (BRANCH === 'main') {
+                        console.warn("Main branch not found, trying master...");
+                        const fallbackResponse = await fetch(`https://api.github.com/repos/${USER}/${REPO}/git/trees/master?recursive=1`);
+                        if (fallbackResponse.ok) {
+                           processData(await fallbackResponse.json());
+                           return;
+                        }
+                    }
+                    throw new Error(`GitHub API Error: ${response.status}`);
+                }
                 
                 const data = await response.json();
-                listContainer.innerHTML = '';
-
-                // Filter: Show only .html files, exclude index.html
-                const htmlFiles = data.filter(item => 
-                    item.name.endsWith('.html') && 
-                    item.name.toLowerCase() !== 'index.html'
-                );
-
-                if (htmlFiles.length === 0) {
-                    listContainer.innerHTML = '<li class="empty-message">No HTML files found in this directory.</li>';
-                    return;
-                }
-
-                // Sort files alphabetically
-                htmlFiles.sort((a, b) => a.name.localeCompare(b.name));
-
-                htmlFiles.forEach(item => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    
-                    // Point to the rendered GitHub Pages URL
-                    a.href = PAGES_BASE_URL + item.name;
-                    
-                    a.innerHTML = `<span class="icon">📄</span>${item.name}`;
-                    li.appendChild(a);
-                    listContainer.appendChild(li);
-                });
+                processData(data);
 
             } catch (error) {
                 console.error(error);
                 listContainer.innerHTML = `<div class="error">
                     <strong>Error loading files:</strong> ${error.message}<br>
-                    <small>Check your repository name and ensuring GitHub Pages is enabled.</small>
+                    <small>Make sure the repository is public and the branch exists.</small>
                 </div>`;
             }
+        }
+
+        function processData(data) {
+            listContainer.innerHTML = '';
+            
+            // 1. Filter for HTML files
+            // 2. Exclude the root index.html itself to avoid loops
+            const htmlFiles = data.tree.filter(item => 
+                item.path.endsWith('.html') && 
+                item.path.toLowerCase() !== 'index.html'
+            );
+
+            statsContainer.innerText = `Found ${htmlFiles.length} pages across all folders.`;
+
+            if (htmlFiles.length === 0) {
+                listContainer.innerHTML = '<li class="loading">No HTML files found.</li>';
+                return;
+            }
+
+            // Sort alphabetically by path
+            htmlFiles.sort((a, b) => a.path.localeCompare(b.path));
+
+            htmlFiles.forEach(item => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                
+                // Construct the full URL
+                a.href = BASE_URL + item.path;
+                
+                // Split path for display (e.g., "Hanuman_Chalisa/intro.html")
+                const parts = item.path.split('/');
+                const fileName = parts.pop();
+                const folderPath = parts.join(' / ');
+
+                // Display format:
+                // Folder / Path
+                // Filename
+                a.innerHTML = `
+                    ${folderPath ? `<div class="path">📂 ${folderPath}</div>` : ''}
+                    <span class="filename">${fileName}</span>
+                `;
+                
+                li.appendChild(a);
+                listContainer.appendChild(li);
+            });
         }
 
         fetchFiles();
