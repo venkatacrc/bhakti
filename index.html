@@ -91,6 +91,14 @@
         .quick-links li:last-child {
             margin-bottom: 0;
         }
+        .quick-links .sublist {
+            margin: 8px 0 0 18px;
+            padding: 0;
+            list-style: disc;
+        }
+        .quick-links .sublist li {
+            margin-bottom: 6px;
+        }
         .quick-links a {
             color: #0366d6;
             text-decoration: none;
@@ -117,7 +125,12 @@
     <nav class="quick-links">
         <h2>Contents</h2>
         <ul>
-            <li><a href="Hanuman_Chalisa/hanuman_chalisa.html">Hanuman Chalisa</a> <span class="folder">— Hanuman_Chalisa</span> <a href="https://www.youtube.com/watch?v=RO1wG4h8Ngw" target="_blank" rel="noopener noreferrer" class="youtube">Watch on YouTube</a></li>
+            <li><span class="folder">Hanuman</span>
+                <ul class="sublist">
+                    <li><a href="Hanuman/hanuman_chalisa.html">Hanuman Chalisa</a> <a href="https://www.youtube.com/watch?v=RO1wG4h8Ngw" target="_blank" rel="noopener noreferrer" class="youtube">Watch on YouTube</a></li>
+                    <li><a href="Hanuman/sankata_mochana_hanuman_ashtakam.html">Sankata Mochana Hanuman Ashtakam</a></li>
+                </ul>
+            </li>
             <li><a href="Shiva/lingastakam.html">Lingastakam</a> <span class="folder">— Shiva</span></li>
             <li><a href="Durga/mahishasura_mardini_stotram.html">Mahishasura Mardini Stotram</a> <span class="folder">— Durga</span></li>
         </ul>
@@ -196,7 +209,7 @@
                 // Construct the full URL
                 a.href = BASE_URL + item.path;
                 
-                // Split path for display (e.g., "Hanuman_Chalisa/intro.html")
+                // Split path for display (e.g., "Hanuman/intro.html")
                 const parts = item.path.split('/');
                 const fileName = parts.pop();
                 const folderPath = parts.join(' / ');
