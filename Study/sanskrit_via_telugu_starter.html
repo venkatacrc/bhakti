@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanskrit via Telugu — Starter Study Package</title>
+    <title>Sanskrit via Telugu — Grammar &amp; Conversation Primer</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -90,20 +90,34 @@
         .sa { color: #1a5276; font-weight: 600; }
         .te { color: #2980b9; font-weight: 600; }
         .eg { color: #555; font-size: 0.92em; }
-        .phase {
+        .dialog {
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 14px 16px;
-            margin-bottom: 14px;
+            padding: 12px 14px;
+            margin: 10px 0 16px;
             background: #fff;
         }
-        .phase .meta {
-            color: #586069;
-            font-size: 0.9em;
-            margin-bottom: 8px;
+        .dialog .line {
+            margin: 6px 0;
+            padding: 6px 8px;
+            border-radius: 4px;
         }
-        .phase ul { margin: 6px 0 0; padding-left: 20px; }
-        .phase li { margin-bottom: 4px; }
+        .dialog .a { background: #eaf2f8; }
+        .dialog .b { background: #f4f9f4; }
+        .dialog .label {
+            font-size: 0.8em;
+            color: #586069;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        .dialog .te-line { color: #555; font-size: 0.92em; margin-left: 1.6em; }
+        .drill {
+            background: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 0.95em;
+        }
         code, .path {
             font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
             font-size: 0.88em;
@@ -128,160 +142,314 @@
         @media print {
             body { background: #fff; }
             .toc { break-after: avoid; }
-            .phase, table { break-inside: avoid; }
+            .dialog, table { break-inside: avoid; }
         }
     </style>
 </head>
 <body>
 
-    <h1>సంస్కృతం ← తెలుగు<br>Starter Study Package</h1>
-    <p class="subtitle">Sanskrit through Telugu — a single reference for repeated study</p>
-    <p class="subtitle">Source collection: <a href="https://github.com/venkatacrc/bhakti">venkatacrc/bhakti</a> (stotras + Bhagavad Gītā already in this repo — not duplicated here)</p>
+    <h1>సంస్కృతం ← తెలుగు<br>Grammar &amp; Conversation Primer</h1>
+    <p class="subtitle">Comprehensive grammar with Telugu comparisons + everyday conversational sentences</p>
+    <p class="subtitle">Companion to <a href="https://github.com/venkatacrc/bhakti">venkatacrc/bhakti</a> stotras — this page teaches the language, not the verse texts</p>
 
     <div class="note">
-        <strong>How this package fits the repo:</strong> All verse pages (Devanagari + Telugu script + word meanings) already exist under
-        <span class="path">Ganesha/</span>, <span class="path">Shankaracharya/</span>, <span class="path">BhagavadGita/</span>, <span class="path">Vishnu/</span>, etc.
-        This document is the <em>learning frame</em> — roadmap, grammar bridge, cognate glossary, and a study method that points at those pages.
+        ప్రతి వ్యాకరణ విభాగం తర్వాత <strong>సంభాషణ వాక్యాలు</strong> ఉన్నాయి — బిగ్గరగా చదవండి, తెలుగు అర్థం చూసి, తర్వాత తెలుగు లేకుండా చెప్పండి.
+        స్తోత్రాలు చదివేటప్పుడు ఇదే నిర్మాణాలు కనిపిస్తాయి.
     </div>
 
     <nav class="toc" id="toc">
         <h2>Contents</h2>
         <ol>
-            <li><a href="#roadmap">Learning Roadmap</a>
-                <ul class="sub">
-                    <li><a href="#phase-0">Phase 0 — Script &amp; listening</a></li>
-                    <li><a href="#phase-1">Phase 1 — Grammar foundations</a></li>
-                    <li><a href="#phase-2">Phase 2 — Short stotras</a></li>
-                    <li><a href="#phase-3">Phase 3 — Longer stotras</a></li>
-                    <li><a href="#phase-4">Phase 4 — Bhagavad Gītā</a></li>
-                    <li><a href="#phase-5">Phase 5 — Viṣṇu Sahasranāmam</a></li>
-                </ul>
-            </li>
             <li><a href="#grammar">Grammar Primer (తెలుగు)</a>
                 <ul class="sub">
+                    <li><a href="#intro">తెలుగు–సంస్కృత వంతెన</a></li>
+                    <li><a href="#pronouns">సర్వనామాలు (Pronouns)</a></li>
+                    <li><a href="#vibhakti">విభక్తి / Case system</a></li>
                     <li><a href="#sandhi">సంధి (Sandhi)</a></li>
                     <li><a href="#samasa">సమాసం (Samāsa)</a></li>
-                    <li><a href="#vibhakti">విభక్తి / Case</a></li>
-                    <li><a href="#dhatu">ధాతు conjugation patterns</a></li>
+                    <li><a href="#dhatu">ధాతు &amp; conjugation</a></li>
+                    <li><a href="#participles">కృదంతాలు (Participles)</a></li>
+                    <li><a href="#syntax">వాక్య నిర్మాణం</a></li>
+                    <li><a href="#avyaya">అవ్యయాలు &amp; య-త జంటలు</a></li>
+                    <li><a href="#suffixes">కృత్ &amp; తద్ధిత ప్రత్యయాలు</a></li>
+                    <li><a href="#numbers">సంఖ్యలు</a></li>
+                    <li><a href="#formulas">స్తోత్ర వాక్య సూత్రాలు</a></li>
+                    <li><a href="#chandas">ఛందస్సు (Metre)</a></li>
+                </ul>
+            </li>
+            <li><a href="#conversation">Conversational Sentences</a>
+                <ul class="sub">
+                    <li><a href="#greet">శుభాకాంక్షలు &amp; పరిచయం</a></li>
+                    <li><a href="#daily">రోజువారీ జీవితం</a></li>
+                    <li><a href="#ask">అడగడం &amp; చెప్పడం</a></li>
+                    <li><a href="#feel">భావాలు &amp; అభిప్రాయం</a></li>
+                    <li><a href="#study">అధ్యయనం &amp; భక్తి</a></li>
+                    <li><a href="#dialogs">పూర్తి సంభాషణలు</a></li>
                 </ul>
             </li>
             <li><a href="#glossary">Sanskrit–Telugu Cognate Glossary</a></li>
-            <li><a href="#method">Study Method (with this repo)</a></li>
         </ol>
     </nav>
 
-    <!-- ========== 1. ROADMAP ========== -->
-    <h2 id="roadmap">1. Learning Roadmap</h2>
+    <!-- ========== GRAMMAR ========== -->
+    <h2 id="grammar">1. Grammar Primer (తెలుగు దృష్టితో)</h2>
+
+    <h3 id="intro">1.0 తెలుగు–సంస్కృత వంతెన</h3>
     <p>
-        Goal: move from “I can chant with Telugu script support” → “I can parse a verse into stems, cases, and compounds”
-        → “I can read Gītā and Sahasranāmam with diminishing dictionary dependence.”
-        Times assume ~30–45 minutes/day, 5–6 days/week. Stretch or compress freely.
+        తెలుగు మాట్లాడేవారికి సంస్కృతం కొత్త భాష కాదు — ఇది <strong>తత్సమ / తద్భవ</strong> పదాల ద్వారా ఇప్పటికే మీ నోట్లో ఉన్న భాష.
+        తేడా ప్రధానంగా <em>ప్రత్యయాలు</em> (విభక్తి, క్రియా రూపాలు) మరియు <em>సంధి</em>లో ఉంటుంది.
     </p>
-
-    <div class="phase" id="phase-0">
-        <h3>Phase 0 — Script bridge &amp; listening (2–3 weeks)</h3>
-        <p class="meta">Outcome: comfortable reading Telugu-script Sanskrit side-by-side with Devanagari; ear trained to chant cadence.</p>
-        <ul>
-            <li>Use any page’s two-column layout: Devanagari left, Telugu right (e.g. <a href="../Ganesha/ganesha_pancharatnam.html">Ganesha Pancharatnam</a>).</li>
-            <li>Map Devanagari ↔ Telugu letter-by-letter for 10–15 minutes/day (vowels, conjuncts, anusvāra, visarga).</li>
-            <li>Listen + follow along: Hanuman Chalisa / Suprabhatam YouTube links on the <a href="../index.html">index</a>.</li>
-            <li>Do <strong>not</strong> chase full grammar yet — chant accuracy and script fluency first.</li>
-        </ul>
-        <a class="back-top" href="#toc">↑ Contents</a>
-    </div>
-
-    <div class="phase" id="phase-1">
-        <h3>Phase 1 — Grammar foundations (4–6 weeks)</h3>
-        <p class="meta">Outcome: recognize sandhi seams, name the seven vibhaktis, spot common samāsas, conjugate a few high-frequency roots.</p>
-        <ul>
-            <li>Work through <a href="#grammar">§2 Grammar Primer</a> in this document — one subsection per week.</li>
-            <li>Drill <a href="#glossary">§3 Cognate Glossary</a> in small batches (10–15 words/day); say the Telugu tatsama aloud.</li>
-            <li>Pick 2–3 lines from a short stotra and mark: sandhi cuts, vibhakti endings, compounds.</li>
-            <li>Primary practice text: <a href="../Ganesha/ganesha_pancharatnam.html">Ganesha Pancharatnam</a> (5 verses, dense compounds).</li>
-        </ul>
-        <a class="back-top" href="#toc">↑ Contents</a>
-    </div>
-
-    <div class="phase" id="phase-2">
-        <h3>Phase 2 — Short stotras (6–8 weeks)</h3>
-        <p class="meta">Outcome: parse a full short stotra with word-meanings, then without looking at English for known words.</p>
-        <ul>
-            <li><a href="../Shiva/lingastakam.html">Liṅgāṣṭakam</a> — regular aṣṭaka pattern, clear refrain.</li>
-            <li><a href="../Durga/bhavani_ashtakam.html">Bhavānī Aṣṭakam</a> — repeated “tvām… śaraṇaṃ” frame.</li>
-            <li><a href="../Shankaracharya/guruvashtakam.html">Gurvaṣṭakam</a> — philosophical vocabulary that will return in Gītā.</li>
-            <li><a href="../Hanuman/sankata_mochana_hanuman_ashtakam.html">Saṅkaṭa Mochana Hanumān Aṣṭakam</a> — narrative verbs + vocatives.</li>
-            <li>Optional parallel Awadhi/Hindi bridge: <a href="../Hanuman/hanuman_chalisa.html">Hanumān Cālīsā</a> (not Classical Sanskrit — useful for devotion + cognates only).</li>
-        </ul>
-        <a class="back-top" href="#toc">↑ Contents</a>
-    </div>
-
-    <div class="phase" id="phase-3">
-        <h3>Phase 3 — Longer stotras (8–12 weeks)</h3>
-        <p class="meta">Outcome: sustain attention across longer anuṣṭubh / complex metres; track recurring name-epithet compounds.</p>
-        <ul>
-            <li><a href="../Shankaracharya/bhaja_govindam.html">Bhaja Govindam</a> — ideal “grammar meets meaning” text; short lines, sharp vocabulary.</li>
-            <li><a href="../Lakshmi/kanakadhara_stotram.html">Kanakadhārā Stotram</a> — dense feminine imagery, long compounds.</li>
-            <li><a href="../Shiva/dakshinamurthy_stotram.html">Dakṣiṇāmūrti Stotram</a> — Advaita technical terms.</li>
-            <li><a href="../Durga/mahishasura_mardini_stotram.html">Mahiṣāsura Mardinī</a> — fast chant; focus on name-lists + alliteration, not every rare word.</li>
-            <li><a href="../Venkateswara/sri_venkateswara_suprabhatam.html">Śrī Veṅkaṭeśwara Suprabhātam</a> — morning liturgy vocabulary; good for listening practice.</li>
-            <li><a href="../Shankaracharya/guru_paduka_stotram.html">Guru Pādukā Stotram</a> — bhakti + guru-śiṣya lexicon.</li>
-        </ul>
-        <a class="back-top" href="#toc">↑ Contents</a>
-    </div>
-
-    <div class="phase" id="phase-4">
-        <h3>Phase 4 — Bhagavad Gītā (4–8 months)</h3>
-        <p class="meta">Outcome: read a chapter verse-by-verse with sandhi split; follow argument arcs, not only isolated ślokas.</p>
-        <ul>
-            <li>Start with Ch. 12 (<a href="../BhagavadGita/chapter_12_bhakti_yoga.html">Bhakti Yoga</a>) — shortest, clearest devotion chapter — then Ch. 2, then sequential 1–18.</li>
-            <li>All 18 chapters are in <span class="path">BhagavadGita/</span> with Telugu script + light hyphenation for reading.</li>
-            <li>Pace: ~1 chapter/week for short ones; 2–3 weeks for Ch. 2, 11, 18.</li>
-            <li>Weekly drill: pick 5 verses; strip sandhi; label vibhakti; paraphrase in Telugu from cognates before reading English meaning.</li>
-        </ul>
-        <a class="back-top" href="#toc">↑ Contents</a>
-    </div>
-
-    <div class="phase" id="phase-5">
-        <h3>Phase 5 — Viṣṇu Sahasranāmam (ongoing / 3–6+ months)</h3>
-        <p class="meta">Outcome: treat the thousand names as a vocabulary + compound gymnasium; chant with comprehension of name clusters.</p>
-        <ul>
-            <li>Text: <a href="../Vishnu/vishnu_sahasranamam.html">Viṣṇu Sahasranāmam</a>.</li>
-            <li>Method: 10–25 names/day — derive from roots/cognates; note recurring prefixes (vi-, su-, a-, nir-, mahā-).</li>
-            <li>Do this <em>alongside</em> Gītā, not only after — names reinforce Gītā theology vocabulary.</li>
-        </ul>
-        <a class="back-top" href="#toc">↑ Contents</a>
-    </div>
-
-    <h4>Rough calendar (full path)</h4>
     <table>
         <thead>
-            <tr><th>Phase</th><th>Focus</th><th>Estimate</th></tr>
+            <tr><th>భావన</th><th>తెలుగు</th><th>సంస్కృతం</th></tr>
         </thead>
         <tbody>
-            <tr><td>0</td><td>Script + listening</td><td>2–3 weeks</td></tr>
-            <tr><td>1</td><td>Grammar + cognates</td><td>4–6 weeks</td></tr>
-            <tr><td>2</td><td>Short stotras</td><td>6–8 weeks</td></tr>
-            <tr><td>3</td><td>Longer stotras</td><td>8–12 weeks</td></tr>
-            <tr><td>4</td><td>Bhagavad Gītā</td><td>4–8 months</td></tr>
-            <tr><td>5</td><td>Sahasranāmam</td><td>3–6+ months (ongoing)</td></tr>
-            <tr><td colspan="2"><strong>Total to “Gītā-ready + Sahasranāmam habit”</strong></td><td><strong>~12–18 months</strong></td></tr>
+            <tr><td>కర్త గుర్తింపు</td><td><span class="te">-డు / -ము / -వు</span></td><td>ప్రథమా విభక్తి (<span class="sa">रामः, फलं, नदी</span>)</td></tr>
+            <tr><td>కర్మ</td><td><span class="te">-ని / -ను</span></td><td>ద్వితీయా (<span class="sa">रामम्, फलम्</span>)</td></tr>
+            <tr><td>సంబంధం</td><td><span class="te">-యొక్క / -ది</span></td><td>షష్ఠీ (<span class="sa">रामस्य</span>)</td></tr>
+            <tr><td>క్రియా కాలం</td><td><span class="te">చేస్తున్నాను / చేశాను / చేస్తాను</span></td><td>లట్ / లఙ్ / లృట్</td></tr>
+            <tr><td>పదాల కలయిక</td><td>మాట్లాడేటప్పుడు సహజం</td><td>సంధి — లిఖితంలోనూ నియమబద్ధం</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="pronouns">1.1 సర్వనామాలు (Pronouns)</h3>
+    <p>సంభాషణకు మొదటి అవసరం — నేను, నీవు, అతడు/ఆమె, ఇది/అది.</p>
+
+    <h4>పురుష సర్వనామాలు — ప్రథమా (కర్త రూపం)</h4>
+    <table>
+        <thead>
+            <tr><th></th><th>ఏకవచనం</th><th>ద్వివచనం</th><th>బహువచనం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ఉత్తమ (I/we)</td>
+                <td><span class="sa">अहम्</span></td>
+                <td><span class="sa">आवाम्</span></td>
+                <td><span class="sa">वयम्</span></td>
+                <td><span class="te">నేను / మేము ఇద్దరం / మేము</span></td>
+            </tr>
+            <tr>
+                <td>మధ్యమ (you)</td>
+                <td><span class="sa">त्वम्</span></td>
+                <td><span class="sa">युवाम्</span></td>
+                <td><span class="sa">यूयम्</span></td>
+                <td><span class="te">నీవు / మీరిద్దరు / మీరు</span></td>
+            </tr>
+            <tr>
+                <td>ప్రథమ (he/they) పు.</td>
+                <td><span class="sa">सः</span></td>
+                <td><span class="sa">तौ</span></td>
+                <td><span class="sa">ते</span></td>
+                <td><span class="te">అతడు / వారిద్దరు / వారు</span></td>
+            </tr>
+            <tr>
+                <td>ప్రథమ స్త్రీ</td>
+                <td><span class="sa">सा</span></td>
+                <td><span class="sa">ते</span></td>
+                <td><span class="sa">ताः</span></td>
+                <td><span class="te">ఆమె / వారిద్దరు / వారు</span></td>
+            </tr>
+            <tr>
+                <td>ప్రథమ నపుంసక</td>
+                <td><span class="sa">तत्</span></td>
+                <td><span class="sa">ते</span></td>
+                <td><span class="sa">तानि</span></td>
+                <td><span class="te">అది / అవి</span></td>
+            </tr>
         </tbody>
     </table>
 
-    <!-- ========== 2. GRAMMAR ========== -->
-    <h2 id="grammar">2. Grammar Primer (తెలుగు దృష్టితో)</h2>
+    <h4>ముఖ్యమైన విభక్తి రూపాలు (సంభాషణకు)</h4>
+    <table>
+        <thead>
+            <tr><th>అర్థం</th><th>అహమ్</th><th>త్వమ్</th><th>సః</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>నన్ను / నిన్ను / అతనిని</td><td><span class="sa">माम्</span></td><td><span class="sa">त्वाम्</span></td><td><span class="sa">तम्</span></td><td>ద్వితీయా</td></tr>
+            <tr><td>నాతో / నీతో / అతనితో</td><td><span class="sa">मया</span></td><td><span class="sa">त्वया</span></td><td><span class="sa">तेन</span></td><td>తృతీయా</td></tr>
+            <tr><td>నాకు / నీకు / అతనికి</td><td><span class="sa">मह्यम्</span> / <span class="sa">मे</span></td><td><span class="sa">तुभ्यम्</span> / <span class="sa">ते</span></td><td><span class="sa">तस्मै</span></td><td>చతుర్థీ</td></tr>
+            <tr><td>నా / నీ / అతని</td><td><span class="sa">मम</span> / <span class="sa">मे</span></td><td><span class="sa">तव</span> / <span class="sa">ते</span></td><td><span class="sa">तस्य</span></td><td>షష్ఠీ</td></tr>
+            <tr><td>నాలో / నీలో / అతనిలో</td><td><span class="sa">मयि</span></td><td><span class="sa">त्वयि</span></td><td><span class="sa">तस्मिन्</span></td><td>సప్తమీ</td></tr>
+        </tbody>
+    </table>
+
+    <h4>ఇదం / ఏతత్ / కిమ్ (this / that / what)</h4>
+    <table>
+        <thead>
+            <tr><th></th><th>పు.</th><th>స్త్రీ</th><th>నపు.</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>ఇది (near)</td><td><span class="sa">अयम्</span></td><td><span class="sa">इयम्</span></td><td><span class="sa">इदम्</span></td><td><span class="te">ఇతడు / ఈమె / ఇది</span></td></tr>
+            <tr><td>అది (far)</td><td><span class="sa">असौ</span></td><td><span class="sa">असौ</span></td><td><span class="sa">अदः</span></td><td><span class="te">అతడు / ఆమె / అది</span></td></tr>
+            <tr><td>ఏమి / ఎవరు</td><td><span class="sa">कः</span></td><td><span class="sa">का</span></td><td><span class="sa">किम्</span></td><td><span class="te">ఎవరు / ఏమి</span></td></tr>
+        </tbody>
+    </table>
+
+    <div class="drill">
+        <strong>అభ్యాసం:</strong>
+        <span class="sa">अहं छात्रः अस्मि। त्वं कुत्र गच्छसि। सः मम मित्रम् अस्ति।</span>
+        → నేను విద్యార్థిని. నీవు ఎక్కడికి వెళ్తున్నావు? అతడు నా మిత్రుడు.
+    </div>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="vibhakti">1.2 విభక్తి (Case) — పూర్తి వ్యవస్థ</h3>
     <p>
-        తెలుగు మాట్లాడేవారికి సంస్కృతం కొత్త భాష కాదు — ఇది <strong>తత్సమ / తద్భవ</strong> పదాల ద్వారా ఇప్పటికే మీ నోట్లో ఉన్న భాష.
-        క్రింది విభాగాలు తెలుగు వ్యాకరణ పదజాలంతో సంస్కృత మూలాలను కలుపుతాయి.
+        తెలుగు: <span class="te">-డు, -ని, -చేత, -కు, -నుంచి, -యొక్క, -లో/-వద్ద, ఓ…!</span>
+        సంస్కృతం: అవే అర్థాలు నామవాచకం చివర ప్రత్యయాలుగా.
     </p>
 
-    <h3 id="sandhi">2.1 సంధి (Sandhi) — అక్షరాల కలయిక</h3>
+    <h4>అజంత పుంలింగ — <span class="sa">राम</span></h4>
+    <table>
+        <thead>
+            <tr><th>#</th><th>విభక్తి</th><th>ఏక</th><th>ద్వి</th><th>బహు</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>ప్రథమా</td><td><span class="sa">रामः</span></td><td><span class="sa">रामौ</span></td><td><span class="sa">रामाः</span></td><td>రాముడు</td></tr>
+            <tr><td>2</td><td>ద్వితీయా</td><td><span class="sa">रामम्</span></td><td><span class="sa">रामौ</span></td><td><span class="sa">रामान्</span></td><td>రాముని</td></tr>
+            <tr><td>3</td><td>తృతీయా</td><td><span class="sa">रामेण</span></td><td><span class="sa">रामाभ्याम्</span></td><td><span class="sa">रामैः</span></td><td>రాముని చేత/తో</td></tr>
+            <tr><td>4</td><td>చతుర్థీ</td><td><span class="sa">रामाय</span></td><td><span class="sa">रामाभ्याम्</span></td><td><span class="sa">रामेभ्यः</span></td><td>రామునికి</td></tr>
+            <tr><td>5</td><td>పంచమీ</td><td><span class="sa">रामात्</span></td><td><span class="sa">रामाभ्याम्</span></td><td><span class="sa">रामेभ्यः</span></td><td>రాముని నుండి</td></tr>
+            <tr><td>6</td><td>షష్ఠీ</td><td><span class="sa">रामस्य</span></td><td><span class="sa">रामयोः</span></td><td><span class="sa">रामाणाम्</span></td><td>రాముని యొక్క</td></tr>
+            <tr><td>7</td><td>సప్తమీ</td><td><span class="sa">रामे</span></td><td><span class="sa">रामयोः</span></td><td><span class="sa">रामेषु</span></td><td>రామునిలో/వద్ద</td></tr>
+            <tr><td>—</td><td>సంబోధన</td><td><span class="sa">हे राम</span></td><td><span class="sa">हे रामौ</span></td><td><span class="sa">हे रामाः</span></td><td>ఓ రామా!</td></tr>
+        </tbody>
+    </table>
+
+    <h4>ఆకారాంత స్త్రీలింగ — <span class="sa">लता</span> · ఇకారాంత — <span class="sa">मति</span></h4>
+    <table>
+        <thead>
+            <tr><th>విభక్తి</th><th>లతా (ఏక)</th><th>మతి (ఏక)</th><th>తెలుగు ఉదా</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td><span class="sa">लता</span></td><td><span class="sa">मतिः</span></td><td><span class="te">భక్తి, శక్తి, ముక్తి</span></td></tr>
+            <tr><td>2</td><td><span class="sa">लताम्</span></td><td><span class="sa">मतिम्</span></td><td></td></tr>
+            <tr><td>3</td><td><span class="sa">लतया</span></td><td><span class="sa">मत्या</span></td><td></td></tr>
+            <tr><td>4</td><td><span class="sa">लतायै</span></td><td><span class="sa">मतये</span></td><td></td></tr>
+            <tr><td>5/6</td><td><span class="sa">लतायाः</span></td><td><span class="sa">मतेः</span></td><td></td></tr>
+            <tr><td>7</td><td><span class="sa">लतायाम्</span></td><td><span class="sa">मतौ</span></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <h4>నపుంసక — <span class="sa">फल</span> (ఫలం)</h4>
     <p>
-        తెలుగులో కూడా మాటలు కలిస్తే ధ్వని మారుతుంది (ఉదా: <span class="te">రాముడు + అయ్యా → రాముడయ్యా</span>).
-        సంస్కృతంలో ఇది నియమబద్ధం — శ్లోకంలో రెండు పదాలు <em>అంటుకుని</em> కనిపిస్తాయి. చదవడానికి ముందు సంధి విడదీయండి.
+        ప్రథమా/ద్వితీయా ఏకవచనం ఒకేలా: <span class="sa">फलम्</span>.
+        బహువచనం: <span class="sa">फलानि</span>. మిగతా విభక్తులు <span class="sa">राम</span> లాంటివే (<span class="sa">फलेन, फलाय, फलात्, फलस्य, फले</span>).
     </p>
 
-    <h4>స్వరసంధి (vowel sandhi) — ముఖ్యమైనవి</h4>
+    <h4>స్తోత్రాల్లో ఎక్కువగా కనిపించే ఇతర శబ్దాలు (ఏకవచనం)</h4>
+    <p>
+        <span class="sa">राम / लता / फल</span> మాత్రమే తెలిస్తే స్తోత్రాల్లో సగం పదాలు గుర్తుపట్టలేం.
+        <span class="sa">देवी, गुरु, विष्णु, माता, भगवान्, आत्मा, स्वामी</span> — ఇవి వేరే నమూనాలను అనుసరిస్తాయి.
+    </p>
+    <table>
+        <thead>
+            <tr><th>#</th><th>ఈ-స్త్రీ <span class="sa">देवी</span></th><th>ఉ-పుం <span class="sa">गुरु</span></th><th>ఋ <span class="sa">मातृ</span> / <span class="sa">पितृ</span></th><th>త్-పుం <span class="sa">भगवत्</span></th><th>అన్-పుం <span class="sa">आत्मन्</span></th><th>ఇన్-పుం <span class="sa">स्वामिन्</span></th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td><span class="sa">देवी</span></td><td><span class="sa">गुरुः</span></td><td><span class="sa">माता / पिता</span></td><td><span class="sa">भगवान्</span></td><td><span class="sa">आत्मा</span></td><td><span class="sa">स्वामी</span></td></tr>
+            <tr><td>2</td><td><span class="sa">देवीम्</span></td><td><span class="sa">गुरुम्</span></td><td><span class="sa">मातरम् / पितरम्</span></td><td><span class="sa">भगवन्तम्</span></td><td><span class="sa">आत्मानम्</span></td><td><span class="sa">स्वामिनम्</span></td></tr>
+            <tr><td>3</td><td><span class="sa">देव्या</span></td><td><span class="sa">गुरुणा</span></td><td><span class="sa">मात्रा / पित्रा</span></td><td><span class="sa">भगवता</span></td><td><span class="sa">आत्मना</span></td><td><span class="sa">स्वामिना</span></td></tr>
+            <tr><td>4</td><td><span class="sa">देव्यै</span></td><td><span class="sa">गुरवे</span></td><td><span class="sa">मात्रे / पित्रे</span></td><td><span class="sa">भगवते</span></td><td><span class="sa">आत्मने</span></td><td><span class="sa">स्वामिने</span></td></tr>
+            <tr><td>5/6</td><td><span class="sa">देव्याः</span></td><td><span class="sa">गुरोः</span></td><td><span class="sa">मातुः / पितुः</span></td><td><span class="sa">भगवतः</span></td><td><span class="sa">आत्मनः</span></td><td><span class="sa">स्वामिनः</span></td></tr>
+            <tr><td>7</td><td><span class="sa">देव्याम्</span></td><td><span class="sa">गुरौ</span></td><td><span class="sa">मातरि / पितरि</span></td><td><span class="sa">भगवति</span></td><td><span class="sa">आत्मनि</span></td><td><span class="sa">स्वामिनि</span></td></tr>
+            <tr><td>సం.</td><td><span class="sa">देवि</span></td><td><span class="sa">गुरो</span></td><td><span class="sa">मातः / पितः</span></td><td><span class="sa">भगवन्</span></td><td><span class="sa">आत्मन्</span></td><td><span class="sa">स्वामिन्</span></td></tr>
+        </tbody>
+    </table>
+    <p class="eg">
+        ఇదే నమూనాలో: <span class="sa">लक्ष्मी, नदी, भवानी</span> (ఈ); <span class="sa">विष्णु, शम्भु, प्रभु</span> (ఉ — <span class="sa">विष्णवे, विष्णोः</span>);
+        <span class="sa">भ्रातृ, कर्तृ, स्रष्टृ</span> (ఋ — <span class="sa">स्रष्टा</span> = సృష్టికర్త);
+        <span class="sa">श्रीमत्, धीमत्</span> (త్ — <span class="sa">श्रीमान्</span>); <span class="sa">ब्रह्मन्, नामन्</span> (అన్ — <span class="sa">नाम्नाम्</span> = పేర్ల);
+        <span class="sa">योगिन्, चक्रिन्, शार्ङ्गिन्</span> (ఇన్ — <span class="sa">चक्री</span> = చక్రధారి).
+    </p>
+    <p class="eg">
+        గమనిక: <span class="sa">भगवति</span> రెండు అర్థాలు — <span class="sa">भगवत्</span> సప్తమీ (“భగవంతునిలో”) లేదా స్త్రీ <span class="sa">भगवती</span> సంబోధన (“ఓ భగవతీ!” — Mahiṣāsura Mardinī: <span class="sa">भगवति हे शितिकण्ठकुटुम्बिनि</span>).
+    </p>
+
+    <h4>సంబోధన (Vocative) — స్తోత్రాల గుండె</h4>
+    <p>
+        స్తోత్రం అంటే దేవుణ్ణి పిలవడం — కాబట్టి సంబోధన రూపాలు ప్రతి పంక్తిలో ఉంటాయి. తెలుగులో <span class="te">రామా!, దేవీ!, గురువా!</span> లాగే.
+    </p>
+    <table>
+        <thead>
+            <tr><th>మూల శబ్దం</th><th>సంబోధన</th><th>స్తోత్రంలో</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">गोविन्द</span> (అ)</td><td><span class="sa">गोविन्द</span></td><td>Suprabhātam: <span class="sa">उत्तिष्ठोत्तिष्ठ गोविन्द उत्तिष्ठ गरुडध्वज</span></td></tr>
+            <tr><td><span class="sa">भवानी</span> (ఈ)</td><td><span class="sa">भवानि</span></td><td>Bhavānī Aṣṭakam: <span class="sa">गतिस्त्वं गतिस्त्वं त्वमेका भवानि</span></td></tr>
+            <tr><td><span class="sa">मर्दिनी</span> (ఇనీ)</td><td><span class="sa">मर्दिनि</span></td><td>Mahiṣāsura Mardinī: <span class="sa">जय जय हे महिषासुरमर्दिनि</span></td></tr>
+            <tr><td><span class="sa">सुता</span> (ఆ)</td><td><span class="sa">सुते</span></td><td><span class="sa">शैलसुते</span> = ఓ పర్వత పుత్రీ!</td></tr>
+            <tr><td><span class="sa">मति</span> (ఇ)</td><td><span class="sa">मते</span></td><td>Bhaja Govindam: <span class="sa">भज मूढमते</span> = ఓ మూఢ బుద్ధీ!</td></tr>
+            <tr><td><span class="sa">गुरु</span> / <span class="sa">विष्णु</span> (ఉ)</td><td><span class="sa">गुरो / विष्णो</span></td><td>—</td></tr>
+            <tr><td><span class="sa">भगवत्</span></td><td><span class="sa">भगवन्</span></td><td>Gītā (అర్జునుడు కృష్ణుని పిలిచేటప్పుడు)</td></tr>
+            <tr><td><span class="sa">नारायण</span></td><td><span class="sa">नारायण</span></td><td>Sahasranāmam ముగింపు: <span class="sa">नारायण नमोऽस्तु ते</span></td></tr>
+        </tbody>
+    </table>
+    <p class="eg">
+        పిలుపు పదాలు: <span class="sa">हे, अयि, भोः</span> (<span class="sa">अयि गिरिनन्दिनि</span> = ఓ గిరి పుత్రీ!). సమాసం చివర <span class="sa">-इनि / -ते / -ो</span> కనిపిస్తే మొదట సంబోధనా అని అనుమానించండి.
+    </p>
+
+    <h4>విశేషణ–విశేష్య అన్వయం (Agreement)</h4>
+    <p>
+        తెలుగులో విశేషణం మారదు (<span class="te">మంచి బాలుడు, మంచి బాలిక</span>). సంస్కృతంలో విశేషణం నామవాచకం యొక్క <strong>లింగం, వచనం, విభక్తి</strong>ని అనుసరిస్తుంది.
+        అందుకే ఒక స్తోత్ర పంక్తిలో ఒకే ప్రత్యయం పదేపదే వస్తుంది:
+    </p>
+    <div class="drill">
+        <span class="sa">निर्मलाय प्रशान्ताय दक्षिणामूर्तये नमः</span> — మూడు పదాలూ చతుర్థీ ఏకవచనం (Dakṣiṇāmūrti).<br>
+        <span class="sa">सुरेश्वरं निधीश्वरं गजेश्वरं गणेश्वरं … तमाश्रये</span> — అన్నీ ద్వితీయా, <span class="sa">तम्</span> (అతనిని) కు విశేషణాలు (Pañcaratnam).<br>
+        <span class="sa">सुरवरवर्षिणि दुर्धरधर्षिणि …</span> — అన్నీ స్త్రీ సంబోధన (Mahiṣāsura Mardinī).
+    </div>
+
+    <h4>విభక్తి → అర్థ సూత్రాలు (వాక్యంలో)</h4>
+    <table>
+        <thead>
+            <tr><th>విభక్తి</th><th>ప్రధాన ఉపయోగాలు</th><th>సంభాషణ ఉదా</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1 ప్రథమా</td><td>కర్త; <span class="sa">अस्ति</span> తో గుర్తింపు</td>
+                <td><span class="sa">सः वैद्यः अस्ति।</span> — అతడు వైద్యుడు.</td>
+            </tr>
+            <tr>
+                <td>2 ద్వితీయా</td><td>కర్మ; దిశ (<span class="sa">ग्रामं गच्छति</span>); కాలపరిమాణం</td>
+                <td><span class="sa">अहं पुस्तकं पठामि।</span> — నేను పుస్తకం చదువుతున్నాను.</td>
+            </tr>
+            <tr>
+                <td>3 తృతీయా</td><td>కరణం (అంతరంగం); సహార్థం; హేతు</td>
+                <td><span class="sa">लेखन्या लिखामि। त्वया सह आगच्छामि।</span></td>
+            </tr>
+            <tr>
+                <td>4 చతుర్థీ</td><td>సంప్రదానం; ప్రయోజనం; నమః/స్వస్తి తో</td>
+                <td><span class="sa">गुरुवे नमः। बालकाय मोदकं ददामि।</span></td>
+            </tr>
+            <tr>
+                <td>5 పంచమీ</td><td>అపాదానం (నుండి); భయం/రక్షణ హేతు</td>
+                <td><span class="sa">वृक्षात् फलं पतति। चोरात् बिभेमि।</span></td>
+            </tr>
+            <tr>
+                <td>6 షష్ఠీ</td><td>సంబంధం; భాగం</td>
+                <td><span class="sa">मम गृहम्। राज्ञः पुरुषः।</span></td>
+            </tr>
+            <tr>
+                <td>7 సప్తమీ</td><td>అధికరణం (లో/మీద/వద్ద); కాలం</td>
+                <td><span class="sa">गृहे तिष्ठामि। प्रातःकाले पठामि।</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="drill">
+        <strong>ఒకే వాక్యంలో అనేక విభక్తులు:</strong>
+        <span class="sa">रामः वने सीतया सह लक्ष्मणाय फलं ददाति।</span><br>
+        రాముడు (1) అడవిలో (7) సీతతో (3) లక్ష్మణునికి (4) ఫలం (2) ఇస్తాడు.
+    </div>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="sandhi">1.3 సంధి (Sandhi) — అక్షరాల కలయిక</h3>
+    <p>
+        తెలుగులోనూ ధ్వని మారుతుంది (<span class="te">రాముడు + అయ్యా → రాముడయ్యా</span>).
+        సంస్కృతంలో ఇది నియమబద్ధం — శ్లోకం/వాక్యం చదవడానికి ముందు సంధి విడదీయండి.
+    </p>
+
+    <h4>స్వరసంధి</h4>
     <table>
         <thead>
             <tr><th>నియమం</th><th>ఉదాహరణ</th><th>తెలుగు గుర్తు</th></tr>
@@ -289,23 +457,33 @@
         <tbody>
             <tr>
                 <td>అ/ఆ + అ/ఆ → ఆ</td>
-                <td><span class="sa">राम + अयम् → रामायम्</span> (సాధారణ నమూనా: <span class="sa">हित + अर्थ → हितार्थ</span>)</td>
-                <td><span class="te">హితార్థం</span> లాంటి తత్సమాల్లో ఇదే జరుగుతుంది</td>
+                <td><span class="sa">हित + अर्थ → हितार्थ</span>; <span class="sa">राम + अयम् → रामायम्</span> (నమూనా)</td>
+                <td><span class="te">హితార్థం</span></td>
             </tr>
             <tr>
                 <td>అ/ఆ + ఇ/ఈ → ఏ</td>
-                <td><span class="sa">देव + इन्द्र → देवेन्द्र</span></td>
-                <td><span class="te">దేవేంద్ర</span></td>
+                <td><span class="sa">देव + इन्द्र → देवेन्द्र</span>; <span class="sa">महा + ईश → महेश</span></td>
+                <td><span class="te">దేవేంద్ర, మహేశ్</span></td>
             </tr>
             <tr>
                 <td>అ/ఆ + ఉ/ఊ → ఓ</td>
-                <td><span class="sa">गङ्गा + उदक → गङ्गोदक</span></td>
-                <td>నది + నీరు కలయిక — సుప్రభాతం / స్తోత్రాల్లో సాధారణం</td>
+                <td><span class="sa">गङ्गा + उदक → गङ्गोदक</span>; <span class="sa">हित + उपदेश → हितोपदेश</span></td>
+                <td><span class="te">హితోపదేశం</span></td>
             </tr>
             <tr>
-                <td>ఇ + ఇ → ఈ; ఉ + ఉ → ఊ</td>
+                <td>ఇ/ఈ + స్వరం → య్ + స్వరం</td>
+                <td><span class="sa">इति + आदि → इत्यादि</span>; <span class="sa">नदी + अत्र → नद्यत्र</span></td>
+                <td><span class="te">ఇత్యాది</span></td>
+            </tr>
+            <tr>
+                <td>ఉ/ఊ + స్వరం → వ్ + స్వరం</td>
+                <td><span class="sa">मधु + अरि → मध्वरि</span>; <span class="sa">गुरु + आदेश → गुर्वादेश</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>ఇ+ఇ→ఈ; ఉ+ఉ→ఊ</td>
                 <td><span class="sa">अति + इव → अतीव</span></td>
-                <td><span class="te">అతీవ</span> (భజ గోవిందం: <span class="sa">अतीव विचित्रः</span>)</td>
+                <td><span class="te">అతీవ</span></td>
             </tr>
             <tr>
                 <td>అ/ఆ + ఋ → అర్</td>
@@ -313,157 +491,190 @@
                 <td><span class="te">మహర్షి</span></td>
             </tr>
             <tr>
-                <td>ఏ/ఓ + అ → అయ్/అవ్ (ప్రకృతి భేదం)</td>
-                <td><span class="sa">वने + अपि → वनयपि / वनऽपि</span> (లిపిలో అవగ్రహం ऽ)</td>
-                <td>గీతలో <span class="sa">कोऽपि</span> = <span class="sa">कः + अपि</span></td>
+                <td>ఏ/ఓ + అ → అయ్/అవ్ లేదా అవగ్రహం</td>
+                <td><span class="sa">कः + अपि → कोऽपि</span>; <span class="sa">वने + अपि → वनऽपि / वनयपि</span></td>
+                <td>గీతలో <span class="sa">कोऽपि</span> సాధారణం</td>
+            </tr>
+            <tr>
+                <td>ఐ + స్వరం → ఆయ్; ఔ → ఆవ్</td>
+                <td><span class="sa">नै + अक → नायक</span> (మూల నమూనా); <span class="sa">पौ + अक → पावक</span> వంటి రూపాలు</td>
+                <td><span class="te">నాయకుడు</span></td>
             </tr>
         </tbody>
     </table>
 
-    <h4>వ్యంజన / విసర్గ సంధి — చదవేటప్పుడు గుర్తుంచుకోండి</h4>
+    <h4>వ్యంజనసంధి &amp; విసర్గసంధి</h4>
     <table>
         <thead>
             <tr><th>నియమం</th><th>ఉదాహరణ</th><th>గమనిక</th></tr>
         </thead>
         <tbody>
             <tr>
-                <td>త్ + చ్ → చ్చ్</td>
-                <td><span class="sa">तत् + च → तच्च</span></td>
-                <td>గీత/స్తోత్రాల్లో <span class="sa">तच्च</span>, <span class="sa">यच्च</span></td>
+                <td>త్ + చ్/ఛ్ → చ్చ్/చ్ఛ్</td>
+                <td><span class="sa">तत् + च → तच्च</span>; <span class="sa">उद् + छेद → उच्छेद</span></td>
+                <td><span class="sa">तच्च, यच्च</span></td>
             </tr>
             <tr>
-                <td>న్ + ల్ → ల్ల్ / ం ల్</td>
-                <td><span class="sa">तम् + लोकम्</span> వంటి సందర్భాలు</td>
-                <td>చదువుతూ నాసిక్యం వినండి</td>
+                <td>త్ + త్ → త్త్; త్ + జ్ → జ్జ్</td>
+                <td><span class="sa">उत् + तम → उत्तम</span>; <span class="sa">सत् + जन → सज्जन</span></td>
+                <td><span class="te">ఉత్తమ, సజ్జన</span></td>
             </tr>
             <tr>
-                <td>విసర్గ (:) + అఘోష → ఓ / అః మార్పు</td>
+                <td>మ్ చివర → అనుస్వార (ం) స్పర్శ ముందు</td>
+                <td><span class="sa">हरिम् + वन्दे → हरिं वन्दे</span></td>
+                <td>చదువుతూ నాసిక్యం</td>
+            </tr>
+            <tr>
+                <td>విసర్గ + అఘోష వ్యంజనం → ఓ (పు. ఏక ప్రథమా)</td>
                 <td><span class="sa">रामः + गच्छति → रामो गच्छति</span></td>
-                <td>పురుషవాచక ప్రథమా ఏకవచనం చాలా సార్లు <span class="sa">-ो</span>గా కనిపిస్తుంది</td>
+                <td>చాలా వాక్యాల్లో <span class="sa">-ो</span></td>
+            </tr>
+            <tr>
+                <td>విసర్గ + అ → ఓ + అవగ్రహం</td>
+                <td><span class="sa">रामः + अत्र → रामोऽत्र</span></td>
+                <td></td>
             </tr>
             <tr>
                 <td>విసర్గ + చ్/ఛ్ → శ్</td>
-                <td><span class="sa">नमः + शिवाय → नमश्शिवाय / नमः शिवाय</span></td>
-                <td>జపంలో సాధారణం</td>
+                <td><span class="sa">नमः + शिवाय → नमश्शिवाय</span> (లేదా విడిగా)</td>
+                <td>జపం</td>
+            </tr>
+            <tr>
+                <td>విసర్గ + త్ → స్</td>
+                <td><span class="sa">निः + तेजस् → निस्तेजस्</span> వంటి రూపాలు</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>విసర్గ + స్వరం/ఘోష → ర్ లేదా లోపం</td>
+                <td><span class="sa">पुनः + अपि → पुनरपि</span>; <span class="sa">दुः + ख → दुःख / दुख</span></td>
+                <td><span class="te">పునరపి, దుఃఖం</span></td>
             </tr>
         </tbody>
     </table>
-    <p class="eg">అభ్యాసం: <a href="../Shankaracharya/bhaja_govindam.html">Bhaja Govindam</a> లోని ఒక శ్లోకం తీసుకుని, ఆంగ్ల word-meaning చూసే ముందు సంధి విడదీసి రాయండి.</p>
+    <div class="drill">
+        <strong>విడదీయండి:</strong>
+        <span class="sa">कोऽपि न जानाति। सज्जनसंगतिरेका। हितार्थं वदामि।</span>
+        → <span class="sa">कः + अपि</span>; <span class="sa">सत् + जन + संगतिः + एका</span>; <span class="sa">हित + अर्थम्</span>
+    </div>
     <a class="back-top" href="#toc">↑ Contents</a>
 
-    <h3 id="samasa">2.2 సమాసం (Samāsa) — పదాల కూర్పు</h3>
+    <h3 id="samasa">1.4 సమాసం (Samāsa) — పదాల కూర్పు</h3>
     <p>
-        తెలుగులోనూ సమాసాలున్నాయి (<span class="te">గృహప్రవేశం, రాజమార్గం, నీలకంఠుడు</span>).
-        సంస్కృత స్తోత్రాలు సమాసాల మీదే నడుస్తాయి — ముఖ్యంగా <a href="../Ganesha/ganesha_pancharatnam.html">Gaṇeśa Pañcaratnam</a>, <a href="../Lakshmi/kanakadhara_stotram.html">Kanakadhārā</a>.
+        తెలుగు: <span class="te">గృహప్రవేశం, రాజమార్గం, నీలకంఠుడు</span>.
+        స్తోత్రాలు సమాసాల మీదే నడుస్తాయి — ముఖ్యంగా Pañcaratnam, Kanakadhārā, Sahasranāmam.
     </p>
     <table>
         <thead>
-            <tr><th>రకం</th><th>సంస్కృత పేరు</th><th>అర్థ సూత్రం</th><th>ఉదాహరణ + తెలుగు</th></tr>
+            <tr><th>రకం</th><th>సూత్రం</th><th>ఉదాహరణ</th><th>తెలుగు</th></tr>
         </thead>
         <tbody>
             <tr>
                 <td>తత్పురుష</td>
-                <td><span class="sa">तत्पुरुष</span></td>
-                <td>రెండవ పదం ప్రధానం; మొదటిది విశేషణం/సంబంధం</td>
-                <td><span class="sa">राजपुरुषः</span> = రాజుయొక్క పురుషుడు → <span class="te">రాజపురుషుడు</span></td>
+                <td>రెండవ పదం ప్రధానం</td>
+                <td><span class="sa">राजपुरुषः, गृहप्रवेशः, लोकहितम्</span></td>
+                <td><span class="te">రాజపురుషుడు, గృహప్రవేశం, లోకహితం</span></td>
             </tr>
             <tr>
                 <td>కర్మధారయ</td>
-                <td><span class="sa">कर्मधारय</span></td>
-                <td>ఒకే వస్తువుకు రెండు పేర్లు / విశేషణం+నామం</td>
-                <td><span class="sa">नीलम् + उत्पलम् → नीलोत्पलम्</span> → <span class="te">నీలోత్పలం</span></td>
+                <td>విశేషణం + నామం (ఒకే వస్తువు)</td>
+                <td><span class="sa">नीलोत्पलम्, महापुरुषः, सज्जनः</span></td>
+                <td><span class="te">నీలోత్పలం, మహాపురుషుడు</span></td>
             </tr>
             <tr>
                 <td>ద్వంద్వ</td>
-                <td><span class="sa">द्वन्द्व</span></td>
-                <td>A మరియు B — రెండూ సమానం</td>
-                <td><span class="sa">रामलक्ष्मणौ</span> → <span class="te">రామలక్ష్మణులు</span></td>
+                <td>A మరియు B</td>
+                <td><span class="sa">रामलक्ष्मणौ, सुखदुःखे, मातापितरौ</span></td>
+                <td><span class="te">రామలక్ష్మణులు, సుఖదుఃఖాలు</span></td>
             </tr>
             <tr>
                 <td>బహువ్రీహి</td>
-                <td><span class="sa">बहुव्रीहि</span></td>
-                <td>“ఎవరికి/దేనికి అది ఉందో” — బయటి వ్యక్తిని సూచిస్తుంది</td>
-                <td><span class="sa">पीताम्बरः</span> = పీత వస్త్రం ఉన్నవాడు (విష్ణువు) → <span class="te">పీతాంబరుడు</span></td>
+                <td>“ఎవరికి అది ఉందో” — బయటి వ్యక్తి</td>
+                <td><span class="sa">पीताम्बरः, चतुर्भुजः, नीलकण्ठः</span></td>
+                <td><span class="te">పీతాంబరుడు, చతుర్భుజుడు, నీలకంఠుడు</span></td>
             </tr>
             <tr>
                 <td>ద్విగు</td>
-                <td><span class="sa">द्विगु</span></td>
                 <td>సంఖ్య ముందు</td>
-                <td><span class="sa">त्रिलोकम्</span> → <span class="te">త్రిలోకం</span>; <span class="sa">पञ्चरत्नम्</span> → <span class="te">పంచరత్నం</span></td>
+                <td><span class="sa">त्रिलोकम्, पञ्चवटी, सप्तर्षि</span></td>
+                <td><span class="te">త్రిలోకం, పంచవటి, సప్తర్షి</span></td>
             </tr>
             <tr>
                 <td>అవ్యయీభావ</td>
-                <td><span class="sa">अव्ययीभाव</span></td>
-                <td>అవ్యయం + నామం = క్రియా విశేషణం లాంటి ఏకపదం</td>
-                <td><span class="sa">यथाशक्ति</span> → <span class="te">యథాశక్తి</span>; <span class="sa">आजन्म</span> → <span class="te">ఆజన్మ</span></td>
+                <td>అవ్యయం + నామం = ఏకపద క్రియావిశేషణం</td>
+                <td><span class="sa">यथाशक्ति, आजन्म, प्रत्यहम्, निर्विघ्नम्</span></td>
+                <td><span class="te">యథాశక్తి, ఆజన్మ, ప్రత్యహం</span></td>
             </tr>
         </tbody>
     </table>
-    <p class="eg">
-        ఉదా (Pañcaratnam): <span class="sa">विलासिलोकरक्षकम्</span> =
-        <span class="sa">विलासि-लोक-रक्षकम्</span> (కర్మధారయ / తత్పురుష గొలుసు) —
-        “విలాస లోకాన్ని రక్షించేవాడు.”
-    </p>
+
+    <h4>సమాసం విడదీయడం — అడుగులు</h4>
+    <ol>
+        <li>చివరి పదం ఏది? (సాధారణంగా ప్రధానం — తత్పురుష/కర్మధారయ)</li>
+        <li>ముందు సంఖ్య ఉందా? → ద్విగు</li>
+        <li>రెండూ సమానమైన వస్తువులా? → ద్వంద్వ</li>
+        <li>పూర్తి అర్థం బయటి వ్యక్తికి వెళ్తుందా? → బహువ్రీహి (<span class="sa">पीत + अम्बर</span> = పీతవస్త్రుడు, వస్త్రం కాదు)</li>
+    </ol>
+    <div class="drill">
+        <span class="sa">विलासिलोकरक्षकम्</span> = <span class="sa">विलासि-लोक-रक्षकम्</span> — విలాసలోక రక్షకుడు (Pañcaratnam).<br>
+        <span class="sa">सत्सङ्गत्वे निस्सङ्गत्वम्</span> — సత్+సంగ → నిస్+సంగ (Bhaja Govindam).
+    </div>
     <a class="back-top" href="#toc">↑ Contents</a>
 
-    <h3 id="vibhakti">2.3 విభక్తి (Case) — కారకాలు</h3>
+    <h3 id="dhatu">1.5 ధాతు (Verb roots) &amp; conjugation</h3>
     <p>
-        తెలుగులో విభక్తి ప్రత్యయాలు స్పష్టం: <span class="te">-డు/-ము, -ని, -చేత, -కు, -నుంచి, -యొక్క, -లో, -తో</span>.
-        సంస్కృతంలో అవే అర్థాలు <strong>ప్రత్యయాల రూపంలో</strong> నామవాచకం చివర కలుస్తాయి. ఏకవచనం (singular) అజంత పుంలింగ <span class="sa">राम</span> నమూనా:
-    </p>
-    <table>
-        <thead>
-            <tr><th>#</th><th>విభక్తి</th><th>సంస్కృత రూపం</th><th>తెలుగు సమానం</th><th>ప్రశ్న</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>ప్రథమా (Nominative)</td><td><span class="sa">रामः</span></td><td><span class="te">రాముడు</span> (కర్త)</td><td>ఎవరు?</td></tr>
-            <tr><td>2</td><td>ద్వితీయా (Accusative)</td><td><span class="sa">रामम्</span></td><td><span class="te">రాముని</span> (కర్మ)</td><td>ఎవరిని?</td></tr>
-            <tr><td>3</td><td>తృతీయా (Instrumental)</td><td><span class="sa">रामेण</span></td><td><span class="te">రాముని చేత / తో</span></td><td>ఎవరితో? దేనితో?</td></tr>
-            <tr><td>4</td><td>చతుర్థీ (Dative)</td><td><span class="sa">रामाय</span></td><td><span class="te">రామునికి</span></td><td>ఎవరికి?</td></tr>
-            <tr><td>5</td><td>పంచమీ (Ablative)</td><td><span class="sa">रामात्</span></td><td><span class="te">రాముని నుండి</span></td><td>ఎక్కడ నుండి?</td></tr>
-            <tr><td>6</td><td>షష్ఠీ (Genitive)</td><td><span class="sa">रामस्य</span></td><td><span class="te">రాముని యొక్క</span></td><td>ఎవరిది?</td></tr>
-            <tr><td>7</td><td>సప్తమీ (Locative)</td><td><span class="sa">रामे</span></td><td><span class="te">రామునిలో / వద్ద</span></td><td>ఎక్కడ?</td></tr>
-            <tr><td>—</td><td>సంబోధన (Vocative)</td><td><span class="sa">हे राम</span></td><td><span class="te">ఓ రామా!</span></td><td>పిలుపు</td></tr>
-        </tbody>
-    </table>
-    <p>
-        <strong>స్త్రీలింగ నమూనా</strong> (<span class="sa">लता</span>): <span class="sa">लता, लताम्, लतया, लतायै, लतायाः, लतायाः, लतायाम्</span> —
-        తెలుగు తత్సమాల్లో <span class="te">భక్తి, శక్తి, ముక్తి</span> వంటి <span class="sa">-ि</span> నామాలు గీతలో ఎక్కువ.
-    </p>
-    <p class="eg">
-        భజ గోవిందం: <span class="sa">का ते कान्ता कस्ते पुत्रः</span> —
-        <span class="sa">का</span> (ప్రథమా), <span class="sa">ते</span> (షష్ఠీ/చతుర్థీ “నీ”), <span class="sa">कान्ता</span> (ప్రథమా), <span class="sa">कः</span> + <span class="sa">ते</span>, <span class="sa">पुत्रः</span>.
-    </p>
-    <a class="back-top" href="#toc">↑ Contents</a>
-
-    <h3 id="dhatu">2.4 ధాతు (Verb roots) — ప్రాథమిక conjugation</h3>
-    <p>
-        సంస్కృత క్రియ = <strong>ధాతు</strong> + లకారం (కాలం/మూడ్) + పురుష/వచన ప్రత్యయం.
-        తెలుగు క్రియల్లోనూ మూలం కనిపిస్తుంది: <span class="te">గమనం ← గమ్, దర్శనం ← దృశ్, స్మరణం ← స్మృ</span>.
+        క్రియ = ధాతు + లకారం + పురుష/వచన ప్రత్యయం.
+        తెలుగు మూలాలు: <span class="te">గమనం ← గమ్, దర్శనం ← దృశ్, స్మరణం ← స్మృ, కర్త ← కృ</span>.
     </p>
 
-    <h4>లకారాలు మీకు ముందుగా కావాల్సినవి</h4>
+    <h4>పద / పదవ్యవస్థ — పరస్మై vs ఆత్మనే</h4>
     <table>
         <thead>
-            <tr><th>లకారం</th><th>ఉపయోగం</th><th>ఉదా (<span class="sa">भू</span> “to be”)</th></tr>
+            <tr><th></th><th>పరస్మైపదం</th><th>ఆత్మనేపదం</th><th>ఉభయపదం</th></tr>
         </thead>
         <tbody>
-            <tr><td>లట్ (వర్తమాన)</td><td>జరుగుతోంది</td><td><span class="sa">भवति</span> — అగును / ఉంటాడు</td></tr>
-            <tr><td>లోట్ (విధి/ఆదేశ)</td><td>చేయి! / అవ్వాలి</td><td><span class="sa">भवतु</span> — అవునుగాక</td></tr>
-            <tr><td>లఙ్ (భూత)</td><td>గతం</td><td><span class="sa">अभवत्</span> — అయ్యెను</td></tr>
-            <tr><td>లృట్ (భవిష్యత్)</td><td>వస్తుంది</td><td><span class="sa">भविष्यति</span> — అగును</td></tr>
-            <tr><td>విధిలిఙ్</td><td>చేయవచ్చు / చేయాలి (మృదువు)</td><td><span class="sa">भवेत्</span> — కావచ్చు</td></tr>
+            <tr>
+                <td>భావం</td><td>ఫలం ఇతరునికి</td>
+                <td>ఫలం తనకు</td>
+                <td>రెండూ సాధ్యం</td>
+            </tr>
+            <tr>
+                <td>ఉదా</td><td><span class="sa">पठति, गच्छति, करोति</span></td>
+                <td><span class="sa">वर्तते, लभते, मन्यते</span></td>
+                <td><span class="sa">भजति / भजते; यजति / यजते</span></td>
+            </tr>
+            <tr>
+                <td>లట్ ప్రథమ ఏక</td>
+                <td><span class="sa">-ति</span></td>
+                <td><span class="sa">-ते</span></td>
+                <td>—</td>
+            </tr>
         </tbody>
     </table>
 
-    <h4>పరస్మైపద లట్ — <span class="sa">पठ्</span> (చదువు) నమూనా</h4>
+    <h4>లకారాలు</h4>
+    <table>
+        <thead>
+            <tr><th>లకారం</th><th>ఉపయోగం</th><th><span class="sa">भू</span></th><th><span class="sa">कृ</span></th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>లట్</td><td>వర్తమానం</td><td><span class="sa">भवति</span></td><td><span class="sa">करोति</span></td><td>అగును / చేయును</td></tr>
+            <tr><td>లఙ్</td><td>భూతం (సాధారణ)</td><td><span class="sa">अभवत्</span></td><td><span class="sa">अकरोत्</span></td><td>అయ్యెను / చేసెను</td></tr>
+            <tr><td>లిట్</td><td>పరోక్ష భూతం</td><td><span class="sa">बभूव</span></td><td><span class="sa">चकार</span></td><td>అయ్యెనట / చేసెనట</td></tr>
+            <tr><td>లృట్</td><td>భవిష్యత్</td><td><span class="sa">भविष्यति</span></td><td><span class="sa">करिष्यति</span></td><td>అగును / చేయును</td></tr>
+            <tr><td>లోట్</td><td>ఆదేశం / ఆశీః</td><td><span class="sa">भवतु</span></td><td><span class="sa">करोतु / कुरु</span></td><td>అవునుగాక / చేయుము</td></tr>
+            <tr><td>విధిలిఙ్</td><td>విధి / సంభావన</td><td><span class="sa">भवेत्</span></td><td><span class="sa">कुर्यात्</span></td><td>కావచ్చు / చేయవచ్చు</td></tr>
+            <tr><td>ఆశీర్లిఙ్</td><td>ఆశీస్సు</td><td><span class="sa">भूयात्</span></td><td><span class="sa">क्रियात्</span></td><td>కావాలని</td></tr>
+        </tbody>
+    </table>
+
+    <h4>పరస్మైపద లట్ — <span class="sa">पठ्</span> (చదువు)</h4>
     <table>
         <thead>
             <tr><th></th><th>ఏకవచనం</th><th>ద్వివచనం</th><th>బహువచనం</th></tr>
         </thead>
         <tbody>
             <tr>
-                <td>ప్రథమ పురుష (he/they)</td>
+                <td>ప్రథమ (he/they)</td>
                 <td><span class="sa">पठति</span></td>
                 <td><span class="sa">पठतः</span></td>
                 <td><span class="sa">पठन्ति</span></td>
@@ -483,221 +694,939 @@
         </tbody>
     </table>
 
-    <h4>స్తోత్రాల్లో తరచు కనిపించే ధాతువులు</h4>
+    <h4>ఆత్మనేపద లట్ — <span class="sa">लभ्</span> (పొందు)</h4>
     <table>
         <thead>
-            <tr><th>ధాతు</th><th>అర్థం</th><th>సాధారణ రూపం</th><th>తెలుగు తత్సమ / తద్భవ</th></tr>
+            <tr><th></th><th>ఏక</th><th>ద్వి</th><th>బహు</th></tr>
         </thead>
         <tbody>
-            <tr><td><span class="sa">नम्</span></td><td>వంగు, నమస్కరించు</td><td><span class="sa">नमामि, नतः</span></td><td><span class="te">నమస్కారం, నతుడు</span></td></tr>
-            <tr><td><span class="sa">भज्</span></td><td>సేవించు / పంచుకొను</td><td><span class="sa">भज, भजति</span></td><td><span class="te">భజన, భక్తి</span></td></tr>
-            <tr><td><span class="sa">गम् / इ</span></td><td>పో</td><td><span class="sa">गच्छति, एति</span></td><td><span class="te">గమనం, ఆగమనం</span></td></tr>
-            <tr><td><span class="sa">कृ</span></td><td>చేయు</td><td><span class="sa">करोति, कुरु, कृतम्</span></td><td><span class="te">కర్త, కృతం, సంస్కారం</span></td></tr>
-            <tr><td><span class="sa">भू / अस्</span></td><td>అగు / ఉండు</td><td><span class="sa">भवति, अस्ति</span></td><td><span class="te">భవితవ్యం, అస్తిత్వం</span></td></tr>
-            <tr><td><span class="sa">ज्ञा</span></td><td>తెలుసుకొను</td><td><span class="sa">जानाति, ज्ञात्वा</span></td><td><span class="te">జ్ఞానం, విజ్ఞానం</span></td></tr>
-            <tr><td><span class="sa">दृश्</span></td><td>చూచు</td><td><span class="sa">पश्यति, दृष्ट्वा</span></td><td><span class="te">దర్శనం, దృష్టి</span></td></tr>
-            <tr><td><span class="sa">पा / रक्ष्</span></td><td>కాపాడు</td><td><span class="sa">पाति, रक्षति</span></td><td><span class="te">పాలన, రక్షణ</span></td></tr>
-            <tr><td><span class="sa">मुच्</span></td><td>విడుదల</td><td><span class="sa">मुञ्चति, मुक्तः</span></td><td><span class="te">ముక్తి, విముక్తి</span></td></tr>
-            <tr><td><span class="sa">स्मृ</span></td><td>గుర్తుంచు</td><td><span class="sa">स्मरति, स्मृत्वा</span></td><td><span class="te">స్మరణ, స్మృతి</span></td></tr>
+            <tr><td>ప్రథమ</td><td><span class="sa">लभते</span></td><td><span class="sa">लभेते</span></td><td><span class="sa">लभन्ते</span></td></tr>
+            <tr><td>మధ్యమ</td><td><span class="sa">लभसे</span></td><td><span class="sa">लभेथे</span></td><td><span class="sa">लभध्वे</span></td></tr>
+            <tr><td>ఉత్తమ</td><td><span class="sa">लभे</span></td><td><span class="sa">लभावहे</span></td><td><span class="sa">लभामहे</span></td></tr>
+        </tbody>
+    </table>
+
+    <h4>లోట్ (ఆదేశం) — సంభాషణకు అతి ముఖ్యం</h4>
+    <table>
+        <thead>
+            <tr><th>ధాతు</th><th>మధ్యమ ఏక (నీవు)</th><th>ప్రథమ ఏక (అతడు అవ్వాలి)</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">गम्</span></td><td><span class="sa">गच्छ</span></td><td><span class="sa">गच्छतु</span></td><td>వెళ్ళు / వెళ్ళనివ్వు</td></tr>
+            <tr><td><span class="sa">पा</span> (తాగు/రక్ష)</td><td><span class="sa">पिब / पाहि</span></td><td><span class="sa">पिबतु / पातु</span></td><td>తాగు / కాపాడు</td></tr>
+            <tr><td><span class="sa">दा</span></td><td><span class="sa">देहि</span></td><td><span class="sa">ददातु</span></td><td>ఇవ్వు</td></tr>
+            <tr><td><span class="sa">स्था</span></td><td><span class="sa">तिष्ठ</span></td><td><span class="sa">तिष्ठतु</span></td><td>నిలువు / ఉండు</td></tr>
+            <tr><td><span class="sa">भू</span></td><td><span class="sa">भव</span></td><td><span class="sa">भवतु</span></td><td>అగు / అవునుగాక</td></tr>
+            <tr><td><span class="sa">कृ</span></td><td><span class="sa">कुरु</span></td><td><span class="sa">करोतु</span></td><td>చేయి</td></tr>
+            <tr><td><span class="sa">नम्</span></td><td><span class="sa">नम</span></td><td><span class="sa">नमतु</span></td><td>నమస్కరించు</td></tr>
+            <tr><td>నిషేధం</td><td><span class="sa">मा गच्छ</span> / <span class="sa">मा कुरु</span></td><td>—</td><td>వెళ్ళవద్దు / చేయవద్దు</td></tr>
+        </tbody>
+    </table>
+
+    <h4>అస్ (ఉండు) — అసమస్త క్రియ, ప్రతి వాక్యంలో</h4>
+    <table>
+        <thead>
+            <tr><th></th><th>ఏక</th><th>ద్వి</th><th>బహు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>ప్రథమ</td><td><span class="sa">अस्ति</span></td><td><span class="sa">स्तः</span></td><td><span class="sa">सन्ति</span></td></tr>
+            <tr><td>మధ్యమ</td><td><span class="sa">असि</span></td><td><span class="sa">स्थः</span></td><td><span class="sa">स्थ</span></td></tr>
+            <tr><td>ఉత్తమ</td><td><span class="sa">अस्मि</span></td><td><span class="sa">स्वः</span></td><td><span class="sa">स्मः</span></td></tr>
+        </tbody>
+    </table>
+    <p class="eg">నకారాత్మకం: <span class="sa">नास्ति, नास्मि, न सन्ति</span>. ప్రశ్న: <span class="sa">किम् अस्ति? कुत्र असि?</span></p>
+
+    <h4>స్తోత్రాల్లో “నేను…” — ఉత్తమ పురుష ఏకవచన రూపాలు</h4>
+    <p>భక్తుడు మాట్లాడే క్రియలు. <span class="sa">-मि</span> (పరస్మై) లేదా <span class="sa">-े</span> (ఆత్మనే) తో ముగుస్తాయి.</p>
+    <table>
+        <thead>
+            <tr><th>రూపం</th><th>ధాతు</th><th>తెలుగు</th><th>ఎక్కడ</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">नमामि / प्रणमामि</span></td><td><span class="sa">नम्</span></td><td>నమస్కరిస్తున్నాను</td><td>Pañcaratnam, Liṅgāṣṭakam</td></tr>
+            <tr><td><span class="sa">वन्दे</span></td><td><span class="sa">वन्द्</span> (ఆత్మనే)</td><td>వందనం చేస్తున్నాను</td><td>Sahasranāmam ధ్యానం</td></tr>
+            <tr><td><span class="sa">आश्रये</span></td><td><span class="sa">आ + श्रि</span></td><td>ఆశ్రయిస్తున్నాను</td><td>Pañcaratnam, Sahasranāmam</td></tr>
+            <tr><td><span class="sa">प्रपद्ये</span></td><td><span class="sa">प्र + पद्</span></td><td>(శరణు) పొందుతున్నాను</td><td>Suprabhātam ప్రపత్తి: <span class="sa">चरणौ शरणं प्रपद्ये</span></td></tr>
+            <tr><td><span class="sa">भजे</span></td><td><span class="sa">भज्</span></td><td>సేవిస్తున్నాను</td><td>—</td></tr>
+            <tr><td><span class="sa">विचिन्तयामि</span></td><td><span class="sa">वि + चिन्त्</span></td><td>ధ్యానిస్తున్నాను</td><td>Pañcaratnam v5</td></tr>
+            <tr><td><span class="sa">स्मरामि</span></td><td><span class="sa">स्मृ</span></td><td>స్మరిస్తున్నాను</td><td>—</td></tr>
+        </tbody>
+    </table>
+
+    <h4>కర్మణి ప్రయోగం (Passive voice)</h4>
+    <p>
+        తెలుగు: <span class="te">రాముని చేత రావణుడు చంపబడెను</span>. సంస్కృతం: ధాతు + <span class="sa">य</span> + ఆత్మనేపద ప్రత్యయం; కర్త తృతీయాలో, కర్మ ప్రథమాలో.
+    </p>
+    <table>
+        <thead>
+            <tr><th>కర్తరి (active)</th><th>కర్మణి (passive)</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">रामः रावणं हन्ति</span></td><td><span class="sa">रामेण रावणः हन्यते</span></td><td>రాముని చేత రావణుడు చంపబడుతున్నాడు</td></tr>
+            <tr><td><span class="sa">अहं पुस्तकं पठामि</span></td><td><span class="sa">मया पुस्तकं पठ्यते</span></td><td>నా చేత పుస్తకం చదవబడుతోంది</td></tr>
+            <tr><td><span class="sa">सः फलं लभते</span></td><td><span class="sa">तेन फलं लभ्यते</span></td><td>అతనికి ఫలం లభిస్తుంది</td></tr>
+            <tr><td>—</td><td><span class="sa">क्रियते, विद्यते, मुच्यते, दृश्यते, श्रूयते</span></td><td>చేయబడును, ఉన్నది, విడుదలగును, కనబడును, వినబడును</td></tr>
+        </tbody>
+    </table>
+    <p class="eg">
+        ఫలశ్రుతులు కర్మణి రూపాలతో నిండి ఉంటాయి: <span class="sa">विमुच्यते</span> (విడుదల పొందును — Sahasranāmam), <span class="sa">लभ्यते</span> (లభించును — Suprabhātam).
+        <span class="sa">विद्यते</span> = “ఉన్నది” (<span class="sa">न विद्यते</span> = లేదు) — Gītā లో తరచుగా.
+    </p>
+
+    <h4>ణిజంత (Causative) — “చేయించు”</h4>
+    <p>
+        తెలుగు <span class="te">చేయు → చేయించు</span> లాగే: ధాతు + <span class="sa">अय</span> (తరచు మూల స్వరం దీర్ఘమవుతుంది).
+    </p>
+    <table>
+        <thead>
+            <tr><th>మూలం</th><th>ణిజంత</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">पठति</span> చదువును</td><td><span class="sa">पाठयति</span></td><td>చదివించును (నేర్పును) — <span class="te">పాఠం</span></td></tr>
+            <tr><td><span class="sa">बुध्यते</span> మేల్కొనును</td><td><span class="sa">बोधयति</span></td><td>మేల్కొలుపును — <span class="te">బోధ</span></td></tr>
+            <tr><td><span class="sa">नश्यति</span> నశించును</td><td><span class="sa">नाशयति</span></td><td>నశింపజేయును — <span class="te">నాశనం</span></td></tr>
+            <tr><td><span class="sa">विनोदते</span></td><td><span class="sa">विनोदय</span> (లోట్)</td><td>ఆనందింపజేయి — Bhaja Govindam: <span class="sa">विनोदय चित्तम्</span></td></tr>
+            <tr><td><span class="sa">कीर्तति</span></td><td><span class="sa">कीर्तयेत्</span></td><td>కీర్తించవలెను — Sahasranāmam: <span class="sa">प्रकीर्तयेत्</span></td></tr>
+        </tbody>
+    </table>
+
+    <h4>విధిలిఙ్ — ఫలశ్రుతి భాష</h4>
+    <p>
+        స్తోత్రం చివర “ఎవరు చదువుతారో వారికి … కలుగును” అని చెప్పే భాగం విధిలిఙ్ (<span class="sa">-एत्</span>) లో ఉంటుంది.
+    </p>
+    <div class="drill">
+        <span class="sa">प्रसन्नवदनं ध्यायेत्</span> — ప్రసన్న వదనుని ధ్యానించవలెను (Sahasranāmam).<br>
+        <span class="sa">य इदं शृणुयान्नित्यं यश्चापि परिकीर्तयेत्</span> — దీన్ని నిత్యం వినేవాడు, కీర్తించేవాడు…<br>
+        <span class="sa">सुखमवाप्नुयात्</span> — సుఖాన్ని పొందును. <span class="sa">पठेत् / भवेत्</span> — చదవాలి / అగును.
+    </div>
+
+    <h4>స్తోత్ర / సంభాషణ ధాతు జాబితా</h4>
+    <table>
+        <thead>
+            <tr><th>ధాతు</th><th>లట్ (సః)</th><th>లోట్ (త్వమ్)</th><th>తెలుగు తత్సమ</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">नम्</span></td><td><span class="sa">नमति</span></td><td><span class="sa">नम</span></td><td>నమస్కారం</td></tr>
+            <tr><td><span class="sa">भज्</span></td><td><span class="sa">भजति</span></td><td><span class="sa">भज</span></td><td>భజన, భక్తి</td></tr>
+            <tr><td><span class="sa">गम्</span></td><td><span class="sa">गच्छति</span></td><td><span class="sa">गच्छ</span></td><td>గమనం</td></tr>
+            <tr><td><span class="sa">कृ</span></td><td><span class="sa">करोति</span></td><td><span class="sa">कुरु</span></td><td>కర్త, కృతం</td></tr>
+            <tr><td><span class="sa">ज्ञा</span></td><td><span class="sa">जानाति</span></td><td><span class="sa">जानीहि</span></td><td>జ్ఞానం</td></tr>
+            <tr><td><span class="sa">दृश्</span></td><td><span class="sa">पश्यति</span></td><td><span class="sa">पश्य</span></td><td>దర్శనం, దృష్టి</td></tr>
+            <tr><td><span class="sa">वद् / ब्रू</span></td><td><span class="sa">वदति / ब्रवीति</span></td><td><span class="sa">वद / ब्रूहि</span></td><td>వచనం</td></tr>
+            <tr><td><span class="sa">श्रु</span></td><td><span class="sa">शृणोति</span></td><td><span class="sa">शृणु</span></td><td>శ్రవణం</td></tr>
+            <tr><td><span class="sa">खाद् / भुज्</span></td><td><span class="sa">खादति / भुङ्क्ते</span></td><td><span class="sa">खाद / भुङ्क्ष्व</span></td><td>భోజనం</td></tr>
+            <tr><td><span class="sa">पा</span> (తాగు)</td><td><span class="sa">पिबति</span></td><td><span class="sa">पिब</span></td><td>—</td></tr>
+            <tr><td><span class="sa">रक्ष्</span></td><td><span class="sa">रक्षति</span></td><td><span class="sa">रक्ष</span></td><td>రక్షణ</td></tr>
+            <tr><td><span class="sa">मुच्</span></td><td><span class="sa">मुञ्चति</span></td><td><span class="sa">मुञ्च</span></td><td>ముక్తి</td></tr>
+            <tr><td><span class="sa">स्मृ</span></td><td><span class="sa">स्मरति</span></td><td><span class="sa">स्मर</span></td><td>స్మరణ</td></tr>
+            <tr><td><span class="sa">स्था</span></td><td><span class="sa">तिष्ठति</span></td><td><span class="sa">तिष्ठ</span></td><td>స్థానం</td></tr>
+            <tr><td><span class="sa">नी</span></td><td><span class="sa">नयति</span></td><td><span class="sa">नय</span></td><td>నయనం</td></tr>
+            <tr><td><span class="sa">आप्</span></td><td><span class="sa">आप्नोति</span></td><td><span class="sa">आप्नुहि</span></td><td>ప్రాప్తి</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="participles">1.6 కృదంతాలు (Participles &amp; verbal derivatives)</h3>
+    <p>స్తోత్రాలు మరియు గీతలో క్రియా రూపాల కంటే కృదంతాలు ఎక్కువగా కనిపిస్తాయి.</p>
+    <table>
+        <thead>
+            <tr><th>రకం</th><th>ప్రత్యయం</th><th>ఉదాహరణ</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>క్త్వా (త్వా) — పూర్వకాలిక</td>
+                <td><span class="sa">-त्वा</span></td>
+                <td><span class="sa">दृष्ट्वा, श्रुत्वा, ज्ञात्वा, हित्वा, कृत्वा</span></td>
+                <td>చూసి, విని, తెలుసుకొని, విడిచి, చేసి</td>
+            </tr>
+            <tr>
+                <td>ల్యప్ — ఉపసర్గ ఉన్నప్పుడు</td>
+                <td><span class="sa">-य</span></td>
+                <td><span class="sa">विज्ञाय, आगम्य, प्रविश्य, आदाय</span></td>
+                <td>తెలుసుకొని, వచ్చి, ప్రవేశించి, తీసుకొని</td>
+            </tr>
+            <tr>
+                <td>క్త (భూతకాలిక విశేషణం)</td>
+                <td><span class="sa">-त</span></td>
+                <td><span class="sa">गतः, कृतम्, मुक्तः, दृष्टः, उक्तम्</span></td>
+                <td>పోయిన, చేసిన, విముక్త, చూసిన, చెప్పిన</td>
+            </tr>
+            <tr>
+                <td>క్తవతు</td>
+                <td><span class="sa">-तवत्</span></td>
+                <td><span class="sa">कृतवान्, गतवान्</span></td>
+                <td>చేసినవాడు, వెళ్ళినవాడు</td>
+            </tr>
+            <tr>
+                <td>శతృ / శానచ్ (వర్తమాన)</td>
+                <td><span class="sa">-अत् / -मान</span></td>
+                <td><span class="sa">गच्छन्, पश्यन्, वर्धमानः</span></td>
+                <td>వెళ్తున్న, చూస్తున్న, పెరుగుతున్న</td>
+            </tr>
+            <tr>
+                <td>తవ్య / అనీయర్ (కర్తవ్యం)</td>
+                <td><span class="sa">-तव्य / -अनीय</span></td>
+                <td><span class="sa">कर्तव्यम्, पठितव्यम्, स्मरणीयम्</span></td>
+                <td>చేయవలసిన, చదవవలసిన, స్మరించదగిన</td>
+            </tr>
+            <tr>
+                <td>తుమున్ (ఉద్దేశం)</td>
+                <td><span class="sa">-तुम्</span></td>
+                <td><span class="sa">गन्तुम्, पठितुम्, द्रष्टुम्</span></td>
+                <td>వెళ్ళుటకు, చదువుటకు, చూచుటకు</td>
+            </tr>
+            <tr>
+                <td>ల్యుట్ (నామరూపం)</td>
+                <td><span class="sa">-अन</span></td>
+                <td><span class="sa">गमनम्, दर्शनम्, भजनम्, रक्षणम्</span></td>
+                <td>గమనం, దర్శనం, భజన, రక్షణ</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="drill">
+        <span class="sa">पुस्तकं दृष्ट्वा अहं हृष्टः अभवम्।</span> — పుస్తకం చూసి నేను సంతోషించాను.<br>
+        <span class="sa">गुरुं नमितुं गच्छामि।</span> — గురువును నమస్కరించుటకు వెళ్తున్నాను.<br>
+        <span class="sa">सत्यं वक्तव्यम्।</span> — సత్యం చెప్పవలెను.
+    </div>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="syntax">1.7 వాక్య నిర్మాణం</h3>
+    <table>
+        <thead>
+            <tr><th>నమూనా</th><th>సంస్కృతం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>కర్త + క్రియ</td>
+                <td><span class="sa">बालकः धावति।</span></td>
+                <td>బాలుడు పరిగెత్తుతాడు.</td>
+            </tr>
+            <tr>
+                <td>కర్త + కర్మ + క్రియ</td>
+                <td><span class="sa">अहं तण्डुलं खादामि।</span></td>
+                <td>నేను అన్నం తింటున్నాను.</td>
+            </tr>
+            <tr>
+                <td>గుర్తింపు (X is Y)</td>
+                <td><span class="sa">सः मम भ्राता अस्ति।</span></td>
+                <td>అతడు నా సోదరుడు.</td>
+            </tr>
+            <tr>
+                <td>స్థానం</td>
+                <td><span class="sa">पुस्तकं मेजे अस्ति।</span></td>
+                <td>పుస్తకం బల్ల మీద ఉంది.</td>
+            </tr>
+            <tr>
+                <td>ప్రశ్న — కిమ్</td>
+                <td><span class="sa">किं करोषि? भवान् कुतः आगतः?</span></td>
+                <td>ఏమి చేస్తున్నావు? మీరు ఎక్కడ నుండి వచ్చారు?</td>
+            </tr>
+            <tr>
+                <td>నకారం</td>
+                <td><span class="sa">अहं न जानामि। मा गच्छ।</span></td>
+                <td>నాకు తెలియదు. వెళ్ళవద్దు.</td>
+            </tr>
+            <tr>
+                <td>కావాలని / విధి</td>
+                <td><span class="sa">मया पठितव्यम्। भवान् आगच्छेत्।</span></td>
+                <td>నేను చదవాలి. మీరు రావచ్చు.</td>
+            </tr>
+            <tr>
+                <td>కారణం</td>
+                <td><span class="sa">वर्षात्वात् अहं गृहे तिष्ठामि।</span></td>
+                <td>వర్షం కారణంగా ఇంట్లో ఉన్నాను.</td>
+            </tr>
+            <tr>
+                <td>సహ / వినా</td>
+                <td><span class="sa">मित्रेण सह वदामि। त्वां विना न गच्छामि।</span></td>
+                <td>మిత్రునితో మాట్లాడుతున్నాను. నీవు లేకుండా వెళ్ళను.</td>
+            </tr>
         </tbody>
     </table>
     <p>
-        <strong>క్త్వా / ల్యప్</strong> (తెలుగు “-ి” / “చేసి”): <span class="sa">दृष्ट्वा</span> = చూసి; <span class="sa">ज्ञात्वा</span> = తెలుసుకొని; <span class="sa">हित्वा</span> = విడిచి —
-        భజ గోవిందం / గీతలో అతి సాధారణం.
+        <strong>మర్యాద:</strong> స్నేహితునికి <span class="sa">त्वम्</span>; గౌరవానికి <span class="sa">भवान् / भवती</span> (ప్రథమ పురుష క్రియతో —
+        <span class="sa">भवान् कुशलः वा?</span> = మీరు క్షేమంగా ఉన్నారా?).
     </p>
     <a class="back-top" href="#toc">↑ Contents</a>
 
-    <!-- ========== 3. GLOSSARY ========== -->
+    <h3 id="avyaya">1.8 అవ్యయాలు &amp; సంబంధ వాక్యాలు (Particles &amp; correlatives)</h3>
+    <p>అవ్యయాలు ఎప్పుడూ మారవు — విభక్తి, లింగం లేవు. కొన్ని మాత్రమే నేర్చుకుంటే స్తోత్ర వాక్యాల అస్థిపంజరం కనిపిస్తుంది.</p>
+
+    <h4>ముఖ్య అవ్యయాలు</h4>
+    <table>
+        <thead>
+            <tr><th>అవ్యయం</th><th>తెలుగు</th><th>స్తోత్ర ఉదాహరణ</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">च</span></td><td>మరియు (పదం <em>తర్వాత</em> వస్తుంది)</td><td><span class="sa">रामः लक्ष्मणः च</span> = రాముడూ లక్ష్మణుడూ</td></tr>
+            <tr><td><span class="sa">वा</span></td><td>లేదా; ప్రశ్న గుర్తు</td><td><span class="sa">शरीरं सुरूपं तथा वा कलत्रम्</span> (Gurvaṣṭakam)</td></tr>
+            <tr><td><span class="sa">अपि</span></td><td>కూడా / అయినా</td><td><span class="sa">कोऽपि न</span> = ఎవరూ కాదు; <span class="sa">पुनरपि</span> = మళ్ళీ కూడా</td></tr>
+            <tr><td><span class="sa">एव</span></td><td>-ఏ / మాత్రమే (నొక్కి చెప్పడం)</td><td><span class="sa">त्वमेव</span> = నీవే; <span class="sa">ममैव</span> = నాకే</td></tr>
+            <tr><td><span class="sa">इव</span></td><td>వలె / లాగా</td><td><span class="sa">भृङ्गाङ्गनेव</span> = ఆడ తుమ్మెద వలె (Kanakadhārā)</td></tr>
+            <tr><td><span class="sa">इति</span></td><td>అని (ఉల్లేఖనం ముగింపు)</td><td><span class="sa">शङ्खभृन्नन्दकी चक्रीति कीलकम्</span> = <span class="sa">चक्री + इति</span> (Sahasranāmam)</td></tr>
+            <tr><td><span class="sa">हि</span></td><td>నిజంగా / ఎందుకంటే</td><td><span class="sa">न हि न हि रक्षति</span> (Bhaja Govindam)</td></tr>
+            <tr><td><span class="sa">तु</span></td><td>కానీ</td><td>—</td></tr>
+            <tr><td><span class="sa">न / मा</span></td><td>కాదు / వద్దు (ఆదేశంతో)</td><td><span class="sa">न तातो न माता</span> (Bhavānī); <span class="sa">मा कुरु धनजनयौवनगर्वं</span> (Bhaja Govindam)</td></tr>
+            <tr><td><span class="sa">सदा, नित्यम्, सततम्, निरन्तरम्</span></td><td>ఎల్లప్పుడూ</td><td>Pañcaratnam: <span class="sa">सदा … निरन्तरम्</span></td></tr>
+            <tr><td><span class="sa">पुनः, मुहुः</span></td><td>మళ్ళీ, పదేపదే</td><td><span class="sa">मुहुर्विदधती</span> (Kanakadhārā)</td></tr>
+            <tr><td><span class="sa">अत्र, तत्र, कुत्र, सर्वत्र</span></td><td>ఇక్కడ, అక్కడ, ఎక్కడ, అంతటా</td><td>—</td></tr>
+            <tr><td><span class="sa">अथ</span></td><td>ఇప్పుడు (ప్రారంభం)</td><td><span class="sa">अथ न्यासः</span> (Sahasranāmam)</td></tr>
+            <tr><td><span class="sa">नमः, स्वस्ति, स्वाहा</span></td><td>నమస్సు, శుభం</td><td>చతుర్థీతో వస్తాయి</td></tr>
+        </tbody>
+    </table>
+
+    <h4>య-త సంబంధ జంటలు (Correlatives)</h4>
+    <p>
+        తెలుగు: <span class="te">ఎవడైతే … వాడు; ఎంతవరకు … అంతవరకు; ఎలాగో … అలాగే</span>.
+        సంస్కృతంలో <span class="sa">य-</span> (సంబంధ) + <span class="sa">त-</span> (సూచక) జంటగా వస్తాయి — స్తోత్రాల పెద్ద వాక్యాలు ఇలాగే నిర్మితమవుతాయి.
+    </p>
+    <table>
+        <thead>
+            <tr><th>జంట</th><th>తెలుగు</th><th>స్తోత్రంలో</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">यः … सः / तम् / तस्मै</span></td><td>ఎవడో … వాడు / వానిని / వానికి</td><td>Dakṣiṇāmūrti: <span class="sa">यः साक्षात्कुरुते … तस्मै श्रीगुरुमूर्तये नमः</span></td></tr>
+            <tr><td><span class="sa">या … सा</span></td><td>ఏ ఆమె … ఆమె</td><td>Kanakadhārā: <span class="sa">माला दृशोर्मधुकरीव … या सा मे श्रियं दिशतु</span></td></tr>
+            <tr><td><span class="sa">यस्य … तम्</span></td><td>ఎవనికి … వానిని</td><td>Sahasranāmam: <span class="sa">यस्य द्विरदवक्त्राद्याः … विष्वक्सेनं तमाश्रये</span></td></tr>
+            <tr><td><span class="sa">यत् … तत्</span></td><td>ఏది … అది</td><td>Bhaja Govindam: <span class="sa">यल्लभसे … तेन विनोदय चित्तम्</span></td></tr>
+            <tr><td><span class="sa">यावत् … तावत्</span></td><td>ఎంతవరకు … అంతవరకు</td><td>Bhaja Govindam: <span class="sa">यावद्वित्तोपार्जनसक्तस्तावन्निजपरिवारो रक्तः</span></td></tr>
+            <tr><td><span class="sa">यथा … तथा</span></td><td>ఎలాగో … అలాగే</td><td>—</td></tr>
+            <tr><td><span class="sa">यदा … तदा</span></td><td>ఎప్పుడో … అప్పుడు</td><td>Gītā: <span class="sa">यदा यदा हि धर्मस्य</span></td></tr>
+            <tr><td><span class="sa">यदि / चेत् … ततः</span></td><td>ఒకవేళ … అప్పుడు</td><td>Gurvaṣṭakam: <span class="sa">मनश्चेन्न लग्नं … ततः किम्</span> = మనసు లగ్నం కాకపోతే, ఏమి లాభం?</td></tr>
+        </tbody>
+    </table>
+    <div class="drill">
+        <strong>సంభాషణలో:</strong>
+        <span class="sa">यः पठति सः जानाति।</span> — ఎవడు చదువుతాడో వాడికి తెలుస్తుంది.<br>
+        <span class="sa">यावत् अहं आगच्छामि तावत् अत्र तिष्ठ।</span> — నేను వచ్చేవరకు ఇక్కడే ఉండు.<br>
+        <span class="sa">यदि वर्षा भवति तर्हि गृहे तिष्ठामः।</span> — వర్షం పడితే ఇంట్లో ఉంటాం.<br>
+        <span class="sa">यथा गुरुः वदति तथा कुरु।</span> — గురువు చెప్పినట్లే చెయ్యి.
+    </div>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="suffixes">1.9 పద నిర్మాణ ప్రత్యయాలు (Kṛt &amp; Taddhita)</h3>
+    <p>
+        స్తోత్రాల్లో, ముఖ్యంగా Sahasranāmam లో, దేవుని పేర్లన్నీ ఈ ప్రత్యయాలతో తయారైనవే. ప్రత్యయం గుర్తుపడితే కొత్త పేరు అర్థం ఊహించవచ్చు.
+    </p>
+
+    <h4>కృత్ ప్రత్యయాలు — ధాతువు నుండి “చేసేవాడు”</h4>
+    <table>
+        <thead>
+            <tr><th>ప్రత్యయం</th><th>అర్థం</th><th>ఉదాహరణ</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">-क</span> (ణ్వుల్)</td><td>చేసేవాడు</td><td><span class="sa">रक्षक, नाशक, साधक, नायक</span></td><td><span class="te">రక్షకుడు, నాశకుడు, సాధకుడు, నాయకుడు</span></td></tr>
+            <tr><td><span class="sa">-तृ</span> (తృచ్)</td><td>కర్త</td><td><span class="sa">कर्ता, स्रष्टा, भर्ता, दाता, हर्ता</span></td><td><span class="te">కర్త, స్రష్ట, భర్త, దాత</span></td></tr>
+            <tr><td><span class="sa">-अ</span> (అచ్) సమాసాంతం</td><td>చేసేవాడు / ఉన్నవాడు</td><td><span class="sa">-धर, -कर, -हर, -द</span>: <span class="sa">गदाधर, शुभकर, पापहर, वरद</span></td><td><span class="te">గదాధరుడు, శుభకరుడు, వరదుడు</span></td></tr>
+            <tr><td><span class="sa">-इन्</span> (ణిని)</td><td>అలవాటుగా చేసేవాడు</td><td><span class="sa">वासिन्, धारिन्, संहारिन्</span> → <span class="sa">वासी, संहारिणे</span></td><td><span class="te">నివాసి, ధారి</span></td></tr>
+            <tr><td><span class="sa">-अन</span> (ల్యుట్)</td><td>చర్య / సాధనం</td><td><span class="sa">नाशन, मर्दन, भूषण, नयन</span></td><td><span class="te">నాశనం, మర్దనం, భూషణం, నయనం</span></td></tr>
+            <tr><td><span class="sa">-ति</span> (క్తిన్)</td><td>భావం (స్త్రీ)</td><td><span class="sa">भक्ति, मुक्ति, शक्ति, गति, मति</span></td><td>అన్నీ తత్సమాలు</td></tr>
+        </tbody>
+    </table>
+
+    <h4>తద్ధిత ప్రత్యయాలు — నామం నుండి కొత్త నామం</h4>
+    <table>
+        <thead>
+            <tr><th>ప్రత్యయం</th><th>అర్థం</th><th>ఉదాహరణ</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">-त्व / -ता</span></td><td>-తనం (భావం)</td><td><span class="sa">निर्मोहत्वम्, विष्णुत्वम्, देवता</span></td><td><span class="te">దేవత్వం, మనుష్యత్వం</span></td></tr>
+            <tr><td><span class="sa">-मत् / -वत्</span></td><td>కలవాడు</td><td><span class="sa">श्रीमान्, धीमान्, भगवान्, सन्धिमान्</span></td><td><span class="te">శ్రీమంతుడు, భగవంతుడు, ధనవంతుడు</span></td></tr>
+            <tr><td><span class="sa">-मय</span></td><td>నిండిన / తయారైన</td><td><span class="sa">मायामयम्</span> (Bhaja Govindam), <span class="sa">हरिनीलमयी</span> (Kanakadhārā), <span class="sa">आनन्दमय</span></td><td><span class="te">ఆనందమయం, జ్ఞానమయం</span></td></tr>
+            <tr><td><span class="sa">-इन्</span></td><td>కలవాడు</td><td><span class="sa">चक्री, नन्दकी, शार्ङ्गी, योगी</span></td><td><span class="te">యోగి, జ్ఞాని</span></td></tr>
+            <tr><td><span class="sa">-अ</span> (వృద్ధి: మొదటి అచ్చు పెరుగుతుంది)</td><td>సంతతి / సంబంధం</td><td><span class="sa">वसिष्ठ → वासिष्ठ, वसुदेव → वासुदेव, शिव → शैव</span></td><td><span class="te">శైవం, వైష్ణవం, వాసుదేవుడు</span></td></tr>
+            <tr><td><span class="sa">-इ</span> (వృద్ధి)</td><td>పుత్రుడు</td><td><span class="sa">दशरथ → दाशरथि</span></td><td><span class="te">దాశరథి</span></td></tr>
+            <tr><td><span class="sa">-ईय / -इक</span></td><td>సంబంధించిన</td><td><span class="sa">भारतीय, वैदिक, धार्मिक</span></td><td><span class="te">భారతీయ, వైదిక, ధార్మిక</span></td></tr>
+            <tr><td><span class="sa">-ई</span> (స్త్రీ)</td><td>స్త్రీ రూపం</td><td><span class="sa">देव → देवी, मधुकर → मधुकरी, मर्दिन् → मर्दिनी</span></td><td><span class="te">దేవి</span></td></tr>
+        </tbody>
+    </table>
+
+    <h4>Sahasranāmam పేర్లు ఎలా తయారవుతాయి</h4>
+    <table>
+        <thead>
+            <tr><th>పేరు</th><th>విడదీత</th><th>అర్థం</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">गदाधरः</span></td><td><span class="sa">गदा + धर</span> (కృత్ -అ)</td><td>గదను ధరించువాడు</td></tr>
+            <tr><td><span class="sa">पद्मनाभः</span></td><td><span class="sa">पद्म + नाभि</span> (బహువ్రీహి)</td><td>నాభిలో పద్మం ఉన్నవాడు</td></tr>
+            <tr><td><span class="sa">चक्री</span></td><td><span class="sa">चक्र + इन्</span></td><td>చక్రం కలవాడు</td></tr>
+            <tr><td><span class="sa">स्रष्टा</span></td><td><span class="sa">सृज् + तृ</span></td><td>సృష్టికర్త</td></tr>
+            <tr><td><span class="sa">अक्षोभ्यः</span></td><td><span class="sa">अ + क्षोभ्य</span> (కృత్య)</td><td>కలత చెందించలేనివాడు</td></tr>
+            <tr><td><span class="sa">श्रीमान्</span></td><td><span class="sa">श्री + मत्</span></td><td>శ్రీ (లక్ష్మి) కలవాడు</td></tr>
+            <tr><td><span class="sa">वासुदेवः</span></td><td><span class="sa">वसुदेव + अ</span> (వృద్ధి)</td><td>వసుదేవుని కుమారుడు</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="numbers">1.10 సంఖ్యలు (Numbers)</h3>
+    <p>తెలుగు సంఖ్యా తత్సమాలు ఇక్కడి నుండే: <span class="te">ఏకాదశి, ద్వాదశి, పంచామృతం, అష్టోత్తరం, సహస్రం</span>.</p>
+    <table>
+        <thead>
+            <tr><th>#</th><th>సంస్కృతం</th><th>సమాసంలో</th><th>తెలుగు / స్తోత్ర ఉదా</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td><span class="sa">एकः / एका / एकम्</span></td><td><span class="sa">एक-</span></td><td><span class="sa">त्वमेका भवानि</span>; <span class="sa">एकदन्त</span></td></tr>
+            <tr><td>2</td><td><span class="sa">द्वौ / द्वे</span></td><td><span class="sa">द्वि-</span></td><td><span class="te">ద్విగుణం</span>; <span class="sa">द्विरद</span> = ఏనుగు (రెండు దంతాలు)</td></tr>
+            <tr><td>3</td><td><span class="sa">त्रयः / तिस्रः / त्रीणि</span></td><td><span class="sa">त्रि-</span></td><td><span class="sa">त्रिभुवन, त्रैलोक्य</span></td></tr>
+            <tr><td>4</td><td><span class="sa">चत्वारः</span></td><td><span class="sa">चतुर्-</span></td><td><span class="sa">चतुर्भुज</span>; <span class="te">చతుర్వేదాలు</span></td></tr>
+            <tr><td>5</td><td><span class="sa">पञ्च</span></td><td><span class="sa">पञ्च-</span></td><td><span class="sa">पञ्चरत्नम्</span></td></tr>
+            <tr><td>6</td><td><span class="sa">षट्</span></td><td><span class="sa">षड्-</span></td><td><span class="te">షడ్రుచులు, షణ్ముఖుడు</span></td></tr>
+            <tr><td>7</td><td><span class="sa">सप्त</span></td><td><span class="sa">सप्त-</span></td><td><span class="sa">सप्तऋषयः</span></td></tr>
+            <tr><td>8</td><td><span class="sa">अष्ट</span></td><td><span class="sa">अष्ट-</span></td><td><span class="sa">अष्टकम्</span> = 8 శ్లోకాల స్తోత్రం</td></tr>
+            <tr><td>9</td><td><span class="sa">नव</span></td><td><span class="sa">नव-</span></td><td><span class="te">నవరాత్రి, నవగ్రహాలు</span></td></tr>
+            <tr><td>10</td><td><span class="sa">दश</span></td><td><span class="sa">दश-</span></td><td><span class="te">దశావతారాలు</span></td></tr>
+            <tr><td>100 / 1000</td><td><span class="sa">शतम् / सहस्रम्</span></td><td>—</td><td><span class="sa">परः शतम्</span>; <span class="sa">सहस्रनाम</span></td></tr>
+        </tbody>
+    </table>
+    <p class="eg">
+        క్రమసంఖ్యలు: <span class="sa">प्रथम, द्वितीय, तृतीय, चतुर्थ, पञ्चम</span> — విభక్తుల పేర్లు ఇవే (ప్రథమా, ద్వితీయా…).
+        స్తోత్ర పేర్లు: <span class="sa">पञ्चरत्नम्</span> (5), <span class="sa">अष्टकम्</span> (8), <span class="sa">चालीसा</span> (40, హిందీ), <span class="sa">अष्टोत्तरशतम्</span> (108), <span class="sa">सहस्रनाम</span> (1000).
+    </p>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="formulas">1.11 స్తోత్ర వాక్య సూత్రాలు (Stotra formulas)</h3>
+    <p>
+        ప్రతి స్తోత్రం కొన్ని స్థిర వ్యాకరణ “ఫ్రేమ్”లపై నిర్మితమవుతుంది. ఫ్రేమ్ గుర్తుపడితే మిగిలిన పొడవైన సమాసాలు కేవలం దేవుని వర్ణనలే అని తెలుస్తుంది.
+    </p>
+    <table>
+        <thead>
+            <tr><th>సూత్రం</th><th>వ్యాకరణం</th><th>స్తోత్రం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="sa">X-ाय नमः</span></td>
+                <td>చతుర్థీ + <span class="sa">नमः</span></td>
+                <td>Dakṣiṇāmūrti: <span class="sa">तस्मै श्रीगुरुमूर्तये नम इदं श्रीदक्षिणामूर्तये</span></td>
+                <td>X కి నమస్కారం</td>
+            </tr>
+            <tr>
+                <td><span class="sa">नमो नमः X-आभ्याम्</span></td>
+                <td>ద్వివచన చతుర్థీ (<span class="sa">-आभ्याम्</span> = రెండింటికీ)</td>
+                <td>Guru Pādukā: <span class="sa">नमो नमः श्रीगुरुपादुकाभ्याम्</span></td>
+                <td>రెండు గురు పాదుకలకు నమస్కారం</td>
+            </tr>
+            <tr>
+                <td><span class="sa">तत् प्रणमामि X-म्</span></td>
+                <td>ద్వితీయా + ఉత్తమ పురుష</td>
+                <td>Liṅgāṣṭakam: <span class="sa">तत् प्रणमामि सदाशिवलिङ्गम्</span></td>
+                <td>ఆ సదాశివ లింగానికి నమస్కరిస్తాను</td>
+            </tr>
+            <tr>
+                <td><span class="sa">नमामि तं X-म्</span></td>
+                <td>ద్వితీయా విశేషణ గొలుసు</td>
+                <td>Pañcaratnam: <span class="sa">नमामि तं विनायकम्</span></td>
+                <td>ఆ వినాయకునికి నమస్కరిస్తాను</td>
+            </tr>
+            <tr>
+                <td><span class="sa">जय जय हे X-इनि</span></td>
+                <td>లోట్ <span class="sa">जय</span> + స్త్రీ సంబోధన</td>
+                <td>Mahiṣāsura Mardinī</td>
+                <td>జయము జయము, ఓ మహిషాసుర మర్దినీ!</td>
+            </tr>
+            <tr>
+                <td><span class="sa">उत्तिष्ठ X</span></td>
+                <td>లోట్ + సంబోధన</td>
+                <td>Suprabhātam: <span class="sa">उत्तिष्ठ नरशार्दूल</span>; <span class="sa">त्रैलोक्यं मङ्गलं कुरु</span></td>
+                <td>లెమ్ము ఓ నరశ్రేష్ఠా; ముల్లోకాలకు మంగళం చేయి</td>
+            </tr>
+            <tr>
+                <td><span class="sa">X-चरणौ शरणं प्रपद्ये</span></td>
+                <td>ద్వివచన ద్వితీయా + ఆత్మనే ఉత్తమ</td>
+                <td>Suprabhātam ప్రపత్తి</td>
+                <td>నీ రెండు పాదాలను శరణు పొందుతున్నాను</td>
+            </tr>
+            <tr>
+                <td><span class="sa">गतिस्त्वं … त्वमेका</span></td>
+                <td>ప్రథమా (<span class="sa">गतिः त्वम्</span>, <span class="sa">अस्ति</span> లోపం)</td>
+                <td>Bhavānī Aṣṭakam</td>
+                <td>నీవే గతి, నీవొక్కతివే</td>
+            </tr>
+            <tr>
+                <td><span class="sa">… ततः किम्</span></td>
+                <td>చేత్-తతః నిబంధన</td>
+                <td>Gurvaṣṭakam</td>
+                <td>(అవి ఉన్నా) అయితే ఏమి?</td>
+            </tr>
+            <tr>
+                <td><span class="sa">सा मे श्रियं दिशतु</span></td>
+                <td>లోట్ ప్రథమ పురుష (ఆశీస్సు)</td>
+                <td>Kanakadhārā</td>
+                <td>ఆమె నాకు సంపదను ఇచ్చుగాక</td>
+            </tr>
+            <tr>
+                <td><span class="sa">भज गोविन्दम्</span></td>
+                <td>లోట్ మధ్యమ + ద్వితీయా</td>
+                <td>Bhaja Govindam</td>
+                <td>గోవిందుని భజించు</td>
+            </tr>
+            <tr>
+                <td><span class="sa">नमोऽस्तु ते</span></td>
+                <td><span class="sa">नमः + अस्तु</span> (లోట్) + <span class="sa">ते</span> (చతుర్థీ)</td>
+                <td>Sahasranāmam, Suprabhātam</td>
+                <td>నీకు నమస్కారం అగుగాక</td>
+            </tr>
+            <tr>
+                <td><span class="sa">ध्यायेत् / पठेत् / भवेत्</span></td>
+                <td>విధిలిఙ్ (ఫలశ్రుతి)</td>
+                <td>Sahasranāmam</td>
+                <td>ధ్యానించవలెను / చదవవలెను / అగును</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="drill">
+        <strong>సొంత వాక్యాలు తయారు చేయండి:</strong><br>
+        <span class="sa">गणेशाय नमः। सरस्वत्यै नमः। गुरवे नमः।</span> — (పుం, స్త్రీ, ఉ-శబ్దం చతుర్థీ)<br>
+        <span class="sa">उत्तिष्ठ वत्स, विद्यालयं गच्छ।</span> — లే బిడ్డా, బడికి వెళ్ళు.<br>
+        <span class="sa">त्वमेव मम मित्रम्।</span> — నీవే నా మిత్రుడివి.<br>
+        <span class="sa">धनं अस्ति, किन्तु शान्तिः नास्ति चेत् ततः किम्?</span> — ధనం ఉంది, కానీ శాంతి లేకపోతే ఏమి లాభం?
+    </div>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="chandas">1.12 ఛందస్సు (Metre)</h3>
+    <p>
+        తెలుగు పద్యాల ఛందస్సు (<span class="te">ఉత్పలమాల, చంపకమాల, శార్దూలం, మత్తేభం</span>) సంస్కృతం నుండే వచ్చింది.
+        లఘువు (I) / గురువు (U) నియమాలు రెండింటిలో ఒకటే:
+    </p>
+    <ul>
+        <li><strong>గురువు (U):</strong> దీర్ఘాచ్చు (ఆ, ఈ, ఊ, ఏ, ఐ, ఓ, ఔ); అనుస్వారం/విసర్గతో అక్షరం; సంయుక్తాక్షరానికి ముందు అక్షరం.</li>
+        <li><strong>లఘువు (I):</strong> మిగిలిన హ్రస్వాచ్చు అక్షరాలు.</li>
+    </ul>
+    <p>తెలుగు గణాలు (<span class="te">య, మ, త, ర, జ, భ, న, స</span>) సంస్కృత గణాలే. ఈ రిపోజిటరీలోని స్తోత్రాల ఛందస్సులు:</p>
+    <table>
+        <thead>
+            <tr><th>ఛందస్సు</th><th>నమూనా</th><th>స్తోత్రం</th><th>ఉదాహరణ పాదం</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>అనుష్టుప్ (శ్లోకం)</td>
+                <td>పాదానికి 8 అక్షరాలు; 5వది లఘు, 6వది గురు</td>
+                <td>Sahasranāmam, Gītā, Suprabhātam 1–2</td>
+                <td><span class="sa">कौसल्या सुप्रजा राम</span></td>
+            </tr>
+            <tr>
+                <td>భుజంగప్రయాతం</td>
+                <td>య య య య (IUU ×4) — 12 అక్షరాలు</td>
+                <td>Bhavānī Aṣṭakam, Gurvaṣṭakam</td>
+                <td><span class="sa">न ता तो | न मा ता | न बन् धुर् | न दा ता</span></td>
+            </tr>
+            <tr>
+                <td>వసంతతిలకం</td>
+                <td>త భ జ జ గ గ (UUI UII IUI IUI UU) — 14</td>
+                <td>Kanakadhārā, Suprabhātam (ఎక్కువ భాగం)</td>
+                <td><span class="sa">अङ्गं हरेः पुलकभूषणमाश्रयन्ती</span></td>
+            </tr>
+            <tr>
+                <td>శార్దూలవిక్రీడితం</td>
+                <td>మ స జ స త త గ — 19 అక్షరాలు</td>
+                <td>Dakṣiṇāmūrti Stotram</td>
+                <td><span class="sa">विश्वं दर्पणदृश्यमाननगरीतुल्यं…</span> (తెలుగులో “శార్దూలం”)</td>
+            </tr>
+            <tr>
+                <td>పంచచామరం</td>
+                <td>జ ర జ ర జ గ (IUI UIU IUI UIU IUI U) — 16</td>
+                <td>Gaṇeśa Pañcaratnam</td>
+                <td><span class="sa">मुदाकरात्तमोदकं सदा विमुक्तिसाधकम्</span></td>
+            </tr>
+            <tr>
+                <td>ఉపజాతి (ఇంద్రవజ్ర + ఉపేంద్రవజ్ర)</td>
+                <td>ఉపేంద్రవజ్ర: జ త జ గ గ (IUI UUI IUI UU) — 11</td>
+                <td>Guru Pādukā Stotram</td>
+                <td><span class="sa">अनन्तसंसारसमुद्रतार</span></td>
+            </tr>
+            <tr>
+                <td>మాత్రా ఛందస్సులు</td>
+                <td>అక్షరాల సంఖ్య కాదు, మాత్రల (I=1, U=2) సంఖ్య</td>
+                <td>Bhaja Govindam, Liṅgāṣṭakam, Mahiṣāsura Mardinī</td>
+                <td><span class="sa">भज गोविन्दं भज गोविन्दं</span> — తాళానికి అనువైన లయ</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="eg">
+        ఛందస్సు ఎందుకు ముఖ్యం: శ్లోకం సరిగ్గా పఠిస్తే సంధి విడదీయడం సులువవుతుంది — గురు/లఘు ఒక పదం ఎక్కడ ముగుస్తుందో సూచిస్తాయి.
+        Sahasranāmam లోనే ఉంది: <span class="sa">छन्दोऽनुष्टुप्</span> = ఛందస్సు అనుష్టుప్.
+    </p>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <!-- ========== CONVERSATION ========== -->
+    <h2 id="conversation">2. Conversational Sentences</h2>
+    <p>
+        ప్రతి బ్లాక్: సంస్కృతం (బిగ్గరగా) → తెలుగు అర్థం. మొదట అనుకరించండి; తర్వాత తెలుగు మాత్రం చూసి సంస్కృతం చెప్పండి.
+    </p>
+
+    <h3 id="greet">2.1 శుభాకాంక్షలు &amp; పరిచయం</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">नमस्ते। / नमस्कारः।</span></td><td>నమస్తే / నమస్కారం.</td></tr>
+            <tr><td><span class="sa">सुप्रभातम्। शुभरात्रिः।</span></td><td>శుభోదయం. శుభ రాత్రి.</td></tr>
+            <tr><td><span class="sa">स्वागतम्। पुनः मिलामः।</span></td><td>స్వాగతం. మళ్ళీ కలుద్దాం.</td></tr>
+            <tr><td><span class="sa">भवान् / भवती कुशली वा?</span></td><td>మీరు క్షేమంగా ఉన్నారా?</td></tr>
+            <tr><td><span class="sa">अहं कुशली। धन्यवादः।</span></td><td>నేను క్షేమం. ధన్యవాదాలు.</td></tr>
+            <tr><td><span class="sa">भवतः / भवत्याः नाम किम्?</span></td><td>మీ పేరు ఏమిటి?</td></tr>
+            <tr><td><span class="sa">मम नाम रविः। अहं विद्यार्थी अस्मि।</span></td><td>నా పేరు రవి. నేను విద్యార్థిని.</td></tr>
+            <tr><td><span class="sa">भवान् कुतः आगतः?</span></td><td>మీరు ఎక్కడ నుండి వచ్చారు?</td></tr>
+            <tr><td><span class="sa">अहं हैदराबादात् आगतवान्।</span></td><td>నేను హైదరాబాదు నుండి వచ్చాను.</td></tr>
+            <tr><td><span class="sa">एषः मम मित्रम् / मित्रः।</span></td><td>ఇతడు నా మిత్రుడు.</td></tr>
+            <tr><td><span class="sa">क्षम्यताम्। कृपया पुनः वदतु।</span></td><td>క్షమించండి. దయచేసి మళ్ళీ చెప్పండి.</td></tr>
+            <tr><td><span class="sa">मया संस्कृतं स्वल्पं ज्ञायते।</span></td><td>నాకు సంస్కృతం కొంచెం తెలుసు.</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="daily">2.2 రోజువారీ జీవితం</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">अहं गृहे अस्मि।</span></td><td>నేను ఇంట్లో ఉన్నాను.</td></tr>
+            <tr><td><span class="sa">अहं कार्यालयं गच्छामि।</span></td><td>నేను కార్యాలయానికి వెళ్తున్నాను.</td></tr>
+            <tr><td><span class="sa">प्रातर्काले अहं उत्तिष्ठामि।</span></td><td>ఉదయం నేను లేస్తాను.</td></tr>
+            <tr><td><span class="sa">अहं स्नानं करोमि।</span></td><td>నేను స్నానం చేస్తున్నాను.</td></tr>
+            <tr><td><span class="sa">मम भोजनं सिद्धम् अस्ति वा?</span></td><td>నా భోజనం సిద్ధంగా ఉందా?</td></tr>
+            <tr><td><span class="sa">अहं जलं पिबामि। दुग्धं इच्छामि।</span></td><td>నీళ్లు తాగుతున్నాను. పాలు కావాలి.</td></tr>
+            <tr><td><span class="sa">इदं भोजनं रुचिकरम् अस्ति।</span></td><td>ఈ భోజనం రుచిగా ఉంది.</td></tr>
+            <tr><td><span class="sa">अहं श्रम्ये। विश्रामं इच्छामि।</span></td><td>అలసిపోయాను. విశ్రాంతి కావాలి.</td></tr>
+            <tr><td><span class="sa">किञ्चित् जलं आनयतु।</span></td><td>కొంచెం నీళ్లు తీసుకురండి.</td></tr>
+            <tr><td><span class="sa">द्वारं पिधेहि / उद्घाटय।</span></td><td>తలుపు మూయి / తెరువు.</td></tr>
+            <tr><td><span class="sa">अलं प्रकाशं कुरु।</span></td><td>వెలుగు పెట్టు (లైట్ వేయి).</td></tr>
+            <tr><td><span class="sa">अद्य वर्षा भवति।</span></td><td>ఈరోజు వర్షం పడుతోంది.</td></tr>
+            <tr><td><span class="sa">शीतलं वायुः वहति।</span></td><td>చల్లని గాలి వీస్తోంది.</td></tr>
+            <tr><td><span class="sa">अहं विपणिम् गन्तुम् इच्छामि।</span></td><td>నేను మార్కెట్‌కు వెళ్లాలనుకుంటున్నాను.</td></tr>
+            <tr><td><span class="sa">एतस्य मूल्यं कियत्?</span></td><td>దీని ధర ఎంత?</td></tr>
+            <tr><td><span class="sa">समयः कः? सप्तवादनम् अस्ति।</span></td><td>సమయం ఎంత? ఏడు గంటలు.</td></tr>
+            <tr><td><span class="sa">अहं श्वः आगमिष्यामि।</span></td><td>నేను రేపు వస్తాను.</td></tr>
+            <tr><td><span class="sa">सायं गृहं प्रत्यागच्छामि।</span></td><td>సాయంత్రం ఇంటికి తిరిగి వస్తాను.</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="ask">2.3 అడగడం &amp; చెప్పడం</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">किं नाम? किं करोषि?</span></td><td>పేరేమిటి? ఏమి చేస్తున్నావు?</td></tr>
+            <tr><td><span class="sa">कुत्र गच्छसि? कुतः आगच्छसि?</span></td><td>ఎక్కడికి వెళ్తున్నావు? ఎక్కడ నుండి వస్తున్నావు?</td></tr>
+            <tr><td><span class="sa">कदा मिलिष्यामः?</span></td><td>ఎప్పుడు కలుస్తాం?</td></tr>
+            <tr><td><span class="sa">कथं अस्ति भवान्?</span></td><td>మీరు ఎలా ఉన్నారు?</td></tr>
+            <tr><td><span class="sa">किमर्थं विलम्बः?</span></td><td>ఎందుకు ఆలస్యం?</td></tr>
+            <tr><td><span class="sa">अपि भवान् मां सहायते?</span></td><td>మీరు నాకు సహాయం చేస్తారా?</td></tr>
+            <tr><td><span class="sa">आम्। न। अस्तु।</span></td><td>అవును. కాదు. సరే / అలాగే అవుగాక.</td></tr>
+            <tr><td><span class="sa">मम अभिप्रायेण…</span></td><td>నా అభిప్రాయంలో…</td></tr>
+            <tr><td><span class="sa">अहं मन्ये यत्…</span></td><td>నేను అనుకుంటున్నాను అనగా…</td></tr>
+            <tr><td><span class="sa">कृपया एतत् स्पष्टयतु।</span></td><td>దయచేసి దీన్ని స్పష్టం చేయండి.</td></tr>
+            <tr><td><span class="sa">मया अवगतम्। / न अवगतम्।</span></td><td>నాకు అర్థమైంది / కాలేదు.</td></tr>
+            <tr><td><span class="sa">भवान् किं वदति?</span></td><td>మీరు ఏమి చెప్తున్నారు?</td></tr>
+            <tr><td><span class="sa">मन्दं वदतु। अहं शृणोमि।</span></td><td>నెమ్మదిగా చెప్పండి. నేను వింటున్నాను.</td></tr>
+            <tr><td><span class="sa">दूरभाषेण वदामि।</span></td><td>ఫోన్‌లో మాట్లాడుతున్నాను.</td></tr>
+            <tr><td><span class="sa">सन्देशं प्रेषयतु।</span></td><td>సందేశం పంపండి.</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="feel">2.4 భావాలు &amp; అభిప్రాయం</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">अहं सुखिन् अस्मि / तुष्टः अस्मि।</span></td><td>నేను సంతోషంగా ఉన్నాను.</td></tr>
+            <tr><td><span class="sa">अहं दुःखितः अस्मि।</span></td><td>నేను దుఃఖంగా ఉన్నాను.</td></tr>
+            <tr><td><span class="sa">मम शिरः दुःखति।</span></td><td>నా తల నొప్పి పెడుతోంది.</td></tr>
+            <tr><td><span class="sa">अहं बुभुक्षितः / तृषितः अस्मि।</span></td><td>ఆకలిగా / దాహంగా ఉంది.</td></tr>
+            <tr><td><span class="sa">अहं भीतः अस्मि। मा बिभीहि।</span></td><td>నాకు భయం వేస్తోంది. భయపడవద్దు.</td></tr>
+            <tr><td><span class="sa">क्षमां करोतु। मम दोषः।</span></td><td>క్షమించండి. నా తప్పు.</td></tr>
+            <tr><td><span class="sa">अत्युत्तमम्! साधु साधु!</span></td><td>చాలా బాగుంది! భేష్ భేష్!</td></tr>
+            <tr><td><span class="sa">खेदः। दुःखदं समाचारम्।</span></td><td>బాధాకరం. చెడ్డ వార్త.</td></tr>
+            <tr><td><span class="sa">चिन्ता मास्तु। सर्वं भद्रं भविष्यति।</span></td><td>చింతించకు. అంతా మంచిగా ఉంటుంది.</td></tr>
+            <tr><td><span class="sa">मम प्रियं अस्ति…</span></td><td>నాకు ఇష్టం…</td></tr>
+            <tr><td><span class="sa">मम अप्रियं अस्ति…</span></td><td>నాకు ఇష్టం లేదు…</td></tr>
+            <tr><td><span class="sa">आश्चर्यम्! सत्यम् एव वा?</span></td><td>ఆశ్చర్యం! నిజమేనా?</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="study">2.5 అధ్యయనం &amp; భక్తి</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">अहं संस्कृतं पठामि।</span></td><td>నేను సంస్కృతం చదువుతున్నాను.</td></tr>
+            <tr><td><span class="sa">एषः श्लोकः किम् अर्थं वदति?</span></td><td>ఈ శ్లోకం ఏమి చెప్తోంది?</td></tr>
+            <tr><td><span class="sa">कृपया पदच्छेदं कुरु।</span></td><td>దయచేసి పద విభజన చెయ్యి.</td></tr>
+            <tr><td><span class="sa">अस्य शब्दस्य अर्थः कः?</span></td><td>ఈ పదం అర్థం ఏమిటి?</td></tr>
+            <tr><td><span class="sa">अहं गीतां स्मरामि।</span></td><td>నేను గీతను స్మరిస్తున్నాను.</td></tr>
+            <tr><td><span class="sa">भज गोविन्दम् इति श्लोकं गायतु।</span></td><td>భజ గోవిందం శ్లోకం పాడు.</td></tr>
+            <tr><td><span class="sa">अद्य अहं गणेशपञ्चरत्नं पठितवान्।</span></td><td>ఈరోజు గణేశ పంచరత్నం చదివాను.</td></tr>
+            <tr><td><span class="sa">मम गुरुः मां पाठयति।</span></td><td>నా గురువు నన్ను నేర్పిస్తున్నారు.</td></tr>
+            <tr><td><span class="sa">ईश्वरं नमामि। हरये नमः।</span></td><td>ఈశ్వరునికి నమస్కరిస్తాను. హరికి నమః.</td></tr>
+            <tr><td><span class="sa">मम मनसि शान्तिः अस्ति।</span></td><td>నా మనసులో శాంతి ఉంది.</td></tr>
+            <tr><td><span class="sa">सत्सङ्गं इच्छामि।</span></td><td>సత్సంగం కావాలి.</td></tr>
+            <tr><td><span class="sa">विष्णुसहस्रनाम पठितव्यम्।</span></td><td>విష్ణు సహస్రనామం చదవవలెను.</td></tr>
+            <tr><td><span class="sa">मन्दिरं गन्तुं समयः जातः।</span></td><td>దేవాలయానికి వెళ్లే సమయమైంది.</td></tr>
+            <tr><td><span class="sa">प्रसादं स्वीकरोतु।</span></td><td>ప్రసాదం స్వీకరించండి.</td></tr>
+            <tr><td><span class="sa">ॐ शान्तिः शान्तिः शान्तिः।</span></td><td>ఓం శాంతి శాంతి శాంతి.</td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="dialogs">2.6 పూర్తి సంభాషణలు</h3>
+
+    <h4>సంభాషణ A — మార్గంలో కలవడం</h4>
+    <div class="dialog">
+        <div class="line a"><span class="label">అ:</span> <span class="sa">नमस्ते। भवान् कुशली वा?</span>
+            <div class="te-line">నమస్తే. మీరు క్షేమంగా ఉన్నారా?</div>
+        </div>
+        <div class="line b"><span class="label">ఆ:</span> <span class="sa">नमस्ते। आम्, अहं कुशली। भवान् अपि?</span>
+            <div class="te-line">నమస్తే. అవును, నేను క్షేమం. మీరూ?</div>
+        </div>
+        <div class="line a"><span class="label">అ:</span> <span class="sa">अहम् अपि कुशली। भवान् कुत्र गच्छति?</span>
+            <div class="te-line">నేనూ క్షేమం. మీరు ఎక్కడికి వెళ్తున్నారు?</div>
+        </div>
+        <div class="line b"><span class="label">ఆ:</span> <span class="sa">अहं पुस्तकालयं गच्छामि। तत्र संस्कृतपुस्तकं आनयामि।</span>
+            <div class="te-line">నేను గ్రంథాలయానికి వెళ్తున్నాను. అక్కడ సంస్కృత పుస్తకం తెస్తాను.</div>
+        </div>
+        <div class="line a"><span class="label">అ:</span> <span class="sa">अत्युत्तमम्! अहम् अपि सह आगच्छामि वा?</span>
+            <div class="te-line">చాలా బాగుంది! నేనూ మీతో రావచ్చా?</div>
+        </div>
+        <div class="line b"><span class="label">ఆ:</span> <span class="sa">आम्, अवश्यम्। आगच्छतु।</span>
+            <div class="te-line">అవును, తప్పకుండా. రండి.</div>
+        </div>
+    </div>
+
+    <h4>సంభాషణ B — ఇంట్లో ఉదయం</h4>
+    <div class="dialog">
+        <div class="line a"><span class="label">మా:</span> <span class="sa">उत्तिष्ठतु वत्स। प्रातःकालः जातः।</span>
+            <div class="te-line">లే రా బిడ్డా. ఉదయమైంది.</div>
+        </div>
+        <div class="line b"><span class="label">బిడ్డ:</span> <span class="sa">मातः, किञ्चित् कालम् अपेक्ष्यताम्। अहं श्रम्ये।</span>
+            <div class="te-line">అమ్మా, కొంచెం సేపు ఆగండి. అలసిపోయాను.</div>
+        </div>
+        <div class="line a"><span class="label">మా:</span> <span class="sa">न। स्नानं कुरु। ततः दुग्धं पिब।</span>
+            <div class="te-line">వద్దు. స్నానం చెయ్యి. తర్వాత పాలు తాగు.</div>
+        </div>
+        <div class="line b"><span class="label">బిడ్డ:</span> <span class="sa">अस्तु। अद्य विद्यालये किं अस्ति?</span>
+            <div class="te-line">సరే. ఈరోజు బడిలో ఏముంది?</div>
+        </div>
+        <div class="line a"><span class="label">మా:</span> <span class="sa">संस्कृतस्य परीक्षा अस्ति। पठितवान् वा?</span>
+            <div class="te-line">సంస్కృత పరీక్ష ఉంది. చదివావా?</div>
+        </div>
+        <div class="line b"><span class="label">బిడ్డ:</span> <span class="sa">आम् मातः। अहं श्लोकान् स्मरामि।</span>
+            <div class="te-line">అవును అమ్మా. నేను శ్లోకాలు గుర్తు పెట్టుకుంటున్నాను.</div>
+        </div>
+    </div>
+
+    <h4>సంభాషణ C — గురువు–శిష్యుడు</h4>
+    <div class="dialog">
+        <div class="line a"><span class="label">శిష్య:</span> <span class="sa">गुरुभ्यो नमः। अहं प्रश्नं पृच्छामि।</span>
+            <div class="te-line">గురువులకు నమస్కారం. నేను ప్రశ్న అడుగుతున్నాను.</div>
+        </div>
+        <div class="line b"><span class="label">గురు:</span> <span class="sa">वदतु। किं प्रश्नः?</span>
+            <div class="te-line">చెప్పండి. ప్రశ్న ఏమిటి?</div>
+        </div>
+        <div class="line a"><span class="label">శిష్య:</span> <span class="sa">‘रामो वनं गच्छति’ इत्यत्र का विभक्तिः?</span>
+            <div class="te-line">‘రామో వనం గచ్ఛతి’ లో ఏ విభక్తి?</div>
+        </div>
+        <div class="line b"><span class="label">గురు:</span> <span class="sa">रामः इति प्रथमा। वनम् इति द्वितीया। गच्छति इति क्रियापदम्।</span>
+            <div class="te-line">రామః ప్రథమా. వనమ్ ద్వితీయా. గచ్ఛతి క్రియ.</div>
+        </div>
+        <div class="line a"><span class="label">శిష్య:</span> <span class="sa">धन्यवादः गुरो। अधुना अहं अवगच्छामि।</span>
+            <div class="te-line">ధన్యవాదాలు గురువు. ఇప్పుడు నాకు అర్థమవుతోంది.</div>
+        </div>
+        <div class="line b"><span class="label">గురు:</span> <span class="sa">साधु। प्रतिदिनं अभ्यासं कुरु।</span>
+            <div class="te-line">భేష్. ప్రతిరోజూ అభ్యాసం చెయ్యి.</div>
+        </div>
+    </div>
+
+    <h4>సంభాషణ D — దేవాలయం వద్ద</h4>
+    <div class="dialog">
+        <div class="line a"><span class="label">అ:</span> <span class="sa">एषः मन्दिरं सुन्दरम् अस्ति।</span>
+            <div class="te-line">ఈ దేవాలయం అందంగా ఉంది.</div>
+        </div>
+        <div class="line b"><span class="label">ఆ:</span> <span class="sa">आम्। अत्र विष्णोः मूर्तिः अस्ति। हरये नमः।</span>
+            <div class="te-line">అవును. ఇక్కడ విష్ణు మూర్తి ఉంది. హరికి నమః.</div>
+        </div>
+        <div class="line a"><span class="label">అ:</span> <span class="sa">अपि वयं सहस्रनाम पठामः?</span>
+            <div class="te-line">మనం సహస్రనామం చదవవచ్చా?</div>
+        </div>
+        <div class="line b"><span class="label">ఆ:</span> <span class="sa">आम्। किन्तु मन्दं मन्दं। अहं नवान् शब्दान् शिक्षे।</span>
+            <div class="te-line">అవును. కానీ నెమ్మదిగా. నేను కొత్త పదాలు నేర్చుకుంటాను.</div>
+        </div>
+        <div class="line a"><span class="label">అ:</span> <span class="sa">अस्तु। प्रसादं स्वीकृत्य गृहे गच्छामः।</span>
+            <div class="te-line">సరే. ప్రసాదం తీసుకుని ఇంటికి వెళదాం.</div>
+        </div>
+    </div>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <!-- ========== GLOSSARY ========== -->
     <h2 id="glossary">3. Sanskrit–Telugu Cognate Glossary</h2>
     <p>
-        Starter list of high-frequency stotra / Gītā words. <strong>తత్సమ</strong> = nearly identical loan;
-        <strong>తద్భవ</strong> = Telugu-evolved form from the same root. Learn in clusters of 10–15.
+        High-frequency words. <strong>తత్సమ</strong> = nearly identical loan;
+        <strong>తద్భవ</strong> = Telugu-evolved form. Learn 10–15/day; reuse them in §2 sentences.
     </p>
 
     <h3>3.1 Divine names &amp; epithets</h3>
     <table>
         <thead>
-            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Where you’ll see it</th></tr>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th></tr>
         </thead>
         <tbody>
-            <tr><td class="sa">गोविन्द</td><td>govinda</td><td class="te">గోవిందుడు</td><td>తత్సమ</td><td>Bhaja Govindam</td></tr>
-            <tr><td class="sa">विनायक / गणेश</td><td>vināyaka / gaṇeśa</td><td class="te">వినాయకుడు / గణేశుడు</td><td>తత్సమ</td><td>Pañcaratnam</td></tr>
-            <tr><td class="sa">विष्णु</td><td>viṣṇu</td><td class="te">విష్ణువు</td><td>తత్సమ</td><td>Sahasranāmam</td></tr>
-            <tr><td class="sa">शिव / शङ्कर</td><td>śiva / śaṅkara</td><td class="te">శివుడు / శంకరుడు</td><td>తత్సమ</td><td>Liṅgāṣṭakam, Dakṣiṇāmūrti</td></tr>
-            <tr><td class="sa">दुर्गा / भवानी</td><td>durgā / bhavānī</td><td class="te">దుర్గ / భవాని</td><td>తత్సమ</td><td>Bhavānī Aṣṭakam</td></tr>
-            <tr><td class="sa">लक्ष्मी</td><td>lakṣmī</td><td class="te">లక్ష్మి</td><td>తత్సమ</td><td>Kanakadhārā</td></tr>
-            <tr><td class="sa">हनुमत्</td><td>hanumat</td><td class="te">హనుమంతుడు</td><td>తత్సమ</td><td>Hanumān stotras</td></tr>
-            <tr><td class="sa">गुरु</td><td>guru</td><td class="te">గురువు</td><td>తత్సమ</td><td>Gurvaṣṭakam, Pādukā</td></tr>
-            <tr><td class="sa">कृष्ण / अर्जुन</td><td>kṛṣṇa / arjuna</td><td class="te">కృష్ణుడు / అర్జునుడు</td><td>తత్సమ</td><td>Gītā</td></tr>
-            <tr><td class="sa">ईश्वर / भगवत्</td><td>īśvara / bhagavat</td><td class="te">ఈశ్వరుడు / భగవంతుడు</td><td>తత్సమ</td><td>everywhere</td></tr>
+            <tr><td class="sa">गोविन्द</td><td>govinda</td><td class="te">గోవిందుడు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">विनायक / गणेश</td><td>vināyaka / gaṇeśa</td><td class="te">వినాయకుడు / గణేశుడు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">विष्णु</td><td>viṣṇu</td><td class="te">విష్ణువు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">शिव / शङ्कर</td><td>śiva / śaṅkara</td><td class="te">శివుడు / శంకరుడు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">दुर्गा / भवानी</td><td>durgā / bhavānī</td><td class="te">దుర్గ / భవాని</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">लक्ष्मी</td><td>lakṣmī</td><td class="te">లక్ష్మి</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">हनुमत्</td><td>hanumat</td><td class="te">హనుమంతుడు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">गुरु</td><td>guru</td><td class="te">గురువు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">कृष्ण / अर्जुन</td><td>kṛṣṇa / arjuna</td><td class="te">కృష్ణుడు / అర్జునుడు</td><td>తత్సమ</td></tr>
+            <tr><td class="sa">ईश्वर / भगवत्</td><td>īśvara / bhagavat</td><td class="te">ఈశ్వరుడు / భగవంతుడు</td><td>తత్సమ</td></tr>
         </tbody>
     </table>
 
-    <h3>3.2 Core philosophical &amp; bhakti vocabulary</h3>
+    <h3>3.2 Philosophy &amp; bhakti</h3>
     <table>
         <thead>
-            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Gloss</th></tr>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Gloss</th></tr>
         </thead>
         <tbody>
-            <tr><td class="sa">भक्ति</td><td>bhakti</td><td class="te">భక్తి</td><td>తత్సమ</td><td>devotion</td></tr>
-            <tr><td class="sa">ज्ञान</td><td>jñāna</td><td class="te">జ్ఞానం</td><td>తత్సమ</td><td>knowledge</td></tr>
-            <tr><td class="sa">कर्म</td><td>karma</td><td class="te">కర్మ</td><td>తత్సమ</td><td>action / deed</td></tr>
-            <tr><td class="sa">धर्म</td><td>dharma</td><td class="te">ధర్మం</td><td>తత్సమ</td><td>duty / law / right</td></tr>
-            <tr><td class="sa">मोक्ष / मुक्ति</td><td>mokṣa / mukti</td><td class="te">మోక్షం / ముక్తి</td><td>తత్సమ</td><td>liberation</td></tr>
-            <tr><td class="sa">योग</td><td>yoga</td><td class="te">యోగం</td><td>తత్సమ</td><td>discipline / union</td></tr>
-            <tr><td class="sa">आत्मा</td><td>ātmā</td><td class="te">ఆత్మ</td><td>తత్సమ</td><td>self / soul</td></tr>
-            <tr><td class="sa">ब्रह्मन्</td><td>brahman</td><td class="te">బ్రహ్మం / బ్రహ్మము</td><td>తత్సమ</td><td>Absolute</td></tr>
-            <tr><td class="sa">माया</td><td>māyā</td><td class="te">మాయ</td><td>తత్సమ</td><td>illusion / divine power</td></tr>
-            <tr><td class="sa">संसार</td><td>saṃsāra</td><td class="te">సంసారం</td><td>తత్సమ</td><td>cycle of worldly life</td></tr>
-            <tr><td class="sa">शरण</td><td>śaraṇa</td><td class="te">శరణం</td><td>తత్సమ</td><td>refuge</td></tr>
-            <tr><td class="sa">प्रसाद</td><td>prasāda</td><td class="te">ప్రసాదం</td><td>తత్సమ</td><td>grace / offering</td></tr>
-            <tr><td class="sa">शान्ति</td><td>śānti</td><td class="te">శాంతి</td><td>తత్సమ</td><td>peace</td></tr>
-            <tr><td class="sa">सत्य</td><td>satya</td><td class="te">సత్యం</td><td>తత్సమ</td><td>truth</td></tr>
-            <tr><td class="sa">अहिंसा</td><td>ahiṃsā</td><td class="te">అహింస</td><td>తత్సమ</td><td>non-violence</td></tr>
-            <tr><td class="sa">श्रद्धा</td><td>śraddhā</td><td class="te">శ్రద్ధ</td><td>తత్సమ</td><td>faith</td></tr>
-            <tr><td class="sa">तत्त्व</td><td>tattva</td><td class="te">తత్త్వం</td><td>తత్సమ</td><td>principle / reality</td></tr>
-            <tr><td class="sa">मोह</td><td>moha</td><td class="te">మోహం</td><td>తత్సమ</td><td>delusion</td></tr>
-            <tr><td class="sa">काम</td><td>kāma</td><td class="te">కామం</td><td>తత్సమ</td><td>desire</td></tr>
-            <tr><td class="sa">क्रोध</td><td>krodha</td><td class="te">క్రోధం</td><td>తత్సమ</td><td>anger</td></tr>
-            <tr><td class="sa">लोभ</td><td>lobha</td><td class="te">లోభం</td><td>తత్సమ</td><td>greed</td></tr>
-            <tr><td class="sa">दुःख / सुख</td><td>duḥkha / sukha</td><td class="te">దుఃఖం / సుఖం</td><td>తత్సమ</td><td>pain / pleasure</td></tr>
-            <tr><td class="sa">शोक</td><td>śoka</td><td class="te">శోకం</td><td>తత్సమ</td><td>grief</td></tr>
-            <tr><td class="sa">भय</td><td>bhaya</td><td class="te">భయం</td><td>తత్సమ</td><td>fear</td></tr>
-            <tr><td class="sa">बल</td><td>bala</td><td class="te">బలం</td><td>తత్సమ</td><td>strength</td></tr>
-            <tr><td class="sa">शक्ति</td><td>śakti</td><td class="te">శక్తి</td><td>తత్సమ</td><td>power</td></tr>
-            <tr><td class="sa">गुण</td><td>guṇa</td><td class="te">గుణం</td><td>తత్సమ</td><td>quality (also the three guṇas)</td></tr>
-            <tr><td class="sa">प्रकृति / पुरुष</td><td>prakṛti / puruṣa</td><td class="te">ప్రకృతి / పురుషుడు</td><td>తత్సమ</td><td>nature / person / spirit</td></tr>
+            <tr><td class="sa">भक्ति</td><td>bhakti</td><td class="te">భక్తి</td><td>devotion</td></tr>
+            <tr><td class="sa">ज्ञान</td><td>jñāna</td><td class="te">జ్ఞానం</td><td>knowledge</td></tr>
+            <tr><td class="sa">कर्म</td><td>karma</td><td class="te">కర్మ</td><td>action</td></tr>
+            <tr><td class="sa">धर्म</td><td>dharma</td><td class="te">ధర్మం</td><td>duty / right</td></tr>
+            <tr><td class="sa">मोक्ष / मुक्ति</td><td>mokṣa / mukti</td><td class="te">మోక్షం / ముక్తి</td><td>liberation</td></tr>
+            <tr><td class="sa">योग</td><td>yoga</td><td class="te">యోగం</td><td>discipline</td></tr>
+            <tr><td class="sa">आत्मा</td><td>ātmā</td><td class="te">ఆత్మ</td><td>self</td></tr>
+            <tr><td class="sa">ब्रह्मन्</td><td>brahman</td><td class="te">బ్రహ్మం</td><td>Absolute</td></tr>
+            <tr><td class="sa">माया</td><td>māyā</td><td class="te">మాయ</td><td>illusion</td></tr>
+            <tr><td class="sa">संसार</td><td>saṃsāra</td><td class="te">సంసారం</td><td>worldly cycle</td></tr>
+            <tr><td class="sa">शरण</td><td>śaraṇa</td><td class="te">శరణం</td><td>refuge</td></tr>
+            <tr><td class="sa">प्रसाद</td><td>prasāda</td><td class="te">ప్రసాదం</td><td>grace</td></tr>
+            <tr><td class="sa">शान्ति</td><td>śānti</td><td class="te">శాంతి</td><td>peace</td></tr>
+            <tr><td class="sa">श्रद्धा</td><td>śraddhā</td><td class="te">శ్రద్ధ</td><td>faith</td></tr>
+            <tr><td class="sa">तत्त्व</td><td>tattva</td><td class="te">తత్త్వం</td><td>reality</td></tr>
+            <tr><td class="sa">मोह / काम / क्रोध</td><td>moha / kāma / krodha</td><td class="te">మోహం / కామం / క్రోధం</td><td>delusion / desire / anger</td></tr>
+            <tr><td class="sa">दुःख / सुख</td><td>duḥkha / sukha</td><td class="te">దుఃఖం / సుఖం</td><td>pain / pleasure</td></tr>
+            <tr><td class="sa">गुण / प्रकृति / पुरुष</td><td>guṇa / prakṛti / puruṣa</td><td class="te">గుణం / ప్రకృతి / పురుషుడు</td><td>quality / nature / person</td></tr>
         </tbody>
     </table>
 
-    <h3>3.3 Body, world, time (stotra staples)</h3>
+    <h3>3.3 Everyday &amp; conversation vocabulary</h3>
     <table>
         <thead>
-            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Gloss</th></tr>
+            <tr><th>సంస్కృతం</th><th>తెలుగు</th><th>సంస్కృతం</th><th>తెలుగు</th></tr>
         </thead>
         <tbody>
-            <tr><td class="sa">देह / शरीर</td><td>deha / śarīra</td><td class="te">దేహం / శరీరం</td><td>తత్సమ</td><td>body</td></tr>
-            <tr><td class="sa">मनस् / चित्त</td><td>manas / citta</td><td class="te">మనస్సు / చిత్తం</td><td>తత్సమ</td><td>mind</td></tr>
-            <tr><td class="sa">बुद्धि</td><td>buddhi</td><td class="te">బుద్ధి</td><td>తత్సమ</td><td>intellect</td></tr>
-            <tr><td class="sa">प्राण / पवन / वायु</td><td>prāṇa / pavana / vāyu</td><td class="te">ప్రాణం / పవనం / వాయువు</td><td>తత్సమ</td><td>breath / wind</td></tr>
-            <tr><td class="sa">नेत्र / चक्षुस्</td><td>netra / cakṣus</td><td class="te">నేత్రం / చక్షువు</td><td>తత్సమ</td><td>eye</td></tr>
-            <tr><td class="sa">लोक / जगत्</td><td>loka / jagat</td><td class="te">లోకం / జగత్తు</td><td>తత్సమ</td><td>world</td></tr>
-            <tr><td class="sa">पृथिवी / भूमि</td><td>pṛthivī / bhūmi</td><td class="te">పృథివి / భూమి</td><td>తత్సమ</td><td>earth</td></tr>
-            <tr><td class="sa">जल / वारि / तोय</td><td>jala / vāri / toya</td><td class="te">జలం / వారి</td><td>తత్సమ</td><td>water</td></tr>
-            <tr><td class="sa">अग्नि / तेजस्</td><td>agni / tejas</td><td class="te">అగ్ని / తేజస్సు</td><td>తత్సమ</td><td>fire / radiance</td></tr>
-            <tr><td class="sa">आकाश</td><td>ākāśa</td><td class="te">ఆకాశం</td><td>తత్సమ</td><td>sky / space</td></tr>
-            <tr><td class="sa">काल</td><td>kāla</td><td class="te">కాలం</td><td>తత్సమ</td><td>time / Death</td></tr>
-            <tr><td class="sa">दिन / रात्रि</td><td>dina / rātri</td><td class="te">దినం / రాత్రి</td><td>తత్సమ</td><td>day / night</td></tr>
-            <tr><td class="sa"> आयुस्</td><td>āyus</td><td class="te">ఆయుస్సు</td><td>తత్సమ</td><td>lifespan</td></tr>
-            <tr><td class="sa">मृत्यु</td><td>mṛtyu</td><td class="te">మృత్యువు</td><td>తత్సమ</td><td>death</td></tr>
-            <tr><td class="sa">जन्म</td><td>janma</td><td class="te">జన్మ</td><td>తత్సమ</td><td>birth</td></tr>
+            <tr><td class="sa">गृहम्</td><td class="te">గృహం / ఇల్లు</td><td class="sa">जलम्</td><td class="te">జలం / నీళ్లు</td></tr>
+            <tr><td class="sa">भोजनम्</td><td class="te">భోజనం</td><td class="sa">दुग्धम्</td><td class="te">దుగ్ధం / పాలు</td></tr>
+            <tr><td class="sa">पुस्तकम्</td><td class="te">పుస్తకం</td><td class="sa">समयः</td><td class="te">సమయం</td></tr>
+            <tr><td class="sa">मित्रम्</td><td class="te">మిత్రుడు</td><td class="sa">माता / पिता</td><td class="te">మాత / పిత</td></tr>
+            <tr><td class="sa">विद्यालयः</td><td class="te">విద్యాలయం</td><td class="sa">मन्दिरम्</td><td class="te">మందిరం</td></tr>
+            <tr><td class="sa">अद्य / श्वः / ह्यः</td><td class="te">ఈరోజు / రేపు / నిన్న</td><td class="sa">प्रातः / सायम्</td><td class="te">ప్రాతః / సాయం</td></tr>
+            <tr><td class="sa">धन्यवादः</td><td class="te">ధన్యవాదం</td><td class="sa">कृपया</td><td class="te">కృపయా / దయచేసి</td></tr>
+            <tr><td class="sa">आम् / न</td><td class="te">అవును / కాదు</td><td class="sa">कुशलः</td><td class="te">కుశలుడు / క్షేమం</td></tr>
+            <tr><td class="sa">नाम</td><td class="te">నామం / పేరు</td><td class="sa">कार्यम्</td><td class="te">కార్యం / పని</td></tr>
+            <tr><td class="sa">देहः / मनः</td><td class="te">దేహం / మనస్సు</td><td class="sa">शक्तिः / बलम्</td><td class="te">శక్తి / బలం</td></tr>
         </tbody>
     </table>
 
-    <h3>3.4 Family, society, wealth (Bhaja Govindam cluster)</h3>
+    <h3>3.4 Stotra staples (most frequent in this repo)</h3>
+    <p class="eg">ఈ రిపోజిటరీలోని సంస్కృత స్తోత్రాల్లో ఎక్కువసార్లు కనిపించిన పదాలు, అర్థం ప్రకారం గుంపులుగా. ఒకే అర్థానికి ఉన్న అనేక పర్యాయపదాలు కలిపి నేర్చుకోండి.</p>
     <table>
         <thead>
-            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Gloss</th></tr>
+            <tr><th>అర్థం</th><th>సంస్కృత పర్యాయపదాలు</th><th>తెలుగు</th></tr>
         </thead>
         <tbody>
-            <tr><td class="sa">धन</td><td>dhana</td><td class="te">ధనం</td><td>తత్సమ</td><td>wealth</td></tr>
-            <tr><td class="sa">वित्त</td><td>vitta</td><td class="te">విత్తం</td><td>తత్సమ</td><td>wealth / property</td></tr>
-            <tr><td class="sa">पुत्र</td><td>putra</td><td class="te">పుత్రుడు → <em>తద్భవ</em> బిడ్డ / కొడుకు</td><td>తత్సమ+తద్భవ</td><td>son</td></tr>
-            <tr><td class="sa">कान्ता / भार्या</td><td>kāntā / bhāryā</td><td class="te">కాంత / భార్య</td><td>తత్సమ</td><td>wife / beloved</td></tr>
-            <tr><td class="sa">परिवार</td><td>parivāra</td><td class="te">పరివారం</td><td>తత్సమ</td><td>family / retinue</td></tr>
-            <tr><td class="sa">मित्र</td><td>mitra</td><td class="te">మిత్రుడు</td><td>తత్సమ</td><td>friend</td></tr>
-            <tr><td class="sa">शत्रु</td><td>śatru</td><td class="te">శత్రువు</td><td>తత్సమ</td><td>enemy</td></tr>
-            <tr><td class="sa">जन</td><td>jana</td><td class="te">జనం / జనులు</td><td>తత్సమ</td><td>people</td></tr>
-            <tr><td class="sa">बाल / तरुण / वृद्ध</td><td>bāla / taruṇa / vṛddha</td><td class="te">బాలుడు / తరుణుడు / వృద్ధుడు</td><td>తత్సమ</td><td>child / youth / elder</td></tr>
-            <tr><td class="sa">तृष्णा / आशा</td><td>tṛṣṇā / āśā</td><td class="te">తృష్ణ / ఆశ</td><td>తత్సమ</td><td>thirst / hope</td></tr>
-            <tr><td class="sa">सङ्ग</td><td>saṅga</td><td class="te">సంగం</td><td>తత్సమ</td><td>company / attachment</td></tr>
-            <tr><td class="sa">मूर्ख / मूढ</td><td>mūrkha / mūḍha</td><td class="te">మూర్ఖుడు / మూఢుడు</td><td>తత్సమ</td><td>fool</td></tr>
+            <tr><td>శుభం / సంపద / దేవి</td><td class="sa">श्री, मङ्गल, शुभ, भद्र, कल्याण</td><td class="te">శ్రీ, మంగళం, శుభం, భద్రం, కల్యాణం</td></tr>
+            <tr><td>జయం</td><td class="sa">जय, विजय, जिष्णु</td><td class="te">జయం, విజయం</td></tr>
+            <tr><td>దేవతలు / రాక్షసులు</td><td class="sa">सुर, देव, अमर, निर्जर / असुर, दैत्य, दनुज, राक्षस</td><td class="te">సురలు, దేవతలు, అమరులు / అసురులు, దైత్యులు, రాక్షసులు</td></tr>
+            <tr><td>ప్రభువు</td><td class="sa">ईश, ईश्वर, नाथ, पति, प्रभु, स्वामी</td><td class="te">ఈశుడు, నాథుడు, పతి, ప్రభువు, స్వామి</td></tr>
+            <tr><td>కుమారుడు / కుమార్తె</td><td class="sa">सुत, पुत्र, नन्दन, तनय, आत्मज / सुता, नन्दिनी</td><td class="te">సుతుడు, నందనుడు, తనయుడు / సుత, నందిని</td></tr>
+            <tr><td>పాదం</td><td class="sa">पाद, चरण, अङ्घ्रि, पद</td><td class="te">పాదం, చరణం, పదం</td></tr>
+            <tr><td>కమలం</td><td class="sa">पद्म, कमल, अम्बुज, उत्पल, पङ्कज, सरोज</td><td class="te">పద్మం, కమలం, అంబుజం, పంకజం, సరోజం</td></tr>
+            <tr><td>ముఖం</td><td class="sa">मुख, वदन, आनन</td><td class="te">ముఖం, వదనం</td></tr>
+            <tr><td>కన్ను</td><td class="sa">नयन, लोचन, नेत्र, अक्ष, दृश्</td><td class="te">నయనం, లోచనం, నేత్రం</td></tr>
+            <tr><td>హృదయం</td><td class="sa">हृदय, हृद्, अन्तर, मानस</td><td class="te">హృదయం, అంతరంగం, మానసం</td></tr>
+            <tr><td>రూపం</td><td class="sa">रूप, मूर्ति, आकार, विग्रह</td><td class="te">రూపం, మూర్తి, ఆకారం, విగ్రహం</td></tr>
+            <tr><td>లోకం</td><td class="sa">लोक, जगत्, भुवन, विश्व, त्रैलोक्य</td><td class="te">లోకం, జగత్తు, భువనం, విశ్వం, త్రైలోక్యం</td></tr>
+            <tr><td>పర్వతం</td><td class="sa">गिरि, शैल, अद्रि, पर्वत, अचल</td><td class="te">గిరి, శైలం, పర్వతం</td></tr>
+            <tr><td>సముద్రం</td><td class="sa">सागर, समुद्र, अब्धि, अर्णव, सिन्धु</td><td class="te">సాగరం, సముద్రం, అర్ణవం, సింధువు</td></tr>
+            <tr><td>సంసార సముద్రం</td><td class="sa">भवाब्धि, भवार्णव, भवसागर, संसारसमुद्र</td><td class="te">భవసాగరం</td></tr>
+            <tr><td>పడవ / దాటుట</td><td class="sa">नौका, तरणी / तरण, तार, उद्धार</td><td class="te">నౌక / తరణం, ఉద్ధరణ</td></tr>
+            <tr><td>చంద్రుడు / సూర్యుడు</td><td class="sa">चन्द्र, शशि, इन्दु, निशाकर / सूर्य, अर्क, भानु, रवि</td><td class="te">చంద్రుడు, శశి, ఇందు / సూర్యుడు, భానుడు, రవి</td></tr>
+            <tr><td>దయ</td><td class="sa">दया, करुणा, कृपा, अनुग्रह</td><td class="te">దయ, కరుణ, కృప, అనుగ్రహం</td></tr>
+            <tr><td>పాపం / పుణ్యం</td><td class="sa">पाप, किल्बिष, कल्मष, अघ / पुण्य, सुकृत</td><td class="te">పాపం, కల్మషం / పుణ్యం, సుకృతం</td></tr>
+            <tr><td>శాశ్వతం / దివ్యం</td><td class="sa">नित्य, अनन्त, अक्षय, अव्यय, अमृत / दिव्य</td><td class="te">నిత్యం, అనంతం, అక్షయం, అమృతం / దివ్యం</td></tr>
+            <tr><td>పవిత్రం</td><td class="sa">शुद्ध, निर्मल, पवित्र, पावन</td><td class="te">శుద్ధం, నిర్మలం, పవిత్రం, పావనం</td></tr>
+            <tr><td>ఉత్తమం / పరమం</td><td class="sa">परम, पर, उत्तम, श्रेष्ठ, वर, प्रवर</td><td class="te">పరమం, ఉత్తమం, శ్రేష్ఠం</td></tr>
+            <tr><td>వేదం / పూజ</td><td class="sa">वेद, मन्त्र, यज्ञ, तपस्, पूजा, अर्चन</td><td class="te">వేదం, మంత్రం, యజ్ఞం, తపస్సు, పూజ, అర్చన</td></tr>
+            <tr><td>ఆభరణాలు</td><td class="sa">भूषण, आभरण, अलङ्कार, माला, हार, मुकुट</td><td class="te">భూషణం, ఆభరణం, అలంకారం, మాల, హారం, మకుటం</td></tr>
+            <tr><td>వస్త్రం</td><td class="sa">अम्बर, वसन, वस्त्र</td><td class="te">అంబరం, వసనం, వస్త్రం</td></tr>
+            <tr><td>జంతువులు</td><td class="sa">गज, इभ, द्विरद / सिंह, शार्दूल / गरुड</td><td class="te">గజం / సింహం, శార్దూలం / గరుడుడు</td></tr>
+            <tr><td>సేవకుడు / భక్తుడు</td><td class="sa">दास, भृत्य, किङ्कर / भक्त, शरणागत</td><td class="te">దాసుడు, భృత్యుడు, కింకరుడు / భక్తుడు, శరణాగతుడు</td></tr>
         </tbody>
     </table>
 
-    <h3>3.5 Verbs &amp; particles you’ll meet constantly</h3>
+    <h3>3.5 Viṣṇu's names (Sahasranāmam &amp; Suprabhātam)</h3>
     <table>
         <thead>
-            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు bridge</th><th>Gloss</th></tr>
+            <tr><th>పేరు</th><th>విడదీత / వ్యుత్పత్తి</th><th>తెలుగు అర్థం</th></tr>
         </thead>
         <tbody>
-            <tr><td class="sa">नमः / नमामि</td><td>namaḥ / namāmi</td><td class="te">నమస్సు / నమస్కరిస్తాను</td><td>salutation / I bow</td></tr>
-            <tr><td class="sa">रक्ष / रक्षति</td><td>rakṣa / rakṣati</td><td class="te">రక్షించు / రక్షణ</td><td>protect</td></tr>
-            <tr><td class="sa">पश्य / पश्यति</td><td>paśya / paśyati</td><td class="te">పశ్య (rare) ← దర్శనం</td><td>see</td></tr>
-            <tr><td class="sa">गच्छति / आगच्छ</td><td>gacchati / āgaccha</td><td class="te">గమనం / ఆగమనం</td><td>goes / come!</td></tr>
-            <tr><td class="sa">करोति / कुरु</td><td>karoti / kuru</td><td class="te">కర్త / చేయి</td><td>does / do!</td></tr>
-            <tr><td class="sa">अस्ति / भवति</td><td>asti / bhavati</td><td class="te">అస్తి / భవితవ్యం</td><td>is / becomes</td></tr>
-            <tr><td class="sa">च / अपि / एव</td><td>ca / api / eva</td><td class="te">మరియు / కూడా / నే</td><td>and / also / indeed</td></tr>
-            <tr><td class="sa">न / मा</td><td>na / mā</td><td class="te">కాదు / వద్దు</td><td>not / don’t</td></tr>
-            <tr><td class="sa">यदि / तथा / यथा</td><td>yadi / tathā / yathā</td><td class="te">యది / తథా / యథా</td><td>if / so / as</td></tr>
-            <tr><td class="sa">किम् / कः / का</td><td>kim / kaḥ / kā</td><td class="te">ఏమి / ఎవరు</td><td>what / who</td></tr>
-            <tr><td class="sa">सर्व / सर्वम्</td><td>sarva / sarvam</td><td class="te">సర్వం</td><td>all</td></tr>
-            <tr><td class="sa">सदा / नित्य</td><td>sadā / nitya</td><td class="te">సదా / నిత్యం</td><td>always / eternal</td></tr>
-            <tr><td class="sa">एतत् / तत् / इदम्</td><td>etat / tat / idam</td><td class="te">ఏతత్ / తత్ / ఇదం</td><td>this / that</td></tr>
+            <tr><td class="sa">नारायण</td><td><span class="sa">नार</span> (జలాలు / జీవులు) + <span class="sa">अयन</span> (నివాసం)</td><td>జీవులకు ఆశ్రయమైనవాడు</td></tr>
+            <tr><td class="sa">वासुदेव</td><td><span class="sa">वसुदेव + अ</span>; లేదా <span class="sa">वसति</span> (వసించు) + <span class="sa">देव</span></td><td>వసుదేవ పుత్రుడు / అంతటా వసించే దేవుడు</td></tr>
+            <tr><td class="sa">केशव</td><td><span class="sa">केश</span> (జుట్టు) + <span class="sa">व</span></td><td>అందమైన కేశాలు కలవాడు / కేశి సంహారి</td></tr>
+            <tr><td class="sa">माधव</td><td><span class="sa">मा</span> (లక్ష్మి) + <span class="sa">धव</span> (భర్త)</td><td>లక్ష్మీపతి</td></tr>
+            <tr><td class="sa">गोविन्द</td><td><span class="sa">गो</span> (ఆవు / భూమి / వేదం) + <span class="sa">विन्द</span> (పొందువాడు)</td><td>గోవులను కాపాడేవాడు</td></tr>
+            <tr><td class="sa">मुकुन्द</td><td><span class="sa">मुकु</span> (మోక్షం) + <span class="sa">द</span> (ఇచ్చువాడు)</td><td>మోక్షప్రదాత</td></tr>
+            <tr><td class="sa">पद्मनाभ</td><td><span class="sa">पद्म + नाभि</span> (బహువ్రీహి)</td><td>నాభిలో కమలం ఉన్నవాడు</td></tr>
+            <tr><td class="sa">हृषीकेश</td><td><span class="sa">हृषीक</span> (ఇంద్రియాలు) + <span class="sa">ईश</span></td><td>ఇంద్రియాలకు అధిపతి</td></tr>
+            <tr><td class="sa">जनार्दन</td><td><span class="sa">जन + अर्दन</span></td><td>దుర్జనులను పీడించేవాడు / జనులచే ప్రార్థింపబడేవాడు</td></tr>
+            <tr><td class="sa">पुरुषोत्तम</td><td><span class="sa">पुरुष + उत्तम</span> (గుణ సంధి)</td><td>పురుషులలో ఉత్తముడు</td></tr>
+            <tr><td class="sa">अच्युत</td><td><span class="sa">अ + च्युत</span> (క్త)</td><td>జారిపోనివాడు, స్థిరుడు</td></tr>
+            <tr><td class="sa">अनन्त</td><td><span class="sa">अन् + अन्त</span></td><td>అంతం లేనివాడు</td></tr>
+            <tr><td class="sa">श्रीनिवास</td><td><span class="sa">श्री + निवास</span></td><td>లక్ష్మికి నివాసమైనవాడు (వేంకటేశ్వరుడు)</td></tr>
+            <tr><td class="sa">वेङ्कटेश</td><td><span class="sa">वेङ्कट + ईश</span> (గుణ సంధి)</td><td>వేంకటాద్రి ప్రభువు</td></tr>
+            <tr><td class="sa">गरुडध्वज</td><td><span class="sa">गरुड + ध्वज</span> (బహువ్రీహి)</td><td>గరుడుడు ధ్వజంగా కలవాడు</td></tr>
+            <tr><td class="sa">कमलाकान्त</td><td><span class="sa">कमला + कान्त</span></td><td>కమల (లక్ష్మి) ప్రియుడు</td></tr>
+            <tr><td class="sa">मुरारि</td><td><span class="sa">मुर + अरि</span> (సవర్ణదీర్ఘ)</td><td>ముర రాక్షసుని శత్రువు</td></tr>
         </tbody>
     </table>
 
-    <h3>3.6 Useful prefixes (compound unlockers)</h3>
+    <div class="note">
+        <strong>Hanumān pages గురించి:</strong> <span class="path">Hanuman/</span> లోని Cālīsā, Bāhuk, Saṅkaṭa Mochana అవధీ (పాత హిందీ) భాషలో ఉన్నాయి — సంస్కృతం కాదు.
+        వాటిలో <span class="sa">राम, दूत, बल, बुद्धि, विद्या, संकट</span> వంటి తత్సమాలు ఉంటాయి కానీ విభక్తి ప్రత్యయాలు హిందీవి (<span class="sa">के, को, से</span>).
+        ఈ పాఠ్యంలోని వ్యాకరణం వాటికి వర్తించదు.
+    </div>
+
+    <h3>3.6 Prefixes (compound unlockers)</h3>
     <table>
         <thead>
             <tr><th>Prefix</th><th>Sense</th><th>Example → Telugu</th></tr>
         </thead>
         <tbody>
             <tr><td class="sa">अ- / अन्-</td><td>not</td><td><span class="sa">अज्ञान</span> → <span class="te">అజ్ఞానం</span></td></tr>
-            <tr><td class="sa">सु-</td><td>good / well</td><td><span class="sa">सुख</span>, <span class="sa">सुप्रभात</span> → <span class="te">సుఖం, సుప్రభాతం</span></td></tr>
-            <tr><td class="sa">दुर्- / दुः-</td><td>bad / hard</td><td><span class="sa">दुःख</span>, <span class="sa">दुर्गा</span> → <span class="te">దుఃఖం, దుర్గ</span></td></tr>
-            <tr><td class="sa">वि-</td><td>apart / special</td><td><span class="sa">विज्ञान</span>, <span class="sa">विमुक्ति</span> → <span class="te">విజ్ఞానం, విముక్తి</span></td></tr>
-            <tr><td class="sa">सम्-</td><td>together / complete</td><td><span class="sa">संसार</span>, <span class="sa">सम्पूर्ण</span> → <span class="te">సంసారం, సంపూర్ణ</span></td></tr>
-            <tr><td class="sa">निर्- / निः-</td><td>without / out</td><td><span class="sa">निर्गुण</span>, <span class="sa">निर्मल</span> → <span class="te">నిర్గుణ, నిర్మల</span></td></tr>
-            <tr><td class="sa">प्र-</td><td>forth / intense</td><td><span class="sa">प्रसाद</span>, <span class="sa">प्रकाश</span> → <span class="te">ప్రసాదం, ప్రకాశం</span></td></tr>
-            <tr><td class="sa">उप-</td><td>near / secondary</td><td><span class="sa">उपवास</span>, <span class="sa">उपदेश</span> → <span class="te">ఉపవాసం, ఉపదేశం</span></td></tr>
-            <tr><td class="sa">अधि-</td><td>over / upon</td><td><span class="sa">अध्यात्म</span> → <span class="te">అధ్యాత్మ</span></td></tr>
+            <tr><td class="sa">सु-</td><td>good</td><td><span class="sa">सुख, सुप्रभात</span> → <span class="te">సుఖం, సుప్రభాతం</span></td></tr>
+            <tr><td class="sa">दुर्- / दुः-</td><td>bad / hard</td><td><span class="sa">दुःख</span> → <span class="te">దుఃఖం</span></td></tr>
+            <tr><td class="sa">वि-</td><td>apart / special</td><td><span class="sa">विज्ञान, विमुक्ति</span> → <span class="te">విజ్ఞానం, విముక్తి</span></td></tr>
+            <tr><td class="sa">सम्-</td><td>together</td><td><span class="sa">संसार, सम्पूर्ण</span> → <span class="te">సంసారం, సంపూర్ణ</span></td></tr>
+            <tr><td class="sa">निर्-</td><td>without</td><td><span class="sa">निर्गुण, निर्मल</span> → <span class="te">నిర్గుణ, నిర్మల</span></td></tr>
+            <tr><td class="sa">प्र-</td><td>forth</td><td><span class="sa">प्रसाद, प्रकाश</span> → <span class="te">ప్రసాదం, ప్రకాశం</span></td></tr>
+            <tr><td class="sa">उप-</td><td>near</td><td><span class="sa">उपदेश, उपवास</span> → <span class="te">ఉపదేశం, ఉపవాసం</span></td></tr>
+            <tr><td class="sa">अधि-</td><td>over</td><td><span class="sa">अध्यात्म</span> → <span class="te">అధ్యాత్మ</span></td></tr>
             <tr><td class="sa">महा-</td><td>great</td><td><span class="sa">महेश्वर</span> → <span class="te">మహేశ్వరుడు</span></td></tr>
         </tbody>
     </table>
     <a class="back-top" href="#toc">↑ Contents</a>
 
-    <!-- ========== 4. METHOD ========== -->
-    <h2 id="method">4. Study Method (with this repo)</h2>
-    <p>Four-step loop for any verse page — use it so you never need to re-copy stotra text into notes.</p>
-    <ol>
-        <li><strong>Chant</strong> — Telugu column first if Devanagari is slow; then match Devanagari.</li>
-        <li><strong>Cut</strong> — write the line with sandhi split (pencil or digital note). Mark vibhakti endings in a second color.</li>
-        <li><strong>Bridge</strong> — circle every cognate you know from §3; guess the rest before opening the page’s English word-meaning.</li>
-        <li><strong>Confirm</strong> — read <em>Words</em> then <em>Meaning</em> on the HTML page; add 3–5 new items to your personal glossary.</li>
-    </ol>
-
-    <h4>Repo map (already built — do not duplicate)</h4>
-    <table>
-        <thead>
-            <tr><th>Folder</th><th>Contents</th><th>Roadmap phase</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><span class="path">Ganesha/</span></td><td>Gaṇeśa Pañcaratnam</td><td>1–2</td></tr>
-            <tr><td><span class="path">Shiva/</span></td><td>Liṅgāṣṭakam, Dakṣiṇāmūrti Stotram</td><td>2–3</td></tr>
-            <tr><td><span class="path">Durga/</span></td><td>Bhavānī Aṣṭakam, Mahiṣāsura Mardinī</td><td>2–3</td></tr>
-            <tr><td><span class="path">Shankaracharya/</span></td><td>Bhaja Govindam, Gurvaṣṭakam, Guru Pādukā</td><td>2–3</td></tr>
-            <tr><td><span class="path">Lakshmi/</span></td><td>Kanakadhārā Stotram</td><td>3</td></tr>
-            <tr><td><span class="path">Hanuman/</span></td><td>Cālīsā, Saṅkaṭa Mochana, Bāhuk</td><td>2 (+ listening)</td></tr>
-            <tr><td><span class="path">Venkateswara/</span></td><td>Suprabhātam</td><td>3</td></tr>
-            <tr><td><span class="path">BhagavadGita/</span></td><td>Chapters 1–18</td><td>4</td></tr>
-            <tr><td><span class="path">Vishnu/</span></td><td>Viṣṇu Sahasranāmam</td><td>5</td></tr>
-        </tbody>
-    </table>
-
-    <h4>Weekly rhythm (suggested)</h4>
-    <ul>
-        <li><strong>3 days</strong> — grammar drill from §2 + cognates from §3</li>
-        <li><strong>2 days</strong> — verse parsing on the current-phase HTML page</li>
-        <li><strong>1 day</strong> — listening-only chant (Suprabhātam / Cālīsā / familiar stotra)</li>
-        <li><strong>Optional</strong> — 10 Sahasranāmam names even during Phase 2–4</li>
-    </ul>
-    <a class="back-top" href="#toc">↑ Contents</a>
-
     <p class="footer">
         Part of <a href="../index.html">Bhakti</a> ·
-        <a href="https://github.com/venkatacrc/bhakti">github.com/venkatacrc/bhakti</a> ·
-        Study frame only — verse texts live on their existing pages
+        <a href="https://github.com/venkatacrc/bhakti">github.com/venkatacrc/bhakti</a>
     </p>
 
 </body>
