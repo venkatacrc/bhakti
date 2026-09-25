@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanskrit via Telugu — Starter Study Package</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.55;
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #fcfcfc;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            border-bottom: 2px solid #1a5276;
+            padding-bottom: 10px;
+        }
+        h2 {
+            background-color: #eaf2f8;
+            padding: 10px 12px;
+            border-left: 5px solid #1a5276;
+            margin-top: 36px;
+            scroll-margin-top: 12px;
+        }
+        h3 {
+            color: #1a5276;
+            margin-top: 22px;
+            border-bottom: 1px solid #d5dbdb;
+            padding-bottom: 4px;
+            scroll-margin-top: 12px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .note {
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 10px 14px;
+            margin: 16px 0;
+            font-size: 0.95em;
+        }
+        .toc {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0 28px;
+        }
+        .toc h2 {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0 0 10px;
+            font-size: 1.15em;
+        }
+        .toc ol { margin: 0; padding-left: 22px; }
+        .toc li { margin-bottom: 6px; }
+        .toc a { color: #0366d6; text-decoration: none; font-weight: 500; }
+        .toc a:hover { text-decoration: underline; }
+        .toc .sub { list-style: disc; margin: 4px 0 8px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 18px;
+            font-size: 0.95em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #eaf2f8;
+            color: #1a5276;
+        }
+        tr:nth-child(even) { background: #fafafa; }
+        .sa { color: #1a5276; font-weight: 600; }
+        .te { color: #2980b9; font-weight: 600; }
+        .eg { color: #555; font-size: 0.92em; }
+        .phase {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            background: #fff;
+        }
+        .phase .meta {
+            color: #586069;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .phase ul { margin: 6px 0 0; padding-left: 20px; }
+        .phase li { margin-bottom: 4px; }
+        code, .path {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.88em;
+            background: #f0f3f6;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+        a { color: #0366d6; }
+        .back-top {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.85em;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 12px;
+            border-top: 1px solid #eaecef;
+            color: #777;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        @media print {
+            body { background: #fff; }
+            .toc { break-after: avoid; }
+            .phase, table { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>సంస్కృతం ← తెలుగు<br>Starter Study Package</h1>
+    <p class="subtitle">Sanskrit through Telugu — a single reference for repeated study</p>
+    <p class="subtitle">Source collection: <a href="https://github.com/venkatacrc/bhakti">venkatacrc/bhakti</a> (stotras + Bhagavad Gītā already in this repo — not duplicated here)</p>
+
+    <div class="note">
+        <strong>How this package fits the repo:</strong> All verse pages (Devanagari + Telugu script + word meanings) already exist under
+        <span class="path">Ganesha/</span>, <span class="path">Shankaracharya/</span>, <span class="path">BhagavadGita/</span>, <span class="path">Vishnu/</span>, etc.
+        This document is the <em>learning frame</em> — roadmap, grammar bridge, cognate glossary, and a study method that points at those pages.
+    </div>
+
+    <nav class="toc" id="toc">
+        <h2>Contents</h2>
+        <ol>
+            <li><a href="#roadmap">Learning Roadmap</a>
+                <ul class="sub">
+                    <li><a href="#phase-0">Phase 0 — Script &amp; listening</a></li>
+                    <li><a href="#phase-1">Phase 1 — Grammar foundations</a></li>
+                    <li><a href="#phase-2">Phase 2 — Short stotras</a></li>
+                    <li><a href="#phase-3">Phase 3 — Longer stotras</a></li>
+                    <li><a href="#phase-4">Phase 4 — Bhagavad Gītā</a></li>
+                    <li><a href="#phase-5">Phase 5 — Viṣṇu Sahasranāmam</a></li>
+                </ul>
+            </li>
+            <li><a href="#grammar">Grammar Primer (తెలుగు)</a>
+                <ul class="sub">
+                    <li><a href="#sandhi">సంధి (Sandhi)</a></li>
+                    <li><a href="#samasa">సమాసం (Samāsa)</a></li>
+                    <li><a href="#vibhakti">విభక్తి / Case</a></li>
+                    <li><a href="#dhatu">ధాతు conjugation patterns</a></li>
+                </ul>
+            </li>
+            <li><a href="#glossary">Sanskrit–Telugu Cognate Glossary</a></li>
+            <li><a href="#method">Study Method (with this repo)</a></li>
+        </ol>
+    </nav>
+
+    <!-- ========== 1. ROADMAP ========== -->
+    <h2 id="roadmap">1. Learning Roadmap</h2>
+    <p>
+        Goal: move from “I can chant with Telugu script support” → “I can parse a verse into stems, cases, and compounds”
+        → “I can read Gītā and Sahasranāmam with diminishing dictionary dependence.”
+        Times assume ~30–45 minutes/day, 5–6 days/week. Stretch or compress freely.
+    </p>
+
+    <div class="phase" id="phase-0">
+        <h3>Phase 0 — Script bridge &amp; listening (2–3 weeks)</h3>
+        <p class="meta">Outcome: comfortable reading Telugu-script Sanskrit side-by-side with Devanagari; ear trained to chant cadence.</p>
+        <ul>
+            <li>Use any page’s two-column layout: Devanagari left, Telugu right (e.g. <a href="../Ganesha/ganesha_pancharatnam.html">Ganesha Pancharatnam</a>).</li>
+            <li>Map Devanagari ↔ Telugu letter-by-letter for 10–15 minutes/day (vowels, conjuncts, anusvāra, visarga).</li>
+            <li>Listen + follow along: Hanuman Chalisa / Suprabhatam YouTube links on the <a href="../index.html">index</a>.</li>
+            <li>Do <strong>not</strong> chase full grammar yet — chant accuracy and script fluency first.</li>
+        </ul>
+        <a class="back-top" href="#toc">↑ Contents</a>
+    </div>
+
+    <div class="phase" id="phase-1">
+        <h3>Phase 1 — Grammar foundations (4–6 weeks)</h3>
+        <p class="meta">Outcome: recognize sandhi seams, name the seven vibhaktis, spot common samāsas, conjugate a few high-frequency roots.</p>
+        <ul>
+            <li>Work through <a href="#grammar">§2 Grammar Primer</a> in this document — one subsection per week.</li>
+            <li>Drill <a href="#glossary">§3 Cognate Glossary</a> in small batches (10–15 words/day); say the Telugu tatsama aloud.</li>
+            <li>Pick 2–3 lines from a short stotra and mark: sandhi cuts, vibhakti endings, compounds.</li>
+            <li>Primary practice text: <a href="../Ganesha/ganesha_pancharatnam.html">Ganesha Pancharatnam</a> (5 verses, dense compounds).</li>
+        </ul>
+        <a class="back-top" href="#toc">↑ Contents</a>
+    </div>
+
+    <div class="phase" id="phase-2">
+        <h3>Phase 2 — Short stotras (6–8 weeks)</h3>
+        <p class="meta">Outcome: parse a full short stotra with word-meanings, then without looking at English for known words.</p>
+        <ul>
+            <li><a href="../Shiva/lingastakam.html">Liṅgāṣṭakam</a> — regular aṣṭaka pattern, clear refrain.</li>
+            <li><a href="../Durga/bhavani_ashtakam.html">Bhavānī Aṣṭakam</a> — repeated “tvām… śaraṇaṃ” frame.</li>
+            <li><a href="../Shankaracharya/guruvashtakam.html">Gurvaṣṭakam</a> — philosophical vocabulary that will return in Gītā.</li>
+            <li><a href="../Hanuman/sankata_mochana_hanuman_ashtakam.html">Saṅkaṭa Mochana Hanumān Aṣṭakam</a> — narrative verbs + vocatives.</li>
+            <li>Optional parallel Awadhi/Hindi bridge: <a href="../Hanuman/hanuman_chalisa.html">Hanumān Cālīsā</a> (not Classical Sanskrit — useful for devotion + cognates only).</li>
+        </ul>
+        <a class="back-top" href="#toc">↑ Contents</a>
+    </div>
+
+    <div class="phase" id="phase-3">
+        <h3>Phase 3 — Longer stotras (8–12 weeks)</h3>
+        <p class="meta">Outcome: sustain attention across longer anuṣṭubh / complex metres; track recurring name-epithet compounds.</p>
+        <ul>
+            <li><a href="../Shankaracharya/bhaja_govindam.html">Bhaja Govindam</a> — ideal “grammar meets meaning” text; short lines, sharp vocabulary.</li>
+            <li><a href="../Lakshmi/kanakadhara_stotram.html">Kanakadhārā Stotram</a> — dense feminine imagery, long compounds.</li>
+            <li><a href="../Shiva/dakshinamurthy_stotram.html">Dakṣiṇāmūrti Stotram</a> — Advaita technical terms.</li>
+            <li><a href="../Durga/mahishasura_mardini_stotram.html">Mahiṣāsura Mardinī</a> — fast chant; focus on name-lists + alliteration, not every rare word.</li>
+            <li><a href="../Venkateswara/sri_venkateswara_suprabhatam.html">Śrī Veṅkaṭeśwara Suprabhātam</a> — morning liturgy vocabulary; good for listening practice.</li>
+            <li><a href="../Shankaracharya/guru_paduka_stotram.html">Guru Pādukā Stotram</a> — bhakti + guru-śiṣya lexicon.</li>
+        </ul>
+        <a class="back-top" href="#toc">↑ Contents</a>
+    </div>
+
+    <div class="phase" id="phase-4">
+        <h3>Phase 4 — Bhagavad Gītā (4–8 months)</h3>
+        <p class="meta">Outcome: read a chapter verse-by-verse with sandhi split; follow argument arcs, not only isolated ślokas.</p>
+        <ul>
+            <li>Start with Ch. 12 (<a href="../BhagavadGita/chapter_12_bhakti_yoga.html">Bhakti Yoga</a>) — shortest, clearest devotion chapter — then Ch. 2, then sequential 1–18.</li>
+            <li>All 18 chapters are in <span class="path">BhagavadGita/</span> with Telugu script + light hyphenation for reading.</li>
+            <li>Pace: ~1 chapter/week for short ones; 2–3 weeks for Ch. 2, 11, 18.</li>
+            <li>Weekly drill: pick 5 verses; strip sandhi; label vibhakti; paraphrase in Telugu from cognates before reading English meaning.</li>
+        </ul>
+        <a class="back-top" href="#toc">↑ Contents</a>
+    </div>
+
+    <div class="phase" id="phase-5">
+        <h3>Phase 5 — Viṣṇu Sahasranāmam (ongoing / 3–6+ months)</h3>
+        <p class="meta">Outcome: treat the thousand names as a vocabulary + compound gymnasium; chant with comprehension of name clusters.</p>
+        <ul>
+            <li>Text: <a href="../Vishnu/vishnu_sahasranamam.html">Viṣṇu Sahasranāmam</a>.</li>
+            <li>Method: 10–25 names/day — derive from roots/cognates; note recurring prefixes (vi-, su-, a-, nir-, mahā-).</li>
+            <li>Do this <em>alongside</em> Gītā, not only after — names reinforce Gītā theology vocabulary.</li>
+        </ul>
+        <a class="back-top" href="#toc">↑ Contents</a>
+    </div>
+
+    <h4>Rough calendar (full path)</h4>
+    <table>
+        <thead>
+            <tr><th>Phase</th><th>Focus</th><th>Estimate</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>0</td><td>Script + listening</td><td>2–3 weeks</td></tr>
+            <tr><td>1</td><td>Grammar + cognates</td><td>4–6 weeks</td></tr>
+            <tr><td>2</td><td>Short stotras</td><td>6–8 weeks</td></tr>
+            <tr><td>3</td><td>Longer stotras</td><td>8–12 weeks</td></tr>
+            <tr><td>4</td><td>Bhagavad Gītā</td><td>4–8 months</td></tr>
+            <tr><td>5</td><td>Sahasranāmam</td><td>3–6+ months (ongoing)</td></tr>
+            <tr><td colspan="2"><strong>Total to “Gītā-ready + Sahasranāmam habit”</strong></td><td><strong>~12–18 months</strong></td></tr>
+        </tbody>
+    </table>
+
+    <!-- ========== 2. GRAMMAR ========== -->
+    <h2 id="grammar">2. Grammar Primer (తెలుగు దృష్టితో)</h2>
+    <p>
+        తెలుగు మాట్లాడేవారికి సంస్కృతం కొత్త భాష కాదు — ఇది <strong>తత్సమ / తద్భవ</strong> పదాల ద్వారా ఇప్పటికే మీ నోట్లో ఉన్న భాష.
+        క్రింది విభాగాలు తెలుగు వ్యాకరణ పదజాలంతో సంస్కృత మూలాలను కలుపుతాయి.
+    </p>
+
+    <h3 id="sandhi">2.1 సంధి (Sandhi) — అక్షరాల కలయిక</h3>
+    <p>
+        తెలుగులో కూడా మాటలు కలిస్తే ధ్వని మారుతుంది (ఉదా: <span class="te">రాముడు + అయ్యా → రాముడయ్యా</span>).
+        సంస్కృతంలో ఇది నియమబద్ధం — శ్లోకంలో రెండు పదాలు <em>అంటుకుని</em> కనిపిస్తాయి. చదవడానికి ముందు సంధి విడదీయండి.
+    </p>
+
+    <h4>స్వరసంధి (vowel sandhi) — ముఖ్యమైనవి</h4>
+    <table>
+        <thead>
+            <tr><th>నియమం</th><th>ఉదాహరణ</th><th>తెలుగు గుర్తు</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>అ/ఆ + అ/ఆ → ఆ</td>
+                <td><span class="sa">राम + अयम् → रामायम्</span> (సాధారణ నమూనా: <span class="sa">हित + अर्थ → हितार्थ</span>)</td>
+                <td><span class="te">హితార్థం</span> లాంటి తత్సమాల్లో ఇదే జరుగుతుంది</td>
+            </tr>
+            <tr>
+                <td>అ/ఆ + ఇ/ఈ → ఏ</td>
+                <td><span class="sa">देव + इन्द्र → देवेन्द्र</span></td>
+                <td><span class="te">దేవేంద్ర</span></td>
+            </tr>
+            <tr>
+                <td>అ/ఆ + ఉ/ఊ → ఓ</td>
+                <td><span class="sa">गङ्गा + उदक → गङ्गोदक</span></td>
+                <td>నది + నీరు కలయిక — సుప్రభాతం / స్తోత్రాల్లో సాధారణం</td>
+            </tr>
+            <tr>
+                <td>ఇ + ఇ → ఈ; ఉ + ఉ → ఊ</td>
+                <td><span class="sa">अति + इव → अतीव</span></td>
+                <td><span class="te">అతీవ</span> (భజ గోవిందం: <span class="sa">अतीव विचित्रः</span>)</td>
+            </tr>
+            <tr>
+                <td>అ/ఆ + ఋ → అర్</td>
+                <td><span class="sa">महा + ऋषि → महर्षि</span></td>
+                <td><span class="te">మహర్షి</span></td>
+            </tr>
+            <tr>
+                <td>ఏ/ఓ + అ → అయ్/అవ్ (ప్రకృతి భేదం)</td>
+                <td><span class="sa">वने + अपि → वनयपि / वनऽपि</span> (లిపిలో అవగ్రహం ऽ)</td>
+                <td>గీతలో <span class="sa">कोऽपि</span> = <span class="sa">कः + अपि</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>వ్యంజన / విసర్గ సంధి — చదవేటప్పుడు గుర్తుంచుకోండి</h4>
+    <table>
+        <thead>
+            <tr><th>నియమం</th><th>ఉదాహరణ</th><th>గమనిక</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>త్ + చ్ → చ్చ్</td>
+                <td><span class="sa">तत् + च → तच्च</span></td>
+                <td>గీత/స్తోత్రాల్లో <span class="sa">तच्च</span>, <span class="sa">यच्च</span></td>
+            </tr>
+            <tr>
+                <td>న్ + ల్ → ల్ల్ / ం ల్</td>
+                <td><span class="sa">तम् + लोकम्</span> వంటి సందర్భాలు</td>
+                <td>చదువుతూ నాసిక్యం వినండి</td>
+            </tr>
+            <tr>
+                <td>విసర్గ (:) + అఘోష → ఓ / అః మార్పు</td>
+                <td><span class="sa">रामः + गच्छति → रामो गच्छति</span></td>
+                <td>పురుషవాచక ప్రథమా ఏకవచనం చాలా సార్లు <span class="sa">-ो</span>గా కనిపిస్తుంది</td>
+            </tr>
+            <tr>
+                <td>విసర్గ + చ్/ఛ్ → శ్</td>
+                <td><span class="sa">नमः + शिवाय → नमश्शिवाय / नमः शिवाय</span></td>
+                <td>జపంలో సాధారణం</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="eg">అభ్యాసం: <a href="../Shankaracharya/bhaja_govindam.html">Bhaja Govindam</a> లోని ఒక శ్లోకం తీసుకుని, ఆంగ్ల word-meaning చూసే ముందు సంధి విడదీసి రాయండి.</p>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="samasa">2.2 సమాసం (Samāsa) — పదాల కూర్పు</h3>
+    <p>
+        తెలుగులోనూ సమాసాలున్నాయి (<span class="te">గృహప్రవేశం, రాజమార్గం, నీలకంఠుడు</span>).
+        సంస్కృత స్తోత్రాలు సమాసాల మీదే నడుస్తాయి — ముఖ్యంగా <a href="../Ganesha/ganesha_pancharatnam.html">Gaṇeśa Pañcaratnam</a>, <a href="../Lakshmi/kanakadhara_stotram.html">Kanakadhārā</a>.
+    </p>
+    <table>
+        <thead>
+            <tr><th>రకం</th><th>సంస్కృత పేరు</th><th>అర్థ సూత్రం</th><th>ఉదాహరణ + తెలుగు</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>తత్పురుష</td>
+                <td><span class="sa">तत्पुरुष</span></td>
+                <td>రెండవ పదం ప్రధానం; మొదటిది విశేషణం/సంబంధం</td>
+                <td><span class="sa">राजपुरुषः</span> = రాజుయొక్క పురుషుడు → <span class="te">రాజపురుషుడు</span></td>
+            </tr>
+            <tr>
+                <td>కర్మధారయ</td>
+                <td><span class="sa">कर्मधारय</span></td>
+                <td>ఒకే వస్తువుకు రెండు పేర్లు / విశేషణం+నామం</td>
+                <td><span class="sa">नीलम् + उत्पलम् → नीलोत्पलम्</span> → <span class="te">నీలోత్పలం</span></td>
+            </tr>
+            <tr>
+                <td>ద్వంద్వ</td>
+                <td><span class="sa">द्वन्द्व</span></td>
+                <td>A మరియు B — రెండూ సమానం</td>
+                <td><span class="sa">रामलक्ष्मणौ</span> → <span class="te">రామలక్ష్మణులు</span></td>
+            </tr>
+            <tr>
+                <td>బహువ్రీహి</td>
+                <td><span class="sa">बहुव्रीहि</span></td>
+                <td>“ఎవరికి/దేనికి అది ఉందో” — బయటి వ్యక్తిని సూచిస్తుంది</td>
+                <td><span class="sa">पीताम्बरः</span> = పీత వస్త్రం ఉన్నవాడు (విష్ణువు) → <span class="te">పీతాంబరుడు</span></td>
+            </tr>
+            <tr>
+                <td>ద్విగు</td>
+                <td><span class="sa">द्विगु</span></td>
+                <td>సంఖ్య ముందు</td>
+                <td><span class="sa">त्रिलोकम्</span> → <span class="te">త్రిలోకం</span>; <span class="sa">पञ्चरत्नम्</span> → <span class="te">పంచరత్నం</span></td>
+            </tr>
+            <tr>
+                <td>అవ్యయీభావ</td>
+                <td><span class="sa">अव्ययीभाव</span></td>
+                <td>అవ్యయం + నామం = క్రియా విశేషణం లాంటి ఏకపదం</td>
+                <td><span class="sa">यथाशक्ति</span> → <span class="te">యథాశక్తి</span>; <span class="sa">आजन्म</span> → <span class="te">ఆజన్మ</span></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="eg">
+        ఉదా (Pañcaratnam): <span class="sa">विलासिलोकरक्षकम्</span> =
+        <span class="sa">विलासि-लोक-रक्षकम्</span> (కర్మధారయ / తత్పురుష గొలుసు) —
+        “విలాస లోకాన్ని రక్షించేవాడు.”
+    </p>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="vibhakti">2.3 విభక్తి (Case) — కారకాలు</h3>
+    <p>
+        తెలుగులో విభక్తి ప్రత్యయాలు స్పష్టం: <span class="te">-డు/-ము, -ని, -చేత, -కు, -నుంచి, -యొక్క, -లో, -తో</span>.
+        సంస్కృతంలో అవే అర్థాలు <strong>ప్రత్యయాల రూపంలో</strong> నామవాచకం చివర కలుస్తాయి. ఏకవచనం (singular) అజంత పుంలింగ <span class="sa">राम</span> నమూనా:
+    </p>
+    <table>
+        <thead>
+            <tr><th>#</th><th>విభక్తి</th><th>సంస్కృత రూపం</th><th>తెలుగు సమానం</th><th>ప్రశ్న</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>ప్రథమా (Nominative)</td><td><span class="sa">रामः</span></td><td><span class="te">రాముడు</span> (కర్త)</td><td>ఎవరు?</td></tr>
+            <tr><td>2</td><td>ద్వితీయా (Accusative)</td><td><span class="sa">रामम्</span></td><td><span class="te">రాముని</span> (కర్మ)</td><td>ఎవరిని?</td></tr>
+            <tr><td>3</td><td>తృతీయా (Instrumental)</td><td><span class="sa">रामेण</span></td><td><span class="te">రాముని చేత / తో</span></td><td>ఎవరితో? దేనితో?</td></tr>
+            <tr><td>4</td><td>చతుర్థీ (Dative)</td><td><span class="sa">रामाय</span></td><td><span class="te">రామునికి</span></td><td>ఎవరికి?</td></tr>
+            <tr><td>5</td><td>పంచమీ (Ablative)</td><td><span class="sa">रामात्</span></td><td><span class="te">రాముని నుండి</span></td><td>ఎక్కడ నుండి?</td></tr>
+            <tr><td>6</td><td>షష్ఠీ (Genitive)</td><td><span class="sa">रामस्य</span></td><td><span class="te">రాముని యొక్క</span></td><td>ఎవరిది?</td></tr>
+            <tr><td>7</td><td>సప్తమీ (Locative)</td><td><span class="sa">रामे</span></td><td><span class="te">రామునిలో / వద్ద</span></td><td>ఎక్కడ?</td></tr>
+            <tr><td>—</td><td>సంబోధన (Vocative)</td><td><span class="sa">हे राम</span></td><td><span class="te">ఓ రామా!</span></td><td>పిలుపు</td></tr>
+        </tbody>
+    </table>
+    <p>
+        <strong>స్త్రీలింగ నమూనా</strong> (<span class="sa">लता</span>): <span class="sa">लता, लताम्, लतया, लतायै, लतायाः, लतायाः, लतायाम्</span> —
+        తెలుగు తత్సమాల్లో <span class="te">భక్తి, శక్తి, ముక్తి</span> వంటి <span class="sa">-ि</span> నామాలు గీతలో ఎక్కువ.
+    </p>
+    <p class="eg">
+        భజ గోవిందం: <span class="sa">का ते कान्ता कस्ते पुत्रः</span> —
+        <span class="sa">का</span> (ప్రథమా), <span class="sa">ते</span> (షష్ఠీ/చతుర్థీ “నీ”), <span class="sa">कान्ता</span> (ప్రథమా), <span class="sa">कः</span> + <span class="sa">ते</span>, <span class="sa">पुत्रः</span>.
+    </p>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <h3 id="dhatu">2.4 ధాతు (Verb roots) — ప్రాథమిక conjugation</h3>
+    <p>
+        సంస్కృత క్రియ = <strong>ధాతు</strong> + లకారం (కాలం/మూడ్) + పురుష/వచన ప్రత్యయం.
+        తెలుగు క్రియల్లోనూ మూలం కనిపిస్తుంది: <span class="te">గమనం ← గమ్, దర్శనం ← దృశ్, స్మరణం ← స్మృ</span>.
+    </p>
+
+    <h4>లకారాలు మీకు ముందుగా కావాల్సినవి</h4>
+    <table>
+        <thead>
+            <tr><th>లకారం</th><th>ఉపయోగం</th><th>ఉదా (<span class="sa">भू</span> “to be”)</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>లట్ (వర్తమాన)</td><td>జరుగుతోంది</td><td><span class="sa">भवति</span> — అగును / ఉంటాడు</td></tr>
+            <tr><td>లోట్ (విధి/ఆదేశ)</td><td>చేయి! / అవ్వాలి</td><td><span class="sa">भवतु</span> — అవునుగాక</td></tr>
+            <tr><td>లఙ్ (భూత)</td><td>గతం</td><td><span class="sa">अभवत्</span> — అయ్యెను</td></tr>
+            <tr><td>లృట్ (భవిష్యత్)</td><td>వస్తుంది</td><td><span class="sa">भविष्यति</span> — అగును</td></tr>
+            <tr><td>విధిలిఙ్</td><td>చేయవచ్చు / చేయాలి (మృదువు)</td><td><span class="sa">भवेत्</span> — కావచ్చు</td></tr>
+        </tbody>
+    </table>
+
+    <h4>పరస్మైపద లట్ — <span class="sa">पठ्</span> (చదువు) నమూనా</h4>
+    <table>
+        <thead>
+            <tr><th></th><th>ఏకవచనం</th><th>ద్వివచనం</th><th>బహువచనం</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ప్రథమ పురుష (he/they)</td>
+                <td><span class="sa">पठति</span></td>
+                <td><span class="sa">पठतः</span></td>
+                <td><span class="sa">पठन्ति</span></td>
+            </tr>
+            <tr>
+                <td>మధ్యమ (you)</td>
+                <td><span class="sa">पठसि</span></td>
+                <td><span class="sa">पठथः</span></td>
+                <td><span class="sa">पठथ</span></td>
+            </tr>
+            <tr>
+                <td>ఉత్తమ (I/we)</td>
+                <td><span class="sa">पठामि</span></td>
+                <td><span class="sa">पठावः</span></td>
+                <td><span class="sa">पठामः</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>స్తోత్రాల్లో తరచు కనిపించే ధాతువులు</h4>
+    <table>
+        <thead>
+            <tr><th>ధాతు</th><th>అర్థం</th><th>సాధారణ రూపం</th><th>తెలుగు తత్సమ / తద్భవ</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="sa">नम्</span></td><td>వంగు, నమస్కరించు</td><td><span class="sa">नमामि, नतः</span></td><td><span class="te">నమస్కారం, నతుడు</span></td></tr>
+            <tr><td><span class="sa">भज्</span></td><td>సేవించు / పంచుకొను</td><td><span class="sa">भज, भजति</span></td><td><span class="te">భజన, భక్తి</span></td></tr>
+            <tr><td><span class="sa">गम् / इ</span></td><td>పో</td><td><span class="sa">गच्छति, एति</span></td><td><span class="te">గమనం, ఆగమనం</span></td></tr>
+            <tr><td><span class="sa">कृ</span></td><td>చేయు</td><td><span class="sa">करोति, कुरु, कृतम्</span></td><td><span class="te">కర్త, కృతం, సంస్కారం</span></td></tr>
+            <tr><td><span class="sa">भू / अस्</span></td><td>అగు / ఉండు</td><td><span class="sa">भवति, अस्ति</span></td><td><span class="te">భవితవ్యం, అస్తిత్వం</span></td></tr>
+            <tr><td><span class="sa">ज्ञा</span></td><td>తెలుసుకొను</td><td><span class="sa">जानाति, ज्ञात्वा</span></td><td><span class="te">జ్ఞానం, విజ్ఞానం</span></td></tr>
+            <tr><td><span class="sa">दृश्</span></td><td>చూచు</td><td><span class="sa">पश्यति, दृष्ट्वा</span></td><td><span class="te">దర్శనం, దృష్టి</span></td></tr>
+            <tr><td><span class="sa">पा / रक्ष्</span></td><td>కాపాడు</td><td><span class="sa">पाति, रक्षति</span></td><td><span class="te">పాలన, రక్షణ</span></td></tr>
+            <tr><td><span class="sa">मुच्</span></td><td>విడుదల</td><td><span class="sa">मुञ्चति, मुक्तः</span></td><td><span class="te">ముక్తి, విముక్తి</span></td></tr>
+            <tr><td><span class="sa">स्मृ</span></td><td>గుర్తుంచు</td><td><span class="sa">स्मरति, स्मृत्वा</span></td><td><span class="te">స్మరణ, స్మృతి</span></td></tr>
+        </tbody>
+    </table>
+    <p>
+        <strong>క్త్వా / ల్యప్</strong> (తెలుగు “-ి” / “చేసి”): <span class="sa">दृष्ट्वा</span> = చూసి; <span class="sa">ज्ञात्वा</span> = తెలుసుకొని; <span class="sa">हित्वा</span> = విడిచి —
+        భజ గోవిందం / గీతలో అతి సాధారణం.
+    </p>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <!-- ========== 3. GLOSSARY ========== -->
+    <h2 id="glossary">3. Sanskrit–Telugu Cognate Glossary</h2>
+    <p>
+        Starter list of high-frequency stotra / Gītā words. <strong>తత్సమ</strong> = nearly identical loan;
+        <strong>తద్భవ</strong> = Telugu-evolved form from the same root. Learn in clusters of 10–15.
+    </p>
+
+    <h3>3.1 Divine names &amp; epithets</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Where you’ll see it</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="sa">गोविन्द</td><td>govinda</td><td class="te">గోవిందుడు</td><td>తత్సమ</td><td>Bhaja Govindam</td></tr>
+            <tr><td class="sa">विनायक / गणेश</td><td>vināyaka / gaṇeśa</td><td class="te">వినాయకుడు / గణేశుడు</td><td>తత్సమ</td><td>Pañcaratnam</td></tr>
+            <tr><td class="sa">विष्णु</td><td>viṣṇu</td><td class="te">విష్ణువు</td><td>తత్సమ</td><td>Sahasranāmam</td></tr>
+            <tr><td class="sa">शिव / शङ्कर</td><td>śiva / śaṅkara</td><td class="te">శివుడు / శంకరుడు</td><td>తత్సమ</td><td>Liṅgāṣṭakam, Dakṣiṇāmūrti</td></tr>
+            <tr><td class="sa">दुर्गा / भवानी</td><td>durgā / bhavānī</td><td class="te">దుర్గ / భవాని</td><td>తత్సమ</td><td>Bhavānī Aṣṭakam</td></tr>
+            <tr><td class="sa">लक्ष्मी</td><td>lakṣmī</td><td class="te">లక్ష్మి</td><td>తత్సమ</td><td>Kanakadhārā</td></tr>
+            <tr><td class="sa">हनुमत्</td><td>hanumat</td><td class="te">హనుమంతుడు</td><td>తత్సమ</td><td>Hanumān stotras</td></tr>
+            <tr><td class="sa">गुरु</td><td>guru</td><td class="te">గురువు</td><td>తత్సమ</td><td>Gurvaṣṭakam, Pādukā</td></tr>
+            <tr><td class="sa">कृष्ण / अर्जुन</td><td>kṛṣṇa / arjuna</td><td class="te">కృష్ణుడు / అర్జునుడు</td><td>తత్సమ</td><td>Gītā</td></tr>
+            <tr><td class="sa">ईश्वर / भगवत्</td><td>īśvara / bhagavat</td><td class="te">ఈశ్వరుడు / భగవంతుడు</td><td>తత్సమ</td><td>everywhere</td></tr>
+        </tbody>
+    </table>
+
+    <h3>3.2 Core philosophical &amp; bhakti vocabulary</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Gloss</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="sa">भक्ति</td><td>bhakti</td><td class="te">భక్తి</td><td>తత్సమ</td><td>devotion</td></tr>
+            <tr><td class="sa">ज्ञान</td><td>jñāna</td><td class="te">జ్ఞానం</td><td>తత్సమ</td><td>knowledge</td></tr>
+            <tr><td class="sa">कर्म</td><td>karma</td><td class="te">కర్మ</td><td>తత్సమ</td><td>action / deed</td></tr>
+            <tr><td class="sa">धर्म</td><td>dharma</td><td class="te">ధర్మం</td><td>తత్సమ</td><td>duty / law / right</td></tr>
+            <tr><td class="sa">मोक्ष / मुक्ति</td><td>mokṣa / mukti</td><td class="te">మోక్షం / ముక్తి</td><td>తత్సమ</td><td>liberation</td></tr>
+            <tr><td class="sa">योग</td><td>yoga</td><td class="te">యోగం</td><td>తత్సమ</td><td>discipline / union</td></tr>
+            <tr><td class="sa">आत्मा</td><td>ātmā</td><td class="te">ఆత్మ</td><td>తత్సమ</td><td>self / soul</td></tr>
+            <tr><td class="sa">ब्रह्मन्</td><td>brahman</td><td class="te">బ్రహ్మం / బ్రహ్మము</td><td>తత్సమ</td><td>Absolute</td></tr>
+            <tr><td class="sa">माया</td><td>māyā</td><td class="te">మాయ</td><td>తత్సమ</td><td>illusion / divine power</td></tr>
+            <tr><td class="sa">संसार</td><td>saṃsāra</td><td class="te">సంసారం</td><td>తత్సమ</td><td>cycle of worldly life</td></tr>
+            <tr><td class="sa">शरण</td><td>śaraṇa</td><td class="te">శరణం</td><td>తత్సమ</td><td>refuge</td></tr>
+            <tr><td class="sa">प्रसाद</td><td>prasāda</td><td class="te">ప్రసాదం</td><td>తత్సమ</td><td>grace / offering</td></tr>
+            <tr><td class="sa">शान्ति</td><td>śānti</td><td class="te">శాంతి</td><td>తత్సమ</td><td>peace</td></tr>
+            <tr><td class="sa">सत्य</td><td>satya</td><td class="te">సత్యం</td><td>తత్సమ</td><td>truth</td></tr>
+            <tr><td class="sa">अहिंसा</td><td>ahiṃsā</td><td class="te">అహింస</td><td>తత్సమ</td><td>non-violence</td></tr>
+            <tr><td class="sa">श्रद्धा</td><td>śraddhā</td><td class="te">శ్రద్ధ</td><td>తత్సమ</td><td>faith</td></tr>
+            <tr><td class="sa">तत्त्व</td><td>tattva</td><td class="te">తత్త్వం</td><td>తత్సమ</td><td>principle / reality</td></tr>
+            <tr><td class="sa">मोह</td><td>moha</td><td class="te">మోహం</td><td>తత్సమ</td><td>delusion</td></tr>
+            <tr><td class="sa">काम</td><td>kāma</td><td class="te">కామం</td><td>తత్సమ</td><td>desire</td></tr>
+            <tr><td class="sa">क्रोध</td><td>krodha</td><td class="te">క్రోధం</td><td>తత్సమ</td><td>anger</td></tr>
+            <tr><td class="sa">लोभ</td><td>lobha</td><td class="te">లోభం</td><td>తత్సమ</td><td>greed</td></tr>
+            <tr><td class="sa">दुःख / सुख</td><td>duḥkha / sukha</td><td class="te">దుఃఖం / సుఖం</td><td>తత్సమ</td><td>pain / pleasure</td></tr>
+            <tr><td class="sa">शोक</td><td>śoka</td><td class="te">శోకం</td><td>తత్సమ</td><td>grief</td></tr>
+            <tr><td class="sa">भय</td><td>bhaya</td><td class="te">భయం</td><td>తత్సమ</td><td>fear</td></tr>
+            <tr><td class="sa">बल</td><td>bala</td><td class="te">బలం</td><td>తత్సమ</td><td>strength</td></tr>
+            <tr><td class="sa">शक्ति</td><td>śakti</td><td class="te">శక్తి</td><td>తత్సమ</td><td>power</td></tr>
+            <tr><td class="sa">गुण</td><td>guṇa</td><td class="te">గుణం</td><td>తత్సమ</td><td>quality (also the three guṇas)</td></tr>
+            <tr><td class="sa">प्रकृति / पुरुष</td><td>prakṛti / puruṣa</td><td class="te">ప్రకృతి / పురుషుడు</td><td>తత్సమ</td><td>nature / person / spirit</td></tr>
+        </tbody>
+    </table>
+
+    <h3>3.3 Body, world, time (stotra staples)</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Gloss</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="sa">देह / शरीर</td><td>deha / śarīra</td><td class="te">దేహం / శరీరం</td><td>తత్సమ</td><td>body</td></tr>
+            <tr><td class="sa">मनस् / चित्त</td><td>manas / citta</td><td class="te">మనస్సు / చిత్తం</td><td>తత్సమ</td><td>mind</td></tr>
+            <tr><td class="sa">बुद्धि</td><td>buddhi</td><td class="te">బుద్ధి</td><td>తత్సమ</td><td>intellect</td></tr>
+            <tr><td class="sa">प्राण / पवन / वायु</td><td>prāṇa / pavana / vāyu</td><td class="te">ప్రాణం / పవనం / వాయువు</td><td>తత్సమ</td><td>breath / wind</td></tr>
+            <tr><td class="sa">नेत्र / चक्षुस्</td><td>netra / cakṣus</td><td class="te">నేత్రం / చక్షువు</td><td>తత్సమ</td><td>eye</td></tr>
+            <tr><td class="sa">लोक / जगत्</td><td>loka / jagat</td><td class="te">లోకం / జగత్తు</td><td>తత్సమ</td><td>world</td></tr>
+            <tr><td class="sa">पृथिवी / भूमि</td><td>pṛthivī / bhūmi</td><td class="te">పృథివి / భూమి</td><td>తత్సమ</td><td>earth</td></tr>
+            <tr><td class="sa">जल / वारि / तोय</td><td>jala / vāri / toya</td><td class="te">జలం / వారి</td><td>తత్సమ</td><td>water</td></tr>
+            <tr><td class="sa">अग्नि / तेजस्</td><td>agni / tejas</td><td class="te">అగ్ని / తేజస్సు</td><td>తత్సమ</td><td>fire / radiance</td></tr>
+            <tr><td class="sa">आकाश</td><td>ākāśa</td><td class="te">ఆకాశం</td><td>తత్సమ</td><td>sky / space</td></tr>
+            <tr><td class="sa">काल</td><td>kāla</td><td class="te">కాలం</td><td>తత్సమ</td><td>time / Death</td></tr>
+            <tr><td class="sa">दिन / रात्रि</td><td>dina / rātri</td><td class="te">దినం / రాత్రి</td><td>తత్సమ</td><td>day / night</td></tr>
+            <tr><td class="sa"> आयुस्</td><td>āyus</td><td class="te">ఆయుస్సు</td><td>తత్సమ</td><td>lifespan</td></tr>
+            <tr><td class="sa">मृत्यु</td><td>mṛtyu</td><td class="te">మృత్యువు</td><td>తత్సమ</td><td>death</td></tr>
+            <tr><td class="sa">जन्म</td><td>janma</td><td class="te">జన్మ</td><td>తత్సమ</td><td>birth</td></tr>
+        </tbody>
+    </table>
+
+    <h3>3.4 Family, society, wealth (Bhaja Govindam cluster)</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు</th><th>Type</th><th>Gloss</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="sa">धन</td><td>dhana</td><td class="te">ధనం</td><td>తత్సమ</td><td>wealth</td></tr>
+            <tr><td class="sa">वित्त</td><td>vitta</td><td class="te">విత్తం</td><td>తత్సమ</td><td>wealth / property</td></tr>
+            <tr><td class="sa">पुत्र</td><td>putra</td><td class="te">పుత్రుడు → <em>తద్భవ</em> బిడ్డ / కొడుకు</td><td>తత్సమ+తద్భవ</td><td>son</td></tr>
+            <tr><td class="sa">कान्ता / भार्या</td><td>kāntā / bhāryā</td><td class="te">కాంత / భార్య</td><td>తత్సమ</td><td>wife / beloved</td></tr>
+            <tr><td class="sa">परिवार</td><td>parivāra</td><td class="te">పరివారం</td><td>తత్సమ</td><td>family / retinue</td></tr>
+            <tr><td class="sa">मित्र</td><td>mitra</td><td class="te">మిత్రుడు</td><td>తత్సమ</td><td>friend</td></tr>
+            <tr><td class="sa">शत्रु</td><td>śatru</td><td class="te">శత్రువు</td><td>తత్సమ</td><td>enemy</td></tr>
+            <tr><td class="sa">जन</td><td>jana</td><td class="te">జనం / జనులు</td><td>తత్సమ</td><td>people</td></tr>
+            <tr><td class="sa">बाल / तरुण / वृद्ध</td><td>bāla / taruṇa / vṛddha</td><td class="te">బాలుడు / తరుణుడు / వృద్ధుడు</td><td>తత్సమ</td><td>child / youth / elder</td></tr>
+            <tr><td class="sa">तृष्णा / आशा</td><td>tṛṣṇā / āśā</td><td class="te">తృష్ణ / ఆశ</td><td>తత్సమ</td><td>thirst / hope</td></tr>
+            <tr><td class="sa">सङ्ग</td><td>saṅga</td><td class="te">సంగం</td><td>తత్సమ</td><td>company / attachment</td></tr>
+            <tr><td class="sa">मूर्ख / मूढ</td><td>mūrkha / mūḍha</td><td class="te">మూర్ఖుడు / మూఢుడు</td><td>తత్సమ</td><td>fool</td></tr>
+        </tbody>
+    </table>
+
+    <h3>3.5 Verbs &amp; particles you’ll meet constantly</h3>
+    <table>
+        <thead>
+            <tr><th>సంస్కృతం</th><th>IAST</th><th>తెలుగు bridge</th><th>Gloss</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="sa">नमः / नमामि</td><td>namaḥ / namāmi</td><td class="te">నమస్సు / నమస్కరిస్తాను</td><td>salutation / I bow</td></tr>
+            <tr><td class="sa">रक्ष / रक्षति</td><td>rakṣa / rakṣati</td><td class="te">రక్షించు / రక్షణ</td><td>protect</td></tr>
+            <tr><td class="sa">पश्य / पश्यति</td><td>paśya / paśyati</td><td class="te">పశ్య (rare) ← దర్శనం</td><td>see</td></tr>
+            <tr><td class="sa">गच्छति / आगच्छ</td><td>gacchati / āgaccha</td><td class="te">గమనం / ఆగమనం</td><td>goes / come!</td></tr>
+            <tr><td class="sa">करोति / कुरु</td><td>karoti / kuru</td><td class="te">కర్త / చేయి</td><td>does / do!</td></tr>
+            <tr><td class="sa">अस्ति / भवति</td><td>asti / bhavati</td><td class="te">అస్తి / భవితవ్యం</td><td>is / becomes</td></tr>
+            <tr><td class="sa">च / अपि / एव</td><td>ca / api / eva</td><td class="te">మరియు / కూడా / నే</td><td>and / also / indeed</td></tr>
+            <tr><td class="sa">न / मा</td><td>na / mā</td><td class="te">కాదు / వద్దు</td><td>not / don’t</td></tr>
+            <tr><td class="sa">यदि / तथा / यथा</td><td>yadi / tathā / yathā</td><td class="te">యది / తథా / యథా</td><td>if / so / as</td></tr>
+            <tr><td class="sa">किम् / कः / का</td><td>kim / kaḥ / kā</td><td class="te">ఏమి / ఎవరు</td><td>what / who</td></tr>
+            <tr><td class="sa">सर्व / सर्वम्</td><td>sarva / sarvam</td><td class="te">సర్వం</td><td>all</td></tr>
+            <tr><td class="sa">सदा / नित्य</td><td>sadā / nitya</td><td class="te">సదా / నిత్యం</td><td>always / eternal</td></tr>
+            <tr><td class="sa">एतत् / तत् / इदम्</td><td>etat / tat / idam</td><td class="te">ఏతత్ / తత్ / ఇదం</td><td>this / that</td></tr>
+        </tbody>
+    </table>
+
+    <h3>3.6 Useful prefixes (compound unlockers)</h3>
+    <table>
+        <thead>
+            <tr><th>Prefix</th><th>Sense</th><th>Example → Telugu</th></tr>
+        </thead>
+        <tbody>
+            <tr><td class="sa">अ- / अन्-</td><td>not</td><td><span class="sa">अज्ञान</span> → <span class="te">అజ్ఞానం</span></td></tr>
+            <tr><td class="sa">सु-</td><td>good / well</td><td><span class="sa">सुख</span>, <span class="sa">सुप्रभात</span> → <span class="te">సుఖం, సుప్రభాతం</span></td></tr>
+            <tr><td class="sa">दुर्- / दुः-</td><td>bad / hard</td><td><span class="sa">दुःख</span>, <span class="sa">दुर्गा</span> → <span class="te">దుఃఖం, దుర్గ</span></td></tr>
+            <tr><td class="sa">वि-</td><td>apart / special</td><td><span class="sa">विज्ञान</span>, <span class="sa">विमुक्ति</span> → <span class="te">విజ్ఞానం, విముక్తి</span></td></tr>
+            <tr><td class="sa">सम्-</td><td>together / complete</td><td><span class="sa">संसार</span>, <span class="sa">सम्पूर्ण</span> → <span class="te">సంసారం, సంపూర్ణ</span></td></tr>
+            <tr><td class="sa">निर्- / निः-</td><td>without / out</td><td><span class="sa">निर्गुण</span>, <span class="sa">निर्मल</span> → <span class="te">నిర్గుణ, నిర్మల</span></td></tr>
+            <tr><td class="sa">प्र-</td><td>forth / intense</td><td><span class="sa">प्रसाद</span>, <span class="sa">प्रकाश</span> → <span class="te">ప్రసాదం, ప్రకాశం</span></td></tr>
+            <tr><td class="sa">उप-</td><td>near / secondary</td><td><span class="sa">उपवास</span>, <span class="sa">उपदेश</span> → <span class="te">ఉపవాసం, ఉపదేశం</span></td></tr>
+            <tr><td class="sa">अधि-</td><td>over / upon</td><td><span class="sa">अध्यात्म</span> → <span class="te">అధ్యాత్మ</span></td></tr>
+            <tr><td class="sa">महा-</td><td>great</td><td><span class="sa">महेश्वर</span> → <span class="te">మహేశ్వరుడు</span></td></tr>
+        </tbody>
+    </table>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <!-- ========== 4. METHOD ========== -->
+    <h2 id="method">4. Study Method (with this repo)</h2>
+    <p>Four-step loop for any verse page — use it so you never need to re-copy stotra text into notes.</p>
+    <ol>
+        <li><strong>Chant</strong> — Telugu column first if Devanagari is slow; then match Devanagari.</li>
+        <li><strong>Cut</strong> — write the line with sandhi split (pencil or digital note). Mark vibhakti endings in a second color.</li>
+        <li><strong>Bridge</strong> — circle every cognate you know from §3; guess the rest before opening the page’s English word-meaning.</li>
+        <li><strong>Confirm</strong> — read <em>Words</em> then <em>Meaning</em> on the HTML page; add 3–5 new items to your personal glossary.</li>
+    </ol>
+
+    <h4>Repo map (already built — do not duplicate)</h4>
+    <table>
+        <thead>
+            <tr><th>Folder</th><th>Contents</th><th>Roadmap phase</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><span class="path">Ganesha/</span></td><td>Gaṇeśa Pañcaratnam</td><td>1–2</td></tr>
+            <tr><td><span class="path">Shiva/</span></td><td>Liṅgāṣṭakam, Dakṣiṇāmūrti Stotram</td><td>2–3</td></tr>
+            <tr><td><span class="path">Durga/</span></td><td>Bhavānī Aṣṭakam, Mahiṣāsura Mardinī</td><td>2–3</td></tr>
+            <tr><td><span class="path">Shankaracharya/</span></td><td>Bhaja Govindam, Gurvaṣṭakam, Guru Pādukā</td><td>2–3</td></tr>
+            <tr><td><span class="path">Lakshmi/</span></td><td>Kanakadhārā Stotram</td><td>3</td></tr>
+            <tr><td><span class="path">Hanuman/</span></td><td>Cālīsā, Saṅkaṭa Mochana, Bāhuk</td><td>2 (+ listening)</td></tr>
+            <tr><td><span class="path">Venkateswara/</span></td><td>Suprabhātam</td><td>3</td></tr>
+            <tr><td><span class="path">BhagavadGita/</span></td><td>Chapters 1–18</td><td>4</td></tr>
+            <tr><td><span class="path">Vishnu/</span></td><td>Viṣṇu Sahasranāmam</td><td>5</td></tr>
+        </tbody>
+    </table>
+
+    <h4>Weekly rhythm (suggested)</h4>
+    <ul>
+        <li><strong>3 days</strong> — grammar drill from §2 + cognates from §3</li>
+        <li><strong>2 days</strong> — verse parsing on the current-phase HTML page</li>
+        <li><strong>1 day</strong> — listening-only chant (Suprabhātam / Cālīsā / familiar stotra)</li>
+        <li><strong>Optional</strong> — 10 Sahasranāmam names even during Phase 2–4</li>
+    </ul>
+    <a class="back-top" href="#toc">↑ Contents</a>
+
+    <p class="footer">
+        Part of <a href="../index.html">Bhakti</a> ·
+        <a href="https://github.com/venkatacrc/bhakti">github.com/venkatacrc/bhakti</a> ·
+        Study frame only — verse texts live on their existing pages
+    </p>
+
+</body>
+</html>
