@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#e8641a">
+    <meta name="description" content="Flash cards for the words and verses of the Bhagavad Gita, Vishnu Sahasranamam and Bhaja Govindam in Telugu, Devanagari and IAST.">
+    <title>Sloka Words</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div id="app">
+        <header class="topbar">
+            <button class="icon-btn" id="open-drawer" aria-label="Chapters and options">☰</button>
+            <div class="brand"><span class="om">ॐ</span> Sloka Words</div>
+            <button class="icon-btn" id="open-print" aria-label="Print or save as PDF" title="Print / Save as PDF">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/>
+                </svg>
+            </button>
+        </header>
+        <div class="switches">
+            <div class="segmented" id="kind-switch">
+                <button data-value="words">Words</button>
+                <button data-value="verses">Verses</button>
+            </div>
+            <div class="segmented" id="study-switch">
+                <button data-value="learn">Learn</button>
+                <button data-value="test">Test</button>
+            </div>
+        </div>
+        <div class="status" id="status"></div>
+        <main id="stage"></main>
+        <nav class="actions" id="actions"></nav>
+    </div>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true">
+        <div class="drawer-head">
+            <div class="brand"><span class="om">ॐ</span> Sloka Words</div>
+            <button class="icon-btn" id="close-drawer" aria-label="Close">✕</button>
+        </div>
+        <div class="drawer-body" id="drawer-body"></div>
+        <div class="drawer-foot" id="drawer-foot"></div>
+    </aside>
+
+    <dialog id="print-dialog"></dialog>
+    <dialog id="edit-dialog"></dialog>
+    <section id="print-area" aria-hidden="true"></section>
+
+    <script src="app.js"></script>
+</body>
+</html>
