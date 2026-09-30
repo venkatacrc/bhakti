@@ -83,6 +83,17 @@ function allGroupKeys() {
     return deck.sources.flatMap((s) => s.groups.map((g) => groupKey(s.id, g.id)));
 }
 
+/** Grammar lessons have their own sources; words and verses share the texts. */
+function sourcesFor(kind) {
+    return deck.sources.filter((s) => (s.kind === 'grammar') === (kind === 'grammar'));
+}
+
+function cardsOf(kind) {
+    return kind === 'words' ? deck.words : kind === 'verses' ? deck.verses : deck.grammar;
+}
+
+const NOUNS = { words: 'word cards', verses: 'verse cards', grammar: 'grammar cards' };
+
 function selectedSet() {
     return new Set(prefs.selected === '*' ? allGroupKeys() : prefs.selected);
 }
@@ -106,11 +117,11 @@ function verseAt(index) {
 }
 
 function cardId(index) {
-    return session.kind === 'words' ? deck.words[index].id : deck.verses[index].id;
+    return cardsOf(session.kind)[index].id;
 }
 
 function currentIndex() {
-    const count = session.kind === 'words' ? deck.words.length : deck.verses.length;
+    const count = cardsOf(session.kind).length;
     const i = session.order[session.position];
     return i != null && i < count ? i : null;
 }
@@ -138,7 +149,7 @@ function rebuild() {
     if (session.kind === 'words') {
         deck.words.forEach((w, i) => { if (w.refs.some((r) => included(r.src, r.group))) picked.push(i); });
     } else {
-        deck.verses.forEach((v, i) => { if (included(v.src, v.group)) picked.push(i); });
+        cardsOf(session.kind).forEach((c, i) => { if (included(c.src, c.group)) picked.push(i); });
     }
     if (prefs.practice === 'notKnown') picked = picked.filter((i) => !progress.known.has(cardId(i)));
     if (prefs.practice === 'review') picked = picked.filter((i) => progress.review.has(cardId(i)));
@@ -246,10 +257,10 @@ function renderStage() {
         return;
     }
     const flipped = prefs.study === 'learn' || session.flipped;
-    const card = session.kind === 'words'
-        ? wordCard(deck.words[index], flipped)
-        : verseCard(verseAt(index), index, flipped);
-    card.addEventListener('click', (e) => { if (!e.target.closest('button')) reveal(); });
+    const card = session.kind === 'words' ? wordCard(deck.words[index], flipped)
+        : session.kind === 'verses' ? verseCard(verseAt(index), index, flipped)
+        : grammarCard(deck.grammar[index], flipped);
+    card.addEventListener('click', (e) => { if (!e.target.closest('button, a')) reveal(); });
     addSwipe(card);
     stage.append(card);
 }
@@ -268,9 +279,10 @@ function badges(id, label, extra = []) {
         progress.review.has(id) && h('span', { class: 'badge review' }, 'Review'));
 }
 
-function script(label, cls, lines) {
+function script(label, cls, lines, speaker) {
     return h('div', { class: 'script' },
         h('div', { class: 'script-label' }, label),
+        speaker && h('div', { class: cls + ' speaker' }, speaker),
         lines.map((l) => h('div', { class: cls }, l)));
 }
 
@@ -305,9 +317,9 @@ function verseCard(v, index, flipped) {
     editBtn.style.padding = '2px 10px';
     return h('article', { class: 'card verse' + (flipped ? ' flipped' : '') },
         badges(v.id, v.label, [v.edited && h('span', { class: 'badge edited' }, 'Edited'), editBtn]),
-        script('తెలుగు', 'te', take(v.te)),
-        script('हिन्दी', 'deva', take(v.deva)),
-        script('IAST', 'iast', take(v.iast)),
+        script('తెలుగు', 'te', take(v.te), v.speaker?.te),
+        script('हिन्दी', 'deva', take(v.deva), v.speaker?.deva),
+        script('IAST', 'iast', take(v.iast), v.speaker?.iast),
         flipped
             ? h('div', { class: 'meanings' },
                 v.te_meaning && meaning('తెలుగు భావం', h('p', { class: 'te-text' }, v.te_meaning)),
@@ -316,6 +328,21 @@ function verseCard(v, index, flipped) {
             : h('div', { class: 'hint' }, v.te.length > 1
                 ? 'Recite the rest of the verse, then tap the card to check'
                 : 'Recall the meaning, then tap the card'));
+}
+
+function grammarCard(c, flipped) {
+    const reading = (cell, cls) => cell.te && cell.te !== cell.text && h('div', { class: cls }, cell.te);
+    return h('article', { class: 'card grammar' + (flipped ? ' flipped' : '') },
+        badges(c.id, c.label, [c.link && h('a', { class: 'lesson-link', href: '../' + c.link }, '📖 Lesson')]),
+        c.context && h('div', { class: 'context' }, c.context),
+        h('div', { class: 'prompt' + (c.prompt.text.length > 40 ? ' long' : '') },
+            c.prompt.head && h('div', { class: 'script-label' }, c.prompt.head),
+            h('div', { class: 'prompt-text' }, c.prompt.text),
+            reading(c.prompt, 'prompt-te')),
+        flipped
+            ? h('div', { class: 'meanings' }, c.answer.map((a) =>
+                meaning(a.head || '·', h('p', { class: 'answer-text' }, a.text), reading(a, 'answer-te'))))
+            : h('div', { class: 'hint' }, 'Recall the answer, then tap the card'));
 }
 
 function testSummary() {
@@ -360,7 +387,7 @@ function renderActions() {
             next);
     } else if (!session.flipped) {
         bar.append(prev,
-            h('button', { class: 'btn primary', onclick: reveal }, session.kind === 'words' ? 'Show answer' : 'Show verse'),
+            h('button', { class: 'btn primary', onclick: reveal }, session.kind === 'verses' ? 'Show verse' : 'Show answer'),
             h('button', { class: 'btn small', onclick: () => move(1) }, 'Skip ›'));
     } else {
         bar.append(prev,
@@ -421,7 +448,8 @@ function renderDrawer() {
         checkRow('Shuffle', prefs.shuffle, (on) => { setPref('shuffle', on); rebuild(); }),
         h('button', { class: 'menu-btn', onclick: () => { rebuild(); closeDrawer(); } }, '↺ Restart from the first card')));
 
-    const langs = [...new Set(deck.sources.map((s) => s.lang))].sort();
+    const sources = sourcesFor(session.kind);
+    const langs = [...new Set(sources.map((s) => s.lang))].sort();
     if (langs.length > 1) {
         body.append(h('h4', {}, 'Language'), h('div', { class: 'panel' }, langs.map((lang) =>
             checkRow(lang[0].toUpperCase() + lang.slice(1), !prefs.excludedLangs.includes(lang), (on) => {
@@ -439,7 +467,7 @@ function renderDrawer() {
         rebuild();
     };
     body.append(h('h4', {}, 'Practice these'));
-    for (const source of deck.sources) {
+    for (const source of sources) {
         const keys = source.groups.map((g) => groupKey(source.id, g.id));
         const collapsed = prefs.collapsed.includes(source.id);
         const disabled = prefs.excludedLangs.includes(source.lang);
@@ -478,8 +506,7 @@ function renderDrawer() {
         }, 'Reset progress'),
         h('a', { class: 'menu-btn', href: '../', style: 'color:inherit;text-decoration:none' }, '📖 Read the full texts')));
 
-    const noun = session.kind === 'words' ? 'word cards' : 'verse cards';
-    $('#drawer-foot').textContent = `${session.order.length} ${noun} selected`;
+    $('#drawer-foot').textContent = `${session.order.length} ${NOUNS[session.kind]} selected`;
     body.scrollTop = scroll;
 }
 
@@ -594,12 +621,14 @@ function printVerses(opts) {
             area.append(h('h2', {}, head));
             last = head;
         }
-        const lines = (cls, list) => h('div', { class: 'pv-lines ' + cls }, list.flatMap((l, i) => (i ? [h('br'), l] : [l])));
+        const lines = (cls, list, speaker) => h('div', { class: 'pv-lines ' + cls },
+            speaker && h('div', { class: 'pv-speaker' }, speaker),
+            list.flatMap((l, i) => (i ? [h('br'), l] : [l])));
         area.append(h('div', { class: 'pv' },
             h('div', { class: 'pv-label' }, v.label),
-            opts.te && lines('te', v.te),
-            opts.deva && lines('deva', v.deva),
-            opts.iast && lines('iast', v.iast),
+            opts.te && lines('te', v.te, v.speaker?.te),
+            opts.deva && lines('deva', v.deva, v.speaker?.deva),
+            opts.iast && lines('iast', v.iast, v.speaker?.iast),
             opts.teMeaning && v.te_meaning && h('p', { class: 'pv-meaning te' }, h('b', {}, 'తెలుగు భావం  '), v.te_meaning),
             opts.enMeaning && v.en_meaning && h('p', { class: 'pv-meaning' }, h('b', {}, 'MEANING  '), v.en_meaning),
             opts.words && v.words && h('p', { class: 'pv-meaning words' }, h('b', {}, 'WORD BY WORD  '), v.words)));
@@ -665,7 +694,7 @@ fetch('words.json')
         return r.json();
     })
     .then((data) => {
-        deck = { sources: data.sources, words: data.words, verses: data.verses ?? [] };
+        deck = { sources: data.sources, words: data.words, verses: data.verses ?? [], grammar: data.grammar ?? [] };
         rebuild();
     })
     .catch((err) => {

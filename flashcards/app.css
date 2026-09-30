@@ -203,6 +203,30 @@ main {
 .verse .deva { font-size: 1.15rem; line-height: 1.55; }
 .verse .iast { font-size: 0.95rem; line-height: 1.5; }
 .verse:not(.flipped) .te { font-size: 1.5rem; }
+.verse .script .speaker { font-size: 0.95rem; font-weight: 500; color: var(--saffron); }
+
+.grammar .context {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--saffron);
+    text-align: left;
+}
+
+.grammar .prompt { margin: 22px 0 8px; }
+.grammar .prompt-text { font-family: var(--deva), var(--te); font-size: 1.9rem; font-weight: 600; line-height: 1.4; }
+.grammar .prompt-te { font-family: var(--te); font-size: 1.35rem; color: var(--muted); margin-top: 4px; }
+.grammar .prompt.long .prompt-text { font-size: 1.35rem; }
+.grammar .prompt.long .prompt-te { font-size: 1.1rem; }
+.grammar .answer-text { font-family: var(--deva), var(--te); font-size: 1.15rem; }
+.grammar .answer-te { font-family: var(--te); color: var(--muted); margin-top: 2px; }
+
+.lesson-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--saffron);
+    text-decoration: none;
+}
 
 .hint {
     margin-top: 24px;
@@ -454,6 +478,7 @@ dialog::backdrop { background: rgb(0 0 0 / 0.4); }
     #print-area .pv-lines.te { font-family: var(--te); font-size: 13pt; font-weight: 600; }
     #print-area .pv-lines.deva { font-family: var(--deva); font-size: 12pt; }
     #print-area .pv-lines.iast { font-style: italic; font-size: 10.5pt; }
+    #print-area .pv-speaker { color: #c0602a; font-size: 0.85em; font-weight: 500; }
     #print-area .pv-meaning { margin: 3pt 0 0; line-height: 1.4; }
     #print-area .pv-meaning b { color: #c0602a; font-size: 8.5pt; letter-spacing: 0.03em; }
     #print-area .pv-meaning.te { font-family: var(--te); }
