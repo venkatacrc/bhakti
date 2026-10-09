@@ -276,7 +276,8 @@ main {
 
 .actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    align-items: stretch;
     gap: 8px;
     padding: 12px 0 14px;
 }
@@ -297,9 +298,43 @@ main {
 .btn.good { border-color: var(--green); background: var(--green); color: #fff; }
 .btn.bad { border-color: var(--orange); color: var(--orange); }
 .btn.small { flex: 0 0 auto; min-height: 48px; }
+/* Prev / Next: larger tap targets than the old chevron-only .small buttons */
+.btn.nav {
+    flex: 0 0 auto;
+    min-width: 56px;
+    min-height: 52px;
+    padding: 10px 14px;
+    font-size: 1.55rem;
+    line-height: 1;
+    font-weight: 500;
+}
 .btn.on-known { color: var(--green); border-color: var(--green); }
 .btn.on-review { color: var(--orange); border-color: var(--orange); }
 .btn:disabled { opacity: 0.45; }
+
+@media (max-width: 560px) {
+    .actions {
+        gap: 10px;
+        padding: 16px 0 20px;
+    }
+    .btn {
+        min-height: 56px;
+        padding: 12px 10px;
+        font-size: 1.02rem;
+        border-radius: 16px;
+    }
+    .btn.nav {
+        min-width: 72px;
+        min-height: 56px;
+        padding: 12px 16px;
+        font-size: 1.85rem;
+    }
+    .btn.small {
+        min-height: 56px;
+        min-width: 56px;
+        padding: 12px 14px;
+    }
+}
 
 .backdrop {
     position: fixed;
