@@ -141,6 +141,7 @@ main {
 .card {
     flex: 1;
     overflow-y: auto;
+    overflow-anchor: none;
     padding: 20px 20px 28px;
     border: 1px solid var(--line);
     border-radius: 20px;
