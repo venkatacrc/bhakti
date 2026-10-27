@@ -557,26 +557,54 @@ function verseWordList(verse, index) {
         entries.map((entry, i) => verseWordRow(entry, i)));
 }
 
+function setVerseWordOpen(row, open) {
+    row.classList.toggle('open', open);
+    const body = row.querySelector('.verse-word-body');
+    if (body) body.hidden = !open;
+    const hit = row.querySelector('.verse-word-hit');
+    if (hit) hit.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const chev = row.querySelector('.chev');
+    if (chev) chev.textContent = open ? '▾' : '›';
+}
+
 function verseWordRow(entry, i) {
     const key = entry.id || `gloss:${i}`;
     const open = session.openWord === key;
     const toggle = (e) => {
         e.stopPropagation();
-        session.openWord = open ? null : key;
-        render();
+        const card = e.currentTarget.closest('.card');
+        const scrollTop = card ? card.scrollTop : 0;
+        const pageTop = window.scrollY;
+        const row = e.currentTarget.closest('.verse-word');
+        const willOpen = !row.classList.contains('open');
+        for (const other of row.parentElement.querySelectorAll('.verse-word.open')) setVerseWordOpen(other, false);
+        if (willOpen) {
+            session.openWord = key;
+            setVerseWordOpen(row, true);
+        } else {
+            session.openWord = null;
+        }
+        // Rebuilding the card used to throw the verse back to the top. Keep the place.
+        const restore = () => {
+            if (card) card.scrollTop = scrollTop;
+            window.scrollTo(0, pageTop);
+        };
+        restore();
+        requestAnimationFrame(restore);
     };
     return h('div', { class: 'verse-word' + (open ? ' open' : '') },
         h('button', {
             class: 'verse-word-hit',
             type: 'button',
             'aria-expanded': open ? 'true' : 'false',
+            onpointerdown: (e) => { if (e.pointerType !== 'touch') e.preventDefault(); },
             onclick: toggle,
         },
             h('span', { class: 'verse-word-head' },
                 entry.te && h('span', { class: 'te' }, entry.te),
                 h('span', { class: 'iast' }, entry.iast),
                 h('span', { class: 'chev', 'aria-hidden': 'true' }, open ? '▾' : '›'))),
-        open && h('div', { class: 'verse-word-body' },
+        h('div', { class: 'verse-word-body', hidden: !open },
             entry.deva && h('div', { class: 'deva' }, entry.deva),
             entry.teMeaning
                 ? h('p', { class: 'te-text' }, entry.teMeaning)
