@@ -254,6 +254,84 @@ main {
 .meaning p { margin: 0; line-height: 1.5; }
 .meaning .te-text { font-family: var(--te); font-size: 1.15rem; }
 .meaning .muted { color: var(--muted); font-size: 0.92rem; }
+.meaning .word-hint { margin: 0 0 8px; font-size: 0.85rem; }
+
+.words-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.words-toolbar h3 { flex: 1; }
+
+.text-btn {
+    flex: 0 0 auto;
+    padding: 6px 4px;
+    border: none;
+    background: none;
+    color: var(--saffron);
+    font-weight: 600;
+    min-height: 36px;
+}
+
+.verse-word {
+    margin: 0 0 8px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.verse-word.open { border-color: color-mix(in srgb, var(--saffron) 55%, var(--line)); }
+
+.verse-word-hit {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    text-align: left;
+}
+
+.verse-word-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.verse-word-head .te {
+    font-family: var(--te);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.verse-word-head .iast {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.verse-word-head .chev {
+    margin-left: auto;
+    color: var(--faint);
+    font-style: normal;
+}
+
+.verse-word-body { padding: 0 12px 12px; }
+.verse-word-body .deva { font-family: var(--deva); color: var(--muted); margin-bottom: 4px; }
+.verse-word-body .te-text { font-family: var(--te); font-size: 1.15rem; margin: 0 0 4px; }
+.verse-word-body p { margin: 0; }
+.verse-word-body ul { margin: 0; padding-left: 1.1em; }
+
+.focus:not([hidden]) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 4px 6px;
+    font-weight: 600;
+}
+
+.focus span { flex: 1; }
 .meaning .missing { color: var(--muted); font-style: italic; }
 .meaning ul { margin: 0; padding-left: 1.1em; }
 
