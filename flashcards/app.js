@@ -71,8 +71,12 @@ let edits = saved.get('verseEdits', {});
 let deck = null;
 let loadError = null;
 
-/** `kind` is the card kind `order` was built for; it only changes in rebuild(). */
-const session = { kind: 'words', order: [], position: 0, flipped: false, answers: {}, finished: false };
+/** `kind` is the card kind `order` was built for; it only changes in rebuild().
+ *  `verseFocus` limits Words to one verse. `returnVerseID` is where Verse goes back. */
+const session = {
+    kind: 'words', order: [], position: 0, flipped: false, answers: {}, finished: false,
+    verseFocus: null, returnVerseID: null, openWord: null,
+};
 
 // ---- Deck helpers ----
 
@@ -116,6 +120,132 @@ function verseAt(index) {
     return e ? { ...v, te: splitLines(e.te), deva: splitLines(e.deva), iast: splitLines(e.iast), edited: true } : v;
 }
 
+const PARTICLES = new Set(['ca', 'eva', 'api', 'hi', 'tu', 'vā']);
+
+/** Same key the deck builder uses, so a gloss head finds its word card. */
+function wordKey(head) {
+    let s = head.normalize('NFC').toLowerCase()
+        .replaceAll('ṁ', 'ṃ').replaceAll('ō', 'o').replaceAll('ē', 'e')
+        .replaceAll("'", '’').replaceAll('-', '');
+    s = s.replace(/[^\p{L}\p{N}’]/gu, '');
+    s = s.replace(/ṃ$/u, 'm');
+    return s.replace(/[dgbḍ]$/u, (m) => ({ d: 't', g: 'k', b: 'p', 'ḍ': 'ṭ' }[m]));
+}
+
+/** Gita pages spell च as "ch". Try that spelling when the standard key misses. */
+function chForC(s) {
+    return s.replaceAll('chh', '\0').replace(/(?<!c)ch/g, 'c').replaceAll('\0', 'ch');
+}
+
+function isParticle(token) {
+    return PARTICLES.has(wordKey(chForC(token)));
+}
+
+function stripParticles(iast) {
+    const tokens = iast.split(/\s+/).filter(Boolean);
+    while (tokens.length > 1 && isParticle(tokens[tokens.length - 1])) tokens.pop();
+    while (tokens.length > 1 && isParticle(tokens[0])) tokens.shift();
+    return tokens.join(' ');
+}
+
+function glossHeads(text) {
+    const items = [];
+    let cur = '';
+    let depth = 0;
+    const flush = () => {
+        const item = cur.trim();
+        cur = '';
+        if (!item) return;
+        const parsed = parseGloss(item);
+        if (parsed) items.push(parsed);
+    };
+    for (const ch of text) {
+        if (ch === '(') depth++;
+        else if (ch === ')') depth = Math.max(0, depth - 1);
+        if ((ch === ',' || ch === ';') && depth === 0) flush();
+        else cur += ch;
+    }
+    flush();
+    return items;
+}
+
+function parseGloss(item) {
+    const start = item.indexOf('(');
+    if (start <= 0) return null;
+    let depth = 0;
+    let end = -1;
+    for (let j = start; j < item.length; j++) {
+        if (item[j] === '(') depth++;
+        else if (item[j] === ')') {
+            depth--;
+            if (depth === 0) { end = j; break; }
+        }
+    }
+    if (end < 0) return null;
+    const head = item.slice(0, start).trim().replace(/[.:]+$/u, '');
+    const meaning = item.slice(start + 1, end).trim().replace(/\.+$/u, '').trim();
+    if (!head || !meaning) return null;
+    return { head, meaning };
+}
+
+function matchGloss(head, byId) {
+    for (const key of [wordKey(stripParticles(head)), wordKey(stripParticles(chForC(head)))]) {
+        const hit = byId.get(key);
+        if (hit) return [hit];
+    }
+    const parts = stripParticles(head).split(/\s+/).filter(Boolean);
+    if (parts.length > 1) {
+        const hits = parts.map((p) => byId.get(wordKey(p)) || byId.get(wordKey(chForC(p))));
+        if (hits.every(Boolean)) return hits;
+    }
+    return [];
+}
+
+function verseRefKey(v) {
+    return `${v.src}|${v.group}|${v.label}`;
+}
+
+/** Word cards of one verse, in the order of its word-by-word gloss. Gloss-only rows have id null. */
+function wordsForVerse(verse) {
+    const shared = deck.verses.filter((v) => verseRefKey(v) === verseRefKey(verse)).length > 1;
+    const useCards = !!(verse.words && verse.words.trim()) || !shared;
+    const cards = useCards
+        ? deck.words.filter((w) => w.refs.some((r) => r.src === verse.src && r.group === verse.group && r.label === verse.label))
+        : [];
+    const byId = new Map(cards.map((w) => [w.id, w]));
+    const used = new Set();
+    const entries = [];
+    const addCard = (w, verseEn) => {
+        if (!w || used.has(w.id)) return;
+        used.add(w.id);
+        entries.push({
+            id: w.id, te: w.te, deva: w.deva, iast: w.iast, teMeaning: w.te_meaning,
+            en: verseEn ? [verseEn] : w.en,
+        });
+    };
+    for (const { head, meaning } of glossHeads(verse.words || '')) {
+        const hits = matchGloss(head, byId);
+        if (hits.length === 1) addCard(hits[0], meaning);
+        else if (hits.length) hits.forEach((w) => addCard(w));
+        else entries.push({ id: null, te: '', deva: '', iast: head, teMeaning: '', en: [meaning] });
+    }
+    for (const w of cards) addCard(w);
+    return entries;
+}
+
+function verseWordCardIndices(verse) {
+    const indexOf = new Map(deck.words.map((w, i) => [w.id, i]));
+    const seen = new Set();
+    const indices = [];
+    for (const entry of wordsForVerse(verse)) {
+        if (!entry.id || seen.has(entry.id)) continue;
+        seen.add(entry.id);
+        const i = indexOf.get(entry.id);
+        if (i != null) indices.push(i);
+    }
+    return indices;
+}
+
 function cardId(index) {
     return cardsOf(session.kind)[index].id;
 }
@@ -146,7 +276,10 @@ function rebuild() {
     session.kind = prefs.kind;
     const included = includedTest();
     let picked = [];
-    if (session.kind === 'words') {
+    if (session.kind === 'words' && session.verseFocus) {
+        const verse = deck.verses.find((v) => v.id === session.verseFocus);
+        picked = verse ? verseWordCardIndices(verse) : [];
+    } else if (session.kind === 'words') {
         deck.words.forEach((w, i) => { if (w.refs.some((r) => included(r.src, r.group))) picked.push(i); });
     } else {
         cardsOf(session.kind).forEach((c, i) => { if (included(c.src, c.group)) picked.push(i); });
@@ -166,7 +299,55 @@ function move(delta) {
     if (!n) return;
     session.position = (session.position + delta + n) % n;
     session.flipped = false;
+    session.openWord = null;
     render();
+}
+
+function studyVerseWords(verseIndex) {
+    const verse = deck.verses[verseIndex];
+    session.verseFocus = verse.id;
+    session.returnVerseID = verse.id;
+    session.openWord = null;
+    if (prefs.kind !== 'words') setPref('kind', 'words');
+    rebuild();
+}
+
+function showAllWords() {
+    session.verseFocus = null;
+    session.returnVerseID = null;
+    rebuild();
+}
+
+function backToVerse() {
+    const id = session.returnVerseID || session.verseFocus;
+    session.verseFocus = null;
+    if (prefs.kind !== 'verses') setPref('kind', 'verses');
+    rebuild();
+    const pos = id ? session.order.findIndex((i) => deck.verses[i].id === id) : -1;
+    if (pos >= 0) session.position = pos;
+    session.returnVerseID = null;
+    render();
+}
+
+function switchKind(value) {
+    if (value === 'words' && prefs.kind === 'verses') {
+        const index = currentIndex();
+        if (index != null) {
+            session.verseFocus = deck.verses[index].id;
+            session.returnVerseID = session.verseFocus;
+        }
+    }
+    const returning = value === 'verses' ? session.returnVerseID : null;
+    if (value !== 'words') session.verseFocus = null;
+    if (value !== 'verses') session.returnVerseID = null;
+    setPref('kind', value);
+    rebuild();
+    if (returning) {
+        const pos = session.order.findIndex((i) => deck.verses[i].id === returning);
+        if (pos >= 0) session.position = pos;
+        session.returnVerseID = null;
+        render();
+    }
 }
 
 function reveal() {
@@ -200,9 +381,26 @@ function answer(correct) {
 function render() {
     renderSwitches();
     renderStatus();
+    renderFocus();
     renderStage();
     renderActions();
     if ($('#drawer').classList.contains('open')) renderDrawer();
+}
+
+function renderFocus() {
+    const el = $('#focus');
+    if (!el) return;
+    el.replaceChildren();
+    if (!deck || session.kind !== 'words' || !session.verseFocus) {
+        el.hidden = true;
+        return;
+    }
+    const verse = deck.verses.find((v) => v.id === session.verseFocus);
+    el.hidden = false;
+    el.append(
+        h('span', {}, verse ? `Words of ${verse.label}` : 'Words of this verse'),
+        h('button', { class: 'text-btn', type: 'button', onclick: backToVerse }, 'Verse'),
+        h('button', { class: 'text-btn', type: 'button', onclick: showAllWords }, 'All words'));
 }
 
 function renderSwitches() {
@@ -266,6 +464,11 @@ function renderStage() {
 }
 
 function emptyHint() {
+    if (session.verseFocus) {
+        if (prefs.practice === 'review') return 'None of the words in this verse are marked for review.';
+        if (prefs.practice === 'notKnown') return 'Every word of this verse is marked known.';
+        return 'This verse has no word cards. Go back to the verse, or show all words.';
+    }
     if (prefs.practice === 'review') return 'No cards are marked for review in the selected chapters.';
     if (prefs.practice === 'notKnown') return 'Every card in the selected chapters is marked known.';
     return 'Tick at least one chapter or section.';
@@ -293,6 +496,12 @@ function meaning(title, ...content) {
 function wordCard(w, flipped) {
     const refs = w.refs.map((r) => r.label);
     const found = refs.slice(0, 6).join(', ') + (refs.length > 6 ? ` and ${refs.length - 6} more` : '');
+    let en = w.en;
+    if (session.verseFocus) {
+        const verse = deck.verses.find((v) => v.id === session.verseFocus);
+        const entry = verse && wordsForVerse(verse).find((item) => item.id === w.id);
+        if (entry) en = entry.en;
+    }
     return h('article', { class: 'card word' + (flipped ? ' flipped' : '') },
         badges(w.id),
         script('తెలుగు', 'te', [w.te]),
@@ -303,10 +512,10 @@ function wordCard(w, flipped) {
                 meaning('తెలుగు భావం', w.te_meaning
                     ? h('p', { class: 'te-text' }, w.te_meaning)
                     : h('p', { class: 'missing' }, 'Telugu meaning not added yet')),
-                meaning('English meaning', w.en.length > 1
-                    ? h('ul', {}, w.en.map((m) => h('li', {}, m)))
-                    : h('p', {}, w.en[0] ?? '')),
-                meaning('Found in', h('p', { class: 'muted' }, found)))
+                meaning('English meaning', en.length > 1
+                    ? h('ul', {}, en.map((m) => h('li', {}, m)))
+                    : h('p', {}, en[0] ?? '')),
+                !session.verseFocus && meaning('Found in', h('p', { class: 'muted' }, found)))
             : h('div', { class: 'hint' }, 'Recall the meaning, then tap the card'));
 }
 
@@ -324,10 +533,57 @@ function verseCard(v, index, flipped) {
             ? h('div', { class: 'meanings' },
                 v.te_meaning && meaning('తెలుగు భావం', h('p', { class: 'te-text' }, v.te_meaning)),
                 v.en_meaning && meaning('English meaning', h('p', {}, v.en_meaning)),
-                v.words && meaning('Word by word', h('p', { class: 'muted' }, v.words)))
+                verseWordList(v, index))
             : h('div', { class: 'hint' }, v.te.length > 1
                 ? 'Recite the rest of the verse, then tap the card to check'
                 : 'Recall the meaning, then tap the card'));
+}
+
+function verseWordList(verse, index) {
+    const entries = wordsForVerse(verse);
+    if (!entries.length) {
+        return verse.words ? meaning('Word by word', h('p', { class: 'muted' }, verse.words)) : null;
+    }
+    const canStudy = entries.some((entry) => entry.id);
+    return h('div', { class: 'meaning verse-words' },
+        h('div', { class: 'words-toolbar' },
+            h('h3', {}, 'Words'),
+            canStudy && h('button', {
+                class: 'text-btn',
+                type: 'button',
+                onclick: (e) => { e.stopPropagation(); studyVerseWords(index); },
+            }, 'Study these words')),
+        h('p', { class: 'muted word-hint' }, 'Tap a word to see its meaning.'),
+        entries.map((entry, i) => verseWordRow(entry, i)));
+}
+
+function verseWordRow(entry, i) {
+    const key = entry.id || `gloss:${i}`;
+    const open = session.openWord === key;
+    const toggle = (e) => {
+        e.stopPropagation();
+        session.openWord = open ? null : key;
+        render();
+    };
+    return h('div', { class: 'verse-word' + (open ? ' open' : '') },
+        h('button', {
+            class: 'verse-word-hit',
+            type: 'button',
+            'aria-expanded': open ? 'true' : 'false',
+            onclick: toggle,
+        },
+            h('span', { class: 'verse-word-head' },
+                entry.te && h('span', { class: 'te' }, entry.te),
+                h('span', { class: 'iast' }, entry.iast),
+                h('span', { class: 'chev', 'aria-hidden': 'true' }, open ? '▾' : '›'))),
+        open && h('div', { class: 'verse-word-body' },
+            entry.deva && h('div', { class: 'deva' }, entry.deva),
+            entry.teMeaning
+                ? h('p', { class: 'te-text' }, entry.teMeaning)
+                : entry.id && h('p', { class: 'missing' }, 'Telugu meaning not added yet'),
+            entry.en.length > 1
+                ? h('ul', {}, entry.en.map((m) => h('li', {}, m)))
+                : h('p', {}, entry.en[0] ?? '')));
 }
 
 function grammarCard(c, flipped) {
@@ -646,8 +902,8 @@ for (const [id, key] of [['#kind-switch', 'kind'], ['#study-switch', 'study']]) 
     $(id).addEventListener('click', (e) => {
         const value = e.target.closest('button')?.dataset.value;
         if (!value || value === prefs[key] || !deck) return;
-        setPref(key, value);
-        rebuild();
+        if (key === 'kind') switchKind(value);
+        else { setPref(key, value); rebuild(); }
     });
 }
 
