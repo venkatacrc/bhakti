@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#e8641a">
+    <meta name="description" content="A complete Sanskrit course for Telugu speakers: script, grammar mapped to Telugu grammar, and the Bhagavad Gita, Vishnu Sahasranamam and stotras.">
+    <title>సంస్కృత సోపానం · Sanskrit Sopanam</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div id="app">
+        <header class="topbar">
+            <button class="icon-btn" id="open-drawer" aria-label="Lessons and options">☰</button>
+            <div class="brand"><span class="om">సం</span> సంస్కృత సోపానం</div>
+            <button class="icon-btn" id="open-settings" aria-label="Settings" title="Settings">⚙︎</button>
+        </header>
+        <div class="switches">
+            <div class="segmented" id="mode-switch">
+                <button data-value="lessons">పాఠాలు</button>
+                <button data-value="cards">Cards</button>
+                <button data-value="quiz">Quiz</button>
+                <button data-value="lipi">లిపి</button>
+            </div>
+        </div>
+        <div class="subbar" id="subbar"></div>
+        <main id="stage"></main>
+        <nav class="actions" id="actions"></nav>
+    </div>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true">
+        <div class="drawer-head">
+            <div class="brand"><span class="om">సం</span> సోపానం</div>
+            <button class="icon-btn" id="close-drawer" aria-label="Close">✕</button>
+        </div>
+        <div class="drawer-body" id="drawer-body"></div>
+        <div class="drawer-foot" id="drawer-foot"></div>
+    </aside>
+
+    <dialog id="settings-dialog"></dialog>
+
+    <script src="lipi.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
