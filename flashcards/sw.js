@@ -1,12 +1,14 @@
 // Network first so a new deck or app version shows up as soon as the phone is online;
 // the cache keeps everything working offline.
-const CACHE = 'sloka-words-d384e73f3a';
+const CACHE = 'sloka-words-5c54f31f87';
 const FILES = [
     './',
     'index.html',
     'app.css',
+    'analysis.js',
     'app.js',
     'words.json',
+    'gita_analysis.json',
     'manifest.webmanifest',
     'icons/icon-192.png',
     'icons/icon-512.png',
@@ -20,7 +22,9 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys()
-            .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+            // Only old app versions; the saved Gītā analysis (samsaadhanii-gita-*) stays.
+            .then((keys) => Promise.all(keys.filter((k) => k.startsWith('sloka-words-') && k !== CACHE)
+                .map((k) => caches.delete(k))))
             .then(() => self.clients.claim()));
 });
 

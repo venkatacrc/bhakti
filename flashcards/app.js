@@ -11,7 +11,7 @@ function h(tag, attrs = {}, ...children) {
         else if (typeof v === 'boolean') el[k] = v;
         else el.setAttribute(k, v);
     }
-    for (const c of children.flat()) {
+    for (const c of children.flat(Infinity)) {
         if (c == null || c === false) continue;
         el.append(c instanceof Node ? c : String(c));
     }
@@ -45,6 +45,8 @@ const prefs = {
     print: saved.get('print', {
         te: true, deva: true, iast: true, teMeaning: true, enMeaning: true, words: false, reviewOnly: false,
     }),
+    analysisScript: saved.get('analysisScript', 'te'),
+    analysisTab: saved.get('analysisTab', 'graph'),
 };
 
 function setPref(key, value) {
@@ -533,6 +535,11 @@ function verseCard(v, index, flipped) {
             ? h('div', { class: 'meanings' },
                 v.te_meaning && meaning('తెలుగు భావం', h('p', { class: 'te-text' }, v.te_meaning)),
                 v.en_meaning && meaning('English meaning', h('p', {}, v.en_meaning)),
+                GitaAnalysis.has(v) && h('button', {
+                    class: 'btn analysis-btn',
+                    type: 'button',
+                    onclick: (e) => { e.stopPropagation(); openAnalysis(v); },
+                }, '🔍 పద విశ్లేషణ · Kāraka graph'),
                 verseWordList(v, index))
             : h('div', { class: 'hint' }, v.te.length > 1
                 ? 'Recite the rest of the verse, then tap the card to check'
@@ -841,6 +848,100 @@ function exportEdits() {
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
+// ---- Gītā analysis (Samsaadhanii) ----
+
+/** Telugu meaning from this verse's word cards, for an analysed word. */
+function deckMeanings(verse) {
+    const norm = (s) => s.normalize('NFC').replace(/[-\s()\u200c\u200d\u093C]/g, '').replace(/ं/g, 'म्');
+    const map = new Map();
+    for (const entry of wordsForVerse(verse)) if (entry.deva && entry.teMeaning) map.set(norm(entry.deva), entry.teMeaning);
+    return (w) => map.get(norm(w.text)) || '';
+}
+
+function openAnalysis(verse) {
+    const dialog = $('#analysis-dialog');
+    const files = GitaAnalysis.filesFor(verse);
+    const meanings = deckMeanings(verse);
+    const token = {};
+    dialog.token = token;
+    let models = null;
+    let error = null;
+
+    const controls = h('div', { class: 'ga-controls' });
+    const body = h('div', { class: 'ga-body' });
+    const status = h('span', { class: 'ga-status' });
+    const saveBtn = h('button', { class: 'btn small', type: 'button' }, '⤓ Save the whole Gītā for offline');
+    const segmented = (options, value, pick) => h('div', { class: 'segmented' }, options.map(([v, label]) =>
+        h('button', { type: 'button', class: v === value ? 'on' : '', onclick: () => pick(v) }, label)));
+
+    const draw = (keepScroll) => {
+        if (dialog.token !== token) return;
+        const script = prefs.analysisScript;
+        const L = GitaAnalysis.LABELS[script];
+        controls.replaceChildren(
+            segmented([['te', 'తెలుగు'], ['deva', 'देवनागरी']], script, (v) => { setPref('analysisScript', v); draw(true); }),
+            segmented(GitaAnalysis.TABS.map((t) => [t, L[t]]), prefs.analysisTab, (v) => { setPref('analysisTab', v); draw(false); }));
+        const scroll = body.scrollTop;
+        body.replaceChildren();
+        if (error) {
+            body.append(h('div', { class: 'ga-empty' }, navigator.onLine === false
+                ? 'This verse is not saved on the device yet. Connect to the internet once to open it, or save the whole Gītā while online.'
+                : `Could not download the analysis (${error.message}). Try again when you are online.`));
+        } else if (!models) {
+            body.append(h('div', { class: 'ga-empty' }, 'Downloading the analysis…'));
+        } else {
+            models.forEach(({ stem, model }, i) => {
+                const covers = GitaAnalysis.versesInFile(stem);
+                const notes = [
+                    models.length > 1 && `భాగం ${i + 1} / ${models.length} · Part ${i + 1} of ${models.length}`,
+                    covers.length > 1 && `శ్లోకాలు ${covers[0]}–${covers[covers.length - 1]} కలిపి · Verses ${covers[0]}–${covers[covers.length - 1]} together`,
+                ].filter(Boolean);
+                body.append(h('section', { class: 'ga-block' },
+                    notes.length > 0 && h('div', { class: 'ga-block-head' }, notes.join('  ·  ')),
+                    GitaAnalysis.view(model, prefs.analysisTab, script, meanings)));
+            });
+        }
+        body.scrollTop = keepScroll ? scroll : 0;
+    };
+
+    const showSaved = async () => {
+        const total = GitaAnalysis.allFiles().length;
+        const n = Math.min(await GitaAnalysis.savedCount(), total);
+        if (dialog.token !== token) return;
+        status.textContent = n >= total ? '✓ The whole Gītā is saved for offline use.' : `${n} of ${total} analysis files saved on this device.`;
+        saveBtn.hidden = n >= total || !('caches' in window);
+    };
+
+    saveBtn.addEventListener('click', async () => {
+        saveBtn.disabled = true;
+        const result = await GitaAnalysis.downloadAll((done, total, failed) => {
+            status.textContent = `Saving ${done} of ${total}…` + (failed ? ` (${failed} failed)` : '');
+        });
+        saveBtn.disabled = false;
+        await showSaved();
+        if (result.failed) status.textContent += ` ${result.failed} could not be downloaded; try again later.`;
+    });
+
+    const source = GitaAnalysis.source;
+    dialog.replaceChildren(
+        h('div', { class: 'ga-head' },
+            h('div', { class: 'ga-title' }, h('strong', {}, verse.label), h('span', {}, 'పద విశ్లేషణ · Word analysis')),
+            h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Close', onclick: () => dialog.close() }, '✕')),
+        controls,
+        body,
+        h('div', { class: 'ga-foot' },
+            h('p', { class: 'ga-credit' }, source.credit, ' ',
+                h('a', { href: `https://github.com/${source.repo}`, target: '_blank', rel: 'noopener' }, 'Source')),
+            h('div', { class: 'ga-save' }, status, saveBtn)));
+    draw(false);
+    if (!dialog.open) dialog.showModal();
+    showSaved();
+
+    Promise.all(files.map(async (stem) => ({ stem, model: await GitaAnalysis.analysis(stem) })))
+        .then((m) => { models = m; draw(false); showSaved(); })
+        .catch((err) => { error = err; draw(false); });
+}
+
 // ---- Print / PDF ----
 
 function openPrint() {
@@ -962,6 +1063,10 @@ document.addEventListener('keydown', (e) => {
         k: () => { if (!test) { progress.toggleKnown(id); render(); } },
         r: () => { if (!test) { progress.toggleReview(id); render(); } },
         e: () => { if (session.kind === 'verses') openEditor(currentIndex()); },
+        a: () => {
+            const v = session.kind === 'verses' && verseAt(currentIndex());
+            if (v && GitaAnalysis.has(v) && (!test || session.flipped)) openAnalysis(v);
+        },
     };
     const run = actions[e.key.length === 1 ? e.key.toLowerCase() : e.key];
     if (run) {
@@ -985,6 +1090,8 @@ fetch('words.json')
         loadError = `Open this page once while online so the cards can be saved for offline use. (${err.message})`;
         render();
     });
+
+GitaAnalysis.load().then(() => { if (deck) render(); }).catch(() => {});
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});

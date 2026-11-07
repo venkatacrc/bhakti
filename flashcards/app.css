@@ -568,6 +568,146 @@ dialog::backdrop { background: rgb(0 0 0 / 0.4); }
     padding: 12px 18px 18px;
 }
 
+/* ---- Gītā analysis ---- */
+
+.analysis-btn {
+    display: block;
+    width: 100%;
+    margin: 4px 0 16px;
+    border-color: color-mix(in srgb, var(--saffron) 55%, var(--line));
+    color: var(--saffron);
+}
+
+dialog.analysis {
+    width: min(900px, 100vw);
+    height: min(94dvh, 100dvh);
+    max-height: 100dvh;
+    flex-direction: column;
+}
+
+dialog.analysis[open] { display: flex; }
+
+@media (max-width: 560px) {
+    dialog.analysis {
+        width: 100vw;
+        height: 100dvh;
+        max-width: 100vw;
+        border-radius: 0;
+    }
+}
+
+.ga-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: calc(8px + env(safe-area-inset-top)) 10px 4px 16px;
+}
+
+.ga-title { flex: 1; display: flex; flex-direction: column; }
+.ga-title span { font-size: 0.85rem; color: var(--muted); }
+
+.ga-controls { display: flex; flex-direction: column; gap: 6px; padding: 4px 12px 8px; }
+.ga-controls .segmented { flex: none; }
+.ga-controls .segmented button { font-size: 0.88rem; padding: 7px 2px; }
+
+.ga-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 4px 16px 16px;
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.ga-empty { padding: 32px 8px; text-align: center; color: var(--muted); }
+.ga-block + .ga-block { margin-top: 18px; padding-top: 12px; border-top: 2px dashed var(--line); }
+.ga-block-head { margin: 10px 0 0; font-size: 0.82rem; font-weight: 600; color: var(--saffron); }
+
+.ga-section h4 {
+    margin: 14px 0 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--saffron);
+}
+
+.ga-line { margin: 0; font-size: 1.2rem; line-height: 1.7; word-spacing: 0.15em; }
+.ga-body { font-family: var(--te), var(--deva), var(--ui); }
+
+.ga-splits { margin: 0; padding-left: 1.1em; line-height: 1.8; }
+.ga-joined { font-weight: 600; }
+.ga-part { color: var(--saffron); }
+
+.ga-gloss { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+.ga-chip {
+    padding: 6px 9px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.ga-chip.supplied { border-style: dashed; }
+.ga-chip-word { font-size: 1.08rem; font-weight: 600; }
+.ga-chip-te { font-size: 0.92rem; }
+.ga-chip-en { font-family: var(--ui); font-size: 0.8rem; color: var(--muted); }
+.ga-note { font-family: var(--ui); font-size: 0.82rem; color: var(--muted); }
+
+.ga-word { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.ga-word.supplied .ga-word-text { color: var(--muted); }
+.ga-word-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.ga-word-text { font-size: 1.2rem; font-weight: 600; }
+.ga-word-meaning { font-size: 0.9rem; color: var(--muted); }
+.ga-morph { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.ga-stem, .ga-tag { padding: 2px 8px; border-radius: 99px; font-size: 0.82rem; background: var(--bg); }
+.ga-tag { border: 1px solid var(--line); background: none; }
+.ga-compound, .ga-relation { margin-top: 6px; font-size: 0.9rem; }
+.ga-rel { font-weight: 600; }
+.ga-rel-gloss, .ga-rel-inline { color: var(--muted); font-size: 0.85rem; }
+.ga-rel.kind-karaka { color: var(--saffron); }
+.ga-rel.kind-samasa { color: var(--purple); }
+
+.ga-pick {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 8px -16px 4px;
+    padding: 8px 16px;
+    background: color-mix(in srgb, var(--card) 92%, var(--saffron));
+    font-size: 0.95rem;
+    min-height: 2.4em;
+}
+
+.ga-pick-rel { font-size: 0.85rem; color: var(--muted); }
+.ga-tree-scroll { overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+.ga-legend { margin: 0; padding-left: 1.1em; font-size: 0.88rem; line-height: 1.7; }
+
+.kg { display: block; }
+.kg text { fill: var(--text); }
+.kg.te text { font-family: var(--te); }
+.kg.deva text { font-family: var(--deva); }
+.kg-edge { fill: none; stroke: var(--faint); stroke-width: 1.3; }
+.kg-node rect { fill: var(--card); stroke: var(--muted); stroke-width: 1.2; }
+.kg-node text { font-size: 15px; font-weight: 600; }
+.kg-node.root rect { fill: color-mix(in srgb, var(--saffron) 16%, var(--card)); stroke: var(--saffron); stroke-width: 1.6; }
+.kg-node.supplied rect { stroke-dasharray: 4 3; }
+.kg-node.supplied text { fill: var(--muted); }
+.kg-node { cursor: pointer; outline: none; }
+.kg-node:focus rect { stroke: var(--saffron); stroke-width: 2; }
+.kg-rel rect { fill: var(--card); }
+.kg-rel text { font-size: 11.5px; font-weight: 500; fill: var(--muted); }
+.kg-rel.kind-karaka text { fill: var(--saffron); font-weight: 700; }
+.kg-rel.kind-samasa text { fill: var(--purple); }
+
+.ga-foot { padding: 8px 14px calc(10px + env(safe-area-inset-bottom)); }
+.ga-credit { margin: 0 0 6px; font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+.ga-credit a { color: var(--saffron); }
+.ga-save { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted); }
+.ga-status { flex: 1; }
+.ga-save .btn[hidden] { display: none; }
+.ga-save .btn.small { min-height: 36px; padding: 6px 10px; font-size: 0.82rem; }
+
 #print-area { display: none; }
 
 @media print {
