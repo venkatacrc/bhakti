@@ -904,7 +904,9 @@ function openAnalysis(verse) {
         body.scrollTop = keepScroll ? scroll : 0;
     };
 
+    const bundled = GitaAnalysis.isBundled(verse);
     const showSaved = async () => {
+        if (bundled) return;
         const total = GitaAnalysis.allFiles().length;
         const n = Math.min(await GitaAnalysis.savedCount(), total);
         if (dialog.token !== token) return;
@@ -922,17 +924,18 @@ function openAnalysis(verse) {
         if (result.failed) status.textContent += ` ${result.failed} could not be downloaded; try again later.`;
     });
 
-    const source = GitaAnalysis.source;
+    const source = GitaAnalysis.sourceFor(verse);
     dialog.replaceChildren(
         h('div', { class: 'ga-head' },
-            h('div', { class: 'ga-title' }, h('strong', {}, verse.label), h('span', {}, 'పద విశ్లేషణ · Word analysis')),
+            h('div', { class: 'ga-title' }, h('strong', {}, verse.label),
+                h('span', {}, 'పద విశ్లేషణ · Word analysis' + (source.draft ? ' · draft' : ''))),
             h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Close', onclick: () => dialog.close() }, '✕')),
         controls,
         body,
         h('div', { class: 'ga-foot' },
-            h('p', { class: 'ga-credit' }, source.credit, ' ',
-                h('a', { href: `https://github.com/${source.repo}`, target: '_blank', rel: 'noopener' }, 'Source')),
-            h('div', { class: 'ga-save' }, status, saveBtn)));
+            h('p', { class: 'ga-credit' }, source.credit,
+                source.repo && [' ', h('a', { href: `https://github.com/${source.repo}`, target: '_blank', rel: 'noopener' }, 'Source')]),
+            !bundled && h('div', { class: 'ga-save' }, status, saveBtn)));
     draw(false);
     if (!dialog.open) dialog.showModal();
     showSaved();

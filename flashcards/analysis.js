@@ -1,12 +1,15 @@
 'use strict';
-// Samsaadhanii's Gītā analysis: word split, anvaya, word analysis and kāraka graph.
-// gita_analysis.json says where each verse's file is; the file itself is downloaded from
-// Samsaadhanii's GitHub the first time the verse is opened, then kept in the Cache API.
+// Word split, anvaya, word analysis and kāraka graph.
+// Gītā: gita_analysis.json says where each verse's Samsaadhanii file is; the file itself is
+// downloaded from Samsaadhanii's GitHub the first time the verse is opened, then kept in the
+// Cache API. Vishnu Sahasranamam: our own draft files, bundled in vs_analysis.json.
 // Mirrors app/Sources/SlokaWords/GitaAnalysis.swift.
 
 const GitaAnalysis = (() => {
     let index = null;
+    let vsIndex = null;
     const parsed = new Map();
+    const VS = 'vs:';
 
     // ---- Script ----
 
@@ -35,9 +38,14 @@ const GitaAnalysis = (() => {
 
     async function load() {
         if (index) return index;
-        const r = await fetch('gita_analysis.json');
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        index = await r.json();
+        const get = async (url) => {
+            const r = await fetch(url);
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return r.json();
+        };
+        const [gita, vs] = await Promise.all([get('gita_analysis.json'), get('vs_analysis.json').catch(() => null)]);
+        index = gita;
+        vsIndex = vs;
         return index;
     }
 
@@ -50,14 +58,21 @@ const GitaAnalysis = (() => {
     }
 
     function filesFor(verse) {
+        if (!index || !verse) return [];
+        if (verse.src === 'vs') return vsIndex?.verses[verse.id] ? [VS + verse.id] : [];
         const key = verseKey(verse);
-        return (index && key && index.verses[key]) || [];
+        return (key && index.verses[key]) || [];
     }
 
     const has = (verse) => filesFor(verse).length > 0;
 
+    /** Bundled analysis needs no download; the Gītā's comes from Samsaadhanii. */
+    const isBundled = (verse) => verse?.src === 'vs';
+    const sourceFor = (verse) => (isBundled(verse) ? vsIndex?.source : index?.source);
+
     /** Verse numbers ("1.4") a file covers, for files that analyse several verses together. */
     function versesInFile(stem) {
+        if (stem.startsWith(VS)) return [];
         return Object.entries(index.verses).filter(([, files]) => files.includes(stem)).map(([k]) => k.replace(':', '.'));
     }
 
@@ -77,7 +92,10 @@ const GitaAnalysis = (() => {
     }
 
     async function analysis(stem) {
-        if (!parsed.has(stem)) parsed.set(stem, fetchText(stem).then(build));
+        if (!parsed.has(stem)) {
+            const text = stem.startsWith(VS) ? Promise.resolve(vsIndex.verses[stem.slice(VS.length)]) : fetchText(stem);
+            parsed.set(stem, text.then(build));
+        }
         try {
             return await parsed.get(stem);
         } catch (err) {
@@ -488,7 +506,20 @@ const GitaAnalysis = (() => {
         return svg('svg', {
             class: 'kg ' + script, width: Math.ceil(L.width), height: Math.ceil(L.height),
             viewBox: `0 0 ${Math.ceil(L.width)} ${Math.ceil(L.height)}`, role: 'img',
+            'data-root-x': Math.round(L.nodes[0].x),
         }, edges, labels, boxes);
+    }
+
+    function treeScroll(root, script, pick) {
+        const tree = treeSvg(root, script, pick);
+        const box = h('div', { class: 'ga-tree-scroll' }, tree);
+        const watch = new ResizeObserver(() => {
+            if (!box.clientWidth) return;
+            watch.disconnect();
+            box.scrollLeft = Math.max(0, Number(tree.dataset.rootX) - box.clientWidth / 2);
+        });
+        watch.observe(box);
+        return box;
     }
 
     function graphView(model, script, L, meanings) {
@@ -508,7 +539,7 @@ const GitaAnalysis = (() => {
             info,
             model.sentences.map((root, i) => h('div', { class: 'ga-tree' },
                 model.sentences.length > 1 && h('h4', {}, `${L.sentence} ${i + 1}`),
-                h('div', { class: 'ga-tree-scroll' }, treeSvg(root, script, pick)))),
+                treeScroll(root, script, pick))),
             used.size > 0 && h('h4', {}, L.legend),
             used.size > 0 && h('ul', { class: 'ga-legend' }, [...used.values()].map((r) =>
                 h('li', {}, h('span', { class: 'ga-rel kind-' + r.kind }, relationLabel(r, script)), ' ', relationGloss(r)))));
@@ -524,9 +555,9 @@ const GitaAnalysis = (() => {
 
     return {
         load, loaded, has, filesFor, versesInFile, analysis, savedCount, downloadAll, allFiles,
-        view, build, parseMorph, devaToTelugu, inScript, LABELS, TABS,
-        get source() { return index?.source; },
+        isBundled, sourceFor, view, build, parseMorph, devaToTelugu, inScript, LABELS, TABS,
         set index(v) { index = v; },
+        set vsIndex(v) { vsIndex = v; },
     };
 })();
 
