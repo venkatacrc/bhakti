@@ -45,6 +45,7 @@ const prefs = {
     print: saved.get('print', {
         te: true, deva: true, iast: true, teMeaning: true, enMeaning: true, words: false, reviewOnly: false,
     }),
+    mainScript: saved.get('mainScript', 'te'),
     analysisScript: saved.get('analysisScript', 'te'),
     analysisTab: saved.get('analysisTab', 'graph'),
 };
@@ -484,11 +485,28 @@ function badges(id, label, extra = []) {
         progress.review.has(id) && h('span', { class: 'badge review' }, 'Review'));
 }
 
-function script(label, cls, lines, speaker) {
-    return h('div', { class: 'script' },
+/** [id, label on the card, name in the switch] */
+const SCRIPTS = [['te', 'తెలుగు', 'తెలుగు'], ['deva', 'हिन्दी', 'देवनागरी'], ['iast', 'IAST', 'English']];
+
+/** Script ids with the chosen main script first. */
+function scriptOrder() {
+    const ids = SCRIPTS.map(([id]) => id);
+    return [prefs.mainScript, ...ids.filter((id) => id !== prefs.mainScript)];
+}
+
+function script(label, cls, lines, speaker, main) {
+    return h('div', { class: 'script' + (main ? ' main' : ' sub') },
         h('div', { class: 'script-label' }, label),
         speaker && h('div', { class: cls + ' speaker' }, speaker),
         lines.map((l) => h('div', { class: cls }, l)));
+}
+
+/** The three script blocks of a card, main script first. `get(id)` returns [lines, speaker]. */
+function scripts(get) {
+    return scriptOrder().map((id, i) => {
+        const [lines, speaker] = get(id);
+        return script(SCRIPTS.find(([s]) => s === id)[1], id, lines, speaker, i === 0);
+    });
 }
 
 function meaning(title, ...content) {
@@ -506,9 +524,7 @@ function wordCard(w, flipped) {
     }
     return h('article', { class: 'card word' + (flipped ? ' flipped' : '') },
         badges(w.id),
-        script('తెలుగు', 'te', [w.te]),
-        script('हिन्दी', 'deva', [w.deva]),
-        script('IAST', 'iast', [w.iast]),
+        scripts((id) => [[w[id]]]),
         flipped
             ? h('div', { class: 'meanings' },
                 meaning('తెలుగు భావం', w.te_meaning
@@ -528,9 +544,7 @@ function verseCard(v, index, flipped) {
     editBtn.style.padding = '2px 10px';
     return h('article', { class: 'card verse' + (flipped ? ' flipped' : '') },
         badges(v.id, v.label, [v.edited && h('span', { class: 'badge edited' }, 'Edited'), editBtn]),
-        script('తెలుగు', 'te', take(v.te), v.speaker?.te),
-        script('हिन्दी', 'deva', take(v.deva), v.speaker?.deva),
-        script('IAST', 'iast', take(v.iast), v.speaker?.iast),
+        scripts((id) => [take(v[id]), v.speaker?.[id]]),
         flipped
             ? h('div', { class: 'meanings' },
                 v.te_meaning && meaning('తెలుగు భావం', h('p', { class: 'te-text' }, v.te_meaning)),
@@ -577,6 +591,11 @@ function setVerseWordOpen(row, open) {
 function verseWordRow(entry, i) {
     const key = entry.id || `gloss:${i}`;
     const open = session.openWord === key;
+    // The main script and one other in the row; the third shows when the row opens.
+    const [main, ...others] = scriptOrder();
+    const second = main === 'te' ? 'iast' : main === 'iast' ? 'te' : 'iast';
+    const head = [main, second];
+    const rest = others.find((id) => id !== second);
     const toggle = (e) => {
         e.stopPropagation();
         const card = e.currentTarget.closest('.card');
@@ -608,11 +627,10 @@ function verseWordRow(entry, i) {
             onclick: toggle,
         },
             h('span', { class: 'verse-word-head' },
-                entry.te && h('span', { class: 'te' }, entry.te),
-                h('span', { class: 'iast' }, entry.iast),
+                head.map((id, j) => entry[id] && h('span', { class: id + (j ? ' second' : ' first') }, entry[id])),
                 h('span', { class: 'chev', 'aria-hidden': 'true' }, open ? '▾' : '›'))),
         h('div', { class: 'verse-word-body', hidden: !open },
-            entry.deva && h('div', { class: 'deva' }, entry.deva),
+            entry[rest] && h('div', { class: rest + ' rest' }, entry[rest]),
             entry.teMeaning
                 ? h('p', { class: 'te-text' }, entry.teMeaning)
                 : entry.id && h('p', { class: 'missing' }, 'Telugu meaning not added yet'),
@@ -738,6 +756,13 @@ function renderDrawer() {
         h('div', { class: 'row' }, h('span', { class: 'grow' }, 'Cards'), practice),
         checkRow('Shuffle', prefs.shuffle, (on) => { setPref('shuffle', on); rebuild(); }),
         h('button', { class: 'menu-btn', onclick: () => { rebuild(); closeDrawer(); } }, '↺ Restart from the first card')));
+
+    body.append(h('h4', {}, 'Main script'), h('div', { class: 'panel' },
+        h('div', { class: 'segmented script-switch' }, SCRIPTS.map(([id, label, name]) => h('button', {
+            class: prefs.mainScript === id ? 'on' : null,
+            onclick: () => { setPref('mainScript', id); renderDrawer(); renderStage(); },
+        }, name))),
+        h('p', { class: 'hint-text' }, 'Shown first on the cards, in a bigger font.')));
 
     const sources = sourcesFor(session.kind);
     const langs = [...new Set(sources.map((s) => s.lang))].sort();

@@ -1,6 +1,6 @@
 // Network first so a new deck or app version shows up as soon as the phone is online;
 // the cache keeps everything working offline.
-const CACHE = 'sloka-words-e37a02d9bd';
+const CACHE = 'sloka-words-36ab48655a';
 const FILES = [
     './',
     'index.html',

@@ -193,18 +193,28 @@ main {
 .script .iast { font-style: italic; }
 .script div { overflow-wrap: anywhere; }
 
-.word .te { font-size: 2.6rem; }
-.word .deva { font-size: 2rem; }
-.word .iast { font-size: 1.25rem; }
-.word.flipped .te { font-size: 2.1rem; }
-.word.flipped .deva { font-size: 1.65rem; }
-.word.flipped .iast { font-size: 1.05rem; }
+/* The main script (chosen in the drawer) comes first and largest; Latin needs less size than Indic. */
+.word .main .te, .word .main .deva { font-size: 2.9rem; }
+.word .main .iast { font-size: 2.3rem; }
+.word.flipped .main .te, .word.flipped .main .deva { font-size: 2.3rem; }
+.word.flipped .main .iast { font-size: 1.85rem; }
+.word .sub .te, .word .sub .deva { font-size: 1.7rem; }
+.word .sub .iast { font-size: 1.2rem; }
+.word.flipped .sub .te, .word.flipped .sub .deva { font-size: 1.45rem; }
+.word.flipped .sub .iast { font-size: 1.05rem; }
 
-.verse .te { font-size: 1.3rem; line-height: 1.55; }
-.verse .deva { font-size: 1.15rem; line-height: 1.55; }
-.verse .iast { font-size: 0.95rem; line-height: 1.5; }
-.verse:not(.flipped) .te { font-size: 1.5rem; }
+.verse .script div { line-height: 1.55; }
+.verse .main .te, .verse .main .deva { font-size: 1.5rem; }
+.verse .main .iast { font-size: 1.25rem; }
+.verse:not(.flipped) .main .te, .verse:not(.flipped) .main .deva { font-size: 1.7rem; }
+.verse:not(.flipped) .main .iast { font-size: 1.4rem; }
+.verse .sub .te, .verse .sub .deva { font-size: 1.1rem; }
+.verse .sub .iast { font-size: 0.92rem; }
+.verse .main .iast:not(.speaker) { font-weight: 500; }
 .verse .script .speaker { font-size: 0.95rem; font-weight: 500; color: var(--saffron); }
+.verse .main .speaker { font-size: 1.1rem; }
+.script.sub .te:not(.speaker), .script.sub .deva:not(.speaker), .script.sub .iast:not(.speaker) { color: var(--muted); }
+.script.sub .te { font-weight: 500; }
 
 .grammar .context {
     margin: 0 0 8px;
@@ -300,17 +310,13 @@ main {
     gap: 10px;
 }
 
-.verse-word-head .te {
-    font-family: var(--te);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.verse-word-head .iast {
-    font-style: italic;
-    color: var(--muted);
-    font-size: 0.95rem;
-}
+.verse-word-head .te { font-family: var(--te); }
+.verse-word-head .deva { font-family: var(--deva); }
+.verse-word-head .iast { font-style: italic; }
+.verse-word-head .first { font-size: 1.3rem; font-weight: 600; }
+.verse-word-head .iast.first { font-size: 1.12rem; }
+.verse-word-head .second { color: var(--muted); font-size: 0.95rem; }
+.verse-word-head .te.second { font-size: 1.05rem; }
 
 .verse-word-head .chev {
     margin-left: auto;
@@ -319,7 +325,9 @@ main {
 }
 
 .verse-word-body { padding: 0 12px 12px; }
-.verse-word-body .deva { font-family: var(--deva); color: var(--muted); margin-bottom: 4px; }
+.verse-word-body .rest { color: var(--muted); margin-bottom: 4px; }
+.verse-word-body .deva { font-family: var(--deva); }
+.verse-word-body .te.rest { font-family: var(--te); }
 .verse-word-body .te-text { font-family: var(--te); font-size: 1.15rem; margin: 0 0 4px; }
 .verse-word-body p { margin: 0; }
 .verse-word-body ul { margin: 0; padding-left: 1.1em; }
@@ -481,6 +489,10 @@ main {
 }
 
 .row:last-child { border-bottom: none; }
+.panel .script-switch { margin: 10px 12px 4px; }
+.script-switch button:nth-child(1) { font-family: var(--te); }
+.script-switch button:nth-child(2) { font-family: var(--deva); }
+.panel .hint-text { margin: 0 14px 10px; font-size: 0.8rem; color: var(--muted); }
 .row input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--saffron); flex: none; }
 .row label, .row .grow { flex: 1; }
 .row select { font: inherit; padding: 6px; border-radius: 8px; }
