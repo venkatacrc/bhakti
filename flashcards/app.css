@@ -131,6 +131,30 @@ button {
 }
 
 .status strong { color: var(--text); }
+.status .pos { white-space: nowrap; }
+
+/* Links to card 1, 10, 20, …; scrolls sideways on narrow screens. */
+.status .jumps {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.status .jumps::-webkit-scrollbar { display: none; }
+.status .jumps button {
+    flex: none;
+    padding: 0 6px;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    color: var(--saffron);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+}
+.status .jumps button.on { background: color-mix(in srgb, var(--saffron) 16%, transparent); font-weight: 600; }
+.status > span:last-child { white-space: nowrap; }
 
 main {
     flex: 1;
@@ -493,6 +517,7 @@ main {
 .script-switch button:nth-child(1) { font-family: var(--te); }
 .script-switch button:nth-child(2) { font-family: var(--deva); }
 .panel .hint-text { margin: 0 14px 10px; font-size: 0.8rem; color: var(--muted); }
+.row.sub-row { padding-left: 40px; min-height: 38px; font-size: 0.9rem; }
 .row input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--saffron); flex: none; }
 .row label, .row .grow { flex: 1; }
 .row select { font: inherit; padding: 6px; border-radius: 8px; }
@@ -723,9 +748,9 @@ dialog.analysis[open] { display: flex; }
 #print-area { display: none; }
 
 @media print {
-    @page { margin: 16mm 14mm; }
+    @page { size: A4; margin: 12mm 14mm 13mm; }
 
-    body { background: #fff; color: #000; }
+    html, body { background: #fff; color: #000; height: auto; }
     #app, .drawer, .backdrop, dialog { display: none !important; }
 
     #print-area {
@@ -734,19 +759,27 @@ dialog.analysis[open] { display: flex; }
         font-size: 11pt;
     }
 
-    #print-area h1 { margin: 0; font-size: 18pt; }
-    #print-area .count { margin: 2pt 0 10pt; color: #555; }
-    #print-area h2 { margin: 14pt 0 6pt; padding-bottom: 3pt; border-bottom: 1px solid #c0602a; color: #c0602a; font-size: 13pt; break-after: avoid; }
+    #print-area h2 { margin: 12pt 0 3pt; padding-bottom: 2pt; border-bottom: 1px solid #c0602a; color: #c0602a; font-size: 12.5pt; }
+    #print-area .pv:first-child h2 { margin-top: 0; }
 
-    #print-area .pv { margin: 0 0 10pt; padding-bottom: 8pt; border-bottom: 1px solid #ddd; break-inside: avoid; }
-    #print-area .pv-label { margin-bottom: 3pt; font-weight: 700; }
-    #print-area .pv-lines { margin-bottom: 4pt; line-height: 1.45; }
-    #print-area .pv-lines.te { font-family: var(--te); font-size: 13pt; font-weight: 600; }
-    #print-area .pv-lines.deva { font-family: var(--deva); font-size: 12pt; }
-    #print-area .pv-lines.iast { font-style: italic; font-size: 10.5pt; }
-    #print-area .pv-speaker { color: #c0602a; font-size: 0.85em; font-weight: 500; }
-    #print-area .pv-meaning { margin: 3pt 0 0; line-height: 1.4; }
-    #print-area .pv-meaning b { color: #c0602a; font-size: 8.5pt; letter-spacing: 0.03em; }
-    #print-area .pv-meaning.te { font-family: var(--te); }
-    #print-area .pv-meaning.words { color: #444; font-size: 9.5pt; }
+    /* An empty line above and below each verse, for handwritten corrections. */
+    #print-area .pv-gap { height: 17pt; }
+    #print-area .pv { break-inside: avoid; }
+    #print-area .pv-lines { text-align: center; line-height: 1.3; }
+    #print-area .pv-line { position: relative; }
+    #print-area .pv-label { position: absolute; left: 0; top: 0.3em; font-family: var(--ui); font-style: normal; font-weight: 500; font-size: 7.5pt; color: #666; }
+    #print-area .pv-lines.te { font-family: var(--te); font-size: 13pt; font-weight: 500; }
+    #print-area .pv-lines.deva { font-family: var(--deva); font-size: 13pt; }
+    #print-area .pv-lines.iast { font-style: italic; font-size: 10pt; color: #444; }
+    #print-area .pv-speaker { color: #c0602a; font-size: 0.8em; font-weight: 500; }
+    #print-area .pv-meaning { margin: 0 0 2pt; font-size: 8.5pt; line-height: 1.35; }
+    #print-area .pv-meaning b { color: #c0602a; font-size: 6.5pt; letter-spacing: 0.04em; margin-right: 3pt; }
+    #print-area .pv-meaning.te { font-family: var(--te); font-size: 9pt; }
+    #print-area .pv-meaning.words { color: #444; font-size: 8pt; }
+    #print-area .pv-colophon { text-align: center; color: #c0602a; margin-bottom: 2pt; }
+    #print-area .pv-colophon.te { font-family: var(--te); }
+    #print-area .pv-colophon.deva { font-family: var(--deva); }
+    #print-area .pv-colophon.opening { font-size: 12pt; }
+    #print-area .pv-colophon.closing { font-size: 10pt; }
+    #print-area .pv-close { break-inside: avoid; }
 }
